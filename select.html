@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+ <html type="text/html">
+  <head>
+   <!--meta-->
+    <meta charset = "utf-8"/>
+    <meta name = "theme-color" content = "#185a50"/>
+    <meta name = "author" content = "Youssef Over"/>
+    <meta name = "copyright" content = "2023"/>
+    <meta name = "copyrights" content = "true"/>
+    <meta name = "robots" content = "noindex"/>
+    <meta name = "google" content = "notranslate"/>
+    <meta property = "og:site_name" content = "Medical Recruitment Questionnaire (GER - KSA - UAE - OMN)"/>
+    <meta property = "og:url" content = "https://mrq.net4.repl.co"/>
+    <meta property = "og:title" content = "استبيان توظيف للتقدم على وظيفة طبية"/>
+    <meta property = "og:description" content = "في المانيا والسعودية والإمارات وعمان"/>
+    <meta property = "og:image" content = "./assets/i.png"/>
+   <!--link-->
+    <link rel="icon" type="image/png" href="./assets/i.png"/>
+    <link rel="stylesheet" type="text/css" href="./style.css"/>
+   <!--title-->
+    <title>استبيان العمل الطبي</title>
+   <!--script-->
+    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+    <script type="application/javascript" src="./script.js" async></script>
+    <noscript>لفتح الاستبيان (JavaScript) الرجاء فتح الجافا سكريبت</noscript>
+  </head>
+  <body>
+   <!--loading-->
+    <div id="loading">
+     <!--load-->
+      <embed class="load" src="./media/load.svg"></embed>
+    </div>
+   <!--container-->
+    <div class="_container">
+     <!--header-->
+      <header>
+       <!--time-->
+        <nav class="time">
+         <time></time>
+        </nav>
+       <!--switch-->
+        <nav class="switch"></nav>
+      </header>
+     <!--main-->
+      <main>
+       <!--slidebar-->
+        <section class="slidebar">
+         <p class="s">الرجاء الاختيار</p>
+         <!--country-->
+          <section class="country">
+           <button id="ger" type="button" disabled>المانيا</button>
+           <button id="ksa" type="button">المملكة العربية السعودية</button>
+           <button id="uae" type="button">الإمارات العربية المتحدة</button>
+           <button id="omn" type="button">سلطنة عمان</button>
+          </section>
+         <!--option: ger-->
+          <section class="option ger">
+           <button class="out" id="out-gr" type="button">خارج المانيا</button>
+           <button class="in" id="in-gr" type="button">داخل المانيا</button>
+          </section>
+         <!--option: ksa-->
+          <section class="option ksa">
+           <button class="out" id="out-sa" type="button">خارج المملكة</button>
+           <button class="in" id="in-sa" type="button">مقيم داخل المملكة</button>
+          </section>
+        </section>
+      </main>
+     <!--footer-->
+      <footer>
+       <p><date></date> جميع الحقوق محفوظة <span>©</span></p>
+      </footer>
+    </div>
+  </body>
+ </html>
