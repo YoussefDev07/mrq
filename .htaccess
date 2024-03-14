@@ -1,0 +1,25 @@
+AddDefaultCharset utf-8
+
+# diractions
+
+Options -Indexes
+
+# GZIP
+
+<ifmodule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/text text/html text/css text/xml text/plain application/javascript font/ttf font/woff2 image/png image/gif image/svg+xml
+</ifmodule>
+
+# index
+
+DirectoryIndex home.html
+
+# errors
+
+ErrorDocument 401 file:///C:/xampp/htdocs/www/mrq/error/401.htm
+ErrorDocument 403 file:///C:/xampp/htdocs/www/mrq/error/403.htm
+ErrorDocument 404 file:///C:/xampp/htdocs/www/mrq/error/404.htm
+ErrorDocument 408 file:///C:/xampp/htdocs/www/mrq/error/408.htm
+ErrorDocument 500 file:///C:/xampp/htdocs/www/mrq/error/500.htm
+ErrorDocument 502 file:///C:/xampp/htdocs/www/mrq/error/502.htm
+ErrorDocument 504 file:///C:/xampp/htdocs/www/mrq/error/504.htm

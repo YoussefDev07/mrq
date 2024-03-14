@@ -1,0 +1,115 @@
+@charset "UTF-8";
+
+/*:colors*/
+
+:root {
+  --main: #ffce00;
+  --bg: #939393;
+  --text: #ffffffff;
+  --dark-text: black;
+  --ad: #000000;
+  --footer: #fff;
+}
+
+/*scrollbar*/
+
+::-webkit-scrollbar-track {
+  background-color: var(--bg) !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--main) !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--text) !important;
+}
+
+/*wait*/
+
+.wait p {
+  color: var(--dark-text);
+}
+
+/*time*/
+
+.time {
+  color: var(--dark-text);
+}
+
+/*switch*/
+
+.switch {
+  background-color: #185a50;
+}
+
+/*slidebar*/
+
+.slidebar {
+  filter: grayscale(28%);
+}
+
+/*head*/
+
+.head h1, .head p {
+  color: var(--dark-text);
+}
+
+/*form*/
+
+form div > span {
+  color: var(--dark-text);
+}
+
+form div class > button {
+  border-color: var(--ad);
+  color: var(--dark-text);
+}
+
+form div class a {
+  color: var(--dark-text);
+}
+
+/*submit*/
+
+button[type="submit"] {
+  color: var(--dark-text);
+}
+
+/*reset*/
+
+.reset:hover {
+  color: var(--dark-text);
+}
+
+/*remove*/
+
+.remove :is(p, button, input) {
+  color: var(--dark-text);
+}
+
+.remove :is(button, input) {
+  border-color: var(--dark-text);
+}
+
+/*filter*/
+
+.filter {
+  color: var(--dark-text);
+}
+
+/*surveys*/
+
+.survey span, .survey span a {
+  color: var(--dark-text);
+}
+
+/*footer*/
+
+footer {
+  background-color: var(--footer);
+}
+
+footer p {
+  color: var(--dark-text);
+}

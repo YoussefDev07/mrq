@@ -1,0 +1,42 @@
+doctype
+html(lang="ar", type="text/html")
+  - const errorCODE = 401;
+  - const errorMESSAGE = "تسجيل دخول خاطئ";
+  head
+    //- meta
+    meta(charset="utf-8")/
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")/
+    meta(name="theme-color", content="#d40202")/
+    meta(name="color-scheme", content="light")/
+    meta(name="author", content="Youssef Dev")/
+    meta(name="owner", content="أشرف يوسف داوود")/
+    meta(name="copyright", content="Kawader Medical")/
+    meta(name="google", content="notranslate")/
+    meta(name="robots", content="none")/
+    meta(name="title", content=errorCODE)/
+    meta(name="description", content=errorMESSAGE)/
+    meta(name="twitter:card", content="summary")/
+    meta(name="twitter:url", content="file:///C:/xampp/htdocs/www/mrq/home.html")/
+    meta(name="twitter:title", content=errorCODE)/
+    meta(name="twitter:description", content=errorMESSAGE)/
+    meta(name="twitter:creator", content="@YoussefDev7")/
+    meta(name="twitter:creator:id", content="1427454968232022016")/
+    meta(property="og:url", content="file:///C:/xampp/htdocs/www/mrq/home.html")/
+    meta(property="og:site_name", content="خطأ")/
+    meta(property="og:title", content=errorCODE)/
+    meta(property="og:description", content=errorMESSAGE)/
+    meta(property="fb:admins", content="100090928069955")/
+    //- link
+    link(rel="canonical", href="file:///C:/xampp/htdocs/www/mrq/home.html")/
+    link(rel="icon", type="image/png", href="../assets/images/error-icon.png")/
+    link(rel="stylesheet", type="text/css", href="./css/main.css")/
+    //- title
+    title #{errorCODE} | #{errorMESSAGE}
+    //- script
+    script(type="application/javascript", src="./js/main.js", async=true)
+    noscript لفتح الموقع (JavaScript) الرجاء فتح الجافا سكريبت
+  body
+    //- error-page
+    .error-page
+      h1 #{errorCODE}
+      p #{errorMESSAGE}

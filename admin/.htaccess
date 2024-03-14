@@ -1,0 +1,12 @@
+AddDefaultCharset utf-8
+
+# password
+
+AuthType Basic
+AuthName "Staff only."
+AuthUserFile C:/xampp/htdocs/www/mrq/admin/.htpasswd
+Require valid-user
+
+# index
+
+DirectoryIndex default.html

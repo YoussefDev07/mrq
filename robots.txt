@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /assets/
+Disallow: /error/
+Disallow: /includes/
+Disallow: /master/
+Disallow: /select.html
+Sitemap: file:///C:/xampp/htdocs/www/mrq/sitemap.xml

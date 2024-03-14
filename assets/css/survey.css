@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+/*main*/
+
+main {
+  height: auto;
+  background-image: url("../images/SlideBar.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+/*@media: main*/
+
+@media (max-width:1024px) {
+  main {
+   background-image: url("../images/SlideBar_Media.gif");
+  }
+}

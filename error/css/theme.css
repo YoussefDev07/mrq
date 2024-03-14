@@ -1,0 +1,11 @@
+.error-page {
+  filter: grayscale(28%);
+}
+.error-page h1, .error-page p {
+  color: #ffce00;
+  text-shadow: 3px 3px black;
+}
+.error-page button {
+  background-color: #ffce00;
+  color: black;
+}/*# sourceMappingURL=theme.css.map */

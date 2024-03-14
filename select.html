@@ -1,34 +1,50 @@
 <!DOCTYPE html>
- <html type="text/html">
+ <html lang="ar" type="text/html">
   <head>
    <!--meta-->
     <meta charset = "utf-8"/>
     <meta name = "theme-color" content = "#185a50"/>
-    <meta name = "author" content = "Youssef Over"/>
-    <meta name = "copyright" content = "2023"/>
-    <meta name = "copyrights" content = "true"/>
-    <meta name = "robots" content = "noindex"/>
+    <meta name = "color-scheme" content = "light"/>
+    <meta name = "author" content = "Youssef Dev"/>
+    <meta name = "owner" content = "أشرف يوسف داوود"/>
+    <meta name = "copyright" content = "Kawader Medical"/>
     <meta name = "google" content = "notranslate"/>
+    <meta name = "robots" content = "none"/>
+    <meta name = "title" content = "استبيان توظيف للتقدم على وظيفة طبية"/>
+    <meta name = "description" content = "في المانيا والسعودية والإمارات وعمان"/>
+    <meta name = "twitter:card" content = "summary"/>
+    <meta name = "twitter:url" content = "file:///C:/xampp/htdocs/www/mrq/select.html"/>
+    <meta name = "twitter:title" content = "استبيان توظيف للتقدم على وظيفة طبية"/>
+    <meta name = "twitter:description" content = "في المانيا والسعودية والإمارات وعمان"/>
+    <meta name = "twitter:image" content = "./assets/images/icon.png"/>
+    <meta name = "twitter:image:alt" content = "Icon"/>
+    <meta name = "twitter:creator" content = "@YoussefDev7"/>
+    <meta name = "twitter:creator:id" content = "1427454968232022016"/>
+    <meta property = "og:type" content = "website"/>
+    <meta property = "og:url" content = "/"/>
     <meta property = "og:site_name" content = "Medical Recruitment Questionnaire (GER - KSA - UAE - OMN)"/>
-    <meta property = "og:url" content = "https://mrq.net4.repl.co"/>
     <meta property = "og:title" content = "استبيان توظيف للتقدم على وظيفة طبية"/>
     <meta property = "og:description" content = "في المانيا والسعودية والإمارات وعمان"/>
-    <meta property = "og:image" content = "./assets/i.png"/>
-   <!--link-->
-    <link rel="icon" type="image/png" href="./assets/i.png"/>
-    <link rel="stylesheet" type="text/css" href="./style.css"/>
-   <!--title-->
-    <title>استبيان العمل الطبي</title>
-   <!--script-->
-    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-    <script type="application/javascript" src="./script.js" async></script>
-    <noscript>لفتح الاستبيان (JavaScript) الرجاء فتح الجافا سكريبت</noscript>
-  </head>
+    <meta property = "og:image" content = "./assets/images/icon.png"/>
+    <meta property = "og:image:alt" content = "Icon"/>
+    <meta property = "fb:admins" content = "100090928069955"/>
+    <!--link-->
+     <link rel="canonical" href="file:///C:/xampp/htdocs/www/mrq/select.html"/>
+     <link rel="icon" type="image/png" href="./assets/images/icon.png"/>
+     <link rel="stylesheet" type="text/css" href="./assets/css/style.css"/>
+     <link rel="stylesheet" media="all" href="./assets/libs/css/fontawesome.css"/>
+    <!--title-->
+     <title>استبيان العمل الطبي</title>
+    <!--script-->
+     <script src="./assets/libs/js/jquery.js"></script>
+     <script type="application/javascript" src="./assets/js/script.js" async></script>
+     <noscript>لفتح الإستبيان (JavaScript) الرجاء فتح الجافا سكريبت</noscript>
+   </head>
   <body>
    <!--loading-->
     <div id="loading">
      <!--load-->
-      <embed class="load" src="./media/load.svg"></embed>
+      <embed class="load" src="./assets/svg/load.svg"></embed>
     </div>
    <!--container-->
     <div class="_container">
@@ -36,10 +52,10 @@
       <header>
        <!--time-->
         <nav class="time">
-         <time></time>
+         <span id="time"></span>
         </nav>
        <!--switch-->
-        <nav class="switch"></nav>
+        <button type="button" title="تغيير المظهر" class="switch"></button>
       </header>
      <!--main-->
       <main>
@@ -67,7 +83,7 @@
       </main>
      <!--footer-->
       <footer>
-       <p><date></date> جميع الحقوق محفوظة <span>©</span></p>
+       <p><date></date> جميع الحقوق محفوظة <i class="far fa-copyright"></i></p>
       </footer>
     </div>
   </body>
