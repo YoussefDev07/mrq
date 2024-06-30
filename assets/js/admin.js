@@ -82,4 +82,20 @@ $("#filterBox button").click(function(){
   $("#filterBox").fadeOut(300);
 });
 
+function ageCheck() {
+  if (parseInt($("#fromAge").val()) > parseInt($("#toAge").val())) {
+    $("#submitFilter").attr("disabled", "disabled");
+  } else {
+    $("#submitFilter").removeAttr("disabled");
+  }
+}
+
+$("#fromAge").keyup(function(){
+  ageCheck();
+});
+
+$("#toAge").keyup(function(){
+  ageCheck();
+});
+
 });

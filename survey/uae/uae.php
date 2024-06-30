@@ -342,8 +342,8 @@
      require_once "../../master/connect.php";
      include "./vars.php";
 
-     $stmt = $conn -> prepare("INSERT INTO surveys (type, email, name, country, spec, whatsapp, phone, message, send_date, send_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-     $stmt -> execute(["uae", $email, $name, $country, $spec, $whatsapp, $phone, msg(), date("Y-m-d"), date("H:i:s")]);
+     $stmt = $conn -> prepare("INSERT INTO surveys (type, email, name, country, spec, whatsapp, phone, age, message, send_date, send_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+     $stmt -> execute(["uae", $email, $name, $country, $spec, $whatsapp, $phone, $age, msg(), date("Y-m-d"), date("H:i:s")]);
 
 		 $mrq = str_replace("🟥", "%F0%9F%9F%A5", str_replace("⬅️", "%E2%AC%85%EF%B8%8F", str_replace("⬛", "%E2%AC%9B", str_replace("🔶", "%F0%9F%94%B6", str_replace("🔷", "%F0%9F%94%B7", str_replace("🇦🇪", "%F0%9F%87%A6%F0%9F%87%AA", str_replace("🔴", "%F0%9F%94%B4", str_replace("▪", "%E2%96%AA", str_replace("\n", "%0D%0A", str_replace(" ", "%20", msg()))))))))));
 

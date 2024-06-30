@@ -101,12 +101,21 @@
           $survey_country = (isset($_GET["country"])) ? $_GET["country"]:"";
           $survey_spec = (isset($_GET["spec"])) ? $_GET["spec"]:"";
           $survey_phone = (isset($_GET["phone"])) ? $_GET["phone"]:"";
+          $survey_from_age = (isset($_GET["from_age"])) ? $_GET["from_age"]:"";
+          $survey_to_age = (isset($_GET["to_age"])) ? $_GET["to_age"]:"";
         ?>
         <input type="text" name="name" maxlength="250" placeholder="الاسم" autocomplete="off" value="<?php echo $survey_name; ?>">
         <input type="text" name="country" maxlength="100" minlength="3" placeholder="الجنسية" autocomplete="off" value="<?php echo $survey_country; ?>">
         <input type="text" name="spec" maxlength="150" placeholder="التخصص" autocomplete="off" value="<?php echo $survey_spec; ?>">
         <input type="tel" name="phone" maxlength="20" minlength="8" placeholder="رقم الجوال" autocomplete="off" value="<?php echo $survey_phone; ?>">
-        <input type="submit" name="filter" value="تعيين">
+        <div class="age">
+         <label>العمر</label>
+         <div class="age-inputs">
+          <input type="number" id="fromAge" name="from_age" min="24" placeholder="من" autocomplete="off" value="<?php echo $survey_from_age; ?>">
+          <input type="number" id="toAge" name="to_age" max="65" placeholder="إلى" autocomplete="off" value="<?php echo $survey_to_age; ?>">
+         </div>
+        </div>
+        <input type="submit" id="submitFilter" name="filter" value="تعيين">
         <a href="./surveys.php">إعادة التعيين</a>
        </form>
       </span>
@@ -145,9 +154,15 @@
            }
 
            $name_filter = (empty($_GET["name"])) ? "":" name LIKE '%".$_GET["name"]."%'";
-           $country_filter = (empty($_GET["country"])) ? "":" AND country = '".$_GET["country"]."'";
-           $spec_filter = (empty($_GET["spec"])) ? "":" AND spec = '".$_GET["spec"]."'";
-           $phone_filter = (empty($_GET["phone"])) ? "":" AND phone = '".$_GET["phone"]."'";           $surveys = (isset($_GET["filter"])) ? $conn -> query("SELECT * FROM surveys WHERE $type_filter $name_filter $country_filter $spec_filter $phone_filter ORDER BY id DESC"):$conn -> query("SELECT * FROM surveys ORDER BY id DESC");
+           $country_filter = (empty($_GET["country"])) ? "":" country LIKE '%".$_GET["country"]."%'";
+           $spec_filter = (empty($_GET["spec"])) ? "":" spec LIKE '%".$_GET["spec"]."%'";
+           $phone_filter = (empty($_GET["phone"])) ? "":" phone = '".$_GET["phone"]."'";
+           $age_filter = (empty($_GET["from_age"]) && empty($_GET["to_age"])) ? "":" age BETWEEN ".$_GET["from_age"]." AND ".$_GET["to_age"];
+
+           if ($country_filter != "") { $spec_filter = (empty($_GET["spec"])) ? "":" AND spec LIKE '%".$_GET["spec"]."%'"; }
+           if ($country_filter != "" || $spec_filter != "") { $age_filter = (empty($_GET["from_age"]) && empty($_GET["to_age"])) ? "":" AND age BETWEEN ".$_GET["from_age"]." AND ".$_GET["to_age"]; }
+
+           $surveys = (isset($_GET["filter"])) ? $conn -> query("SELECT * FROM surveys WHERE $type_filter $name_filter $country_filter $spec_filter $phone_filter $age_filter ORDER BY id DESC"):$conn -> query("SELECT * FROM surveys ORDER BY id DESC");
            while ($survey = $surveys -> fetch()):
 
            if ($survey["type"] == "ksa_in") {

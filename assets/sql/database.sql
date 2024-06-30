@@ -13,6 +13,7 @@ CREATE TABLE surveys (
   spec varchar(150),
   whatsapp varchar(20),
   phone varchar(20),
+  age int(2),
   message varchar(4000),
   send_date date,
   send_time time
