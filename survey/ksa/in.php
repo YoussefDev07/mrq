@@ -1,4 +1,7 @@
-<?php include "../../includes/php/header.php"; ?>
+<?php
+  session_start();
+  include "../../includes/php/header.php";
+?>
  <!--main-->
   <main>
    <!--head-->
@@ -423,8 +426,18 @@
      require_once "../../master/connect.php";
      include "./vars/in.php";
 
-     $stmt = $conn -> prepare("INSERT INTO surveys (type, email, name, country, spec, whatsapp, phone, age, message, send_date, send_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-     $stmt -> execute(["ksa_in", $email, $name, $country, $spec, $whatsapp, $phone, $age, msg(), date("Y-m-d"), date("H:i:s")]);
+     if (empty($_SESSION["send_to"])) {
+       $stmt = $conn -> prepare("INSERT INTO surveys (type, email, name, country, spec, whatsapp, phone, age, message, send_date, send_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+       $stmt -> execute(["ksa_in", $email, $name, $country, $spec, $whatsapp, $phone, $age, msg(), date("Y-m-d"), date("H:i:s")]);
+
+       $mobile = "201559003611";
+     }
+     else {
+       $stmt = $conn -> prepare("INSERT INTO surveys (type, email, name, country, spec, whatsapp, phone, age, message, send_date, send_time, destination) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+       $stmt -> execute(["ksa_in", $email, $name, $country, $spec, $whatsapp, $phone, $age, msg(), date("Y-m-d"), date("H:i:s"), $_SESSION["send_to"]]);
+
+       $mobile = $_SESSION["send_to"];
+     }
 
 		 $mrq = str_replace("🟪", "%F0%9F%9F%AA", str_replace("⬅️", "%E2%AC%85%EF%B8%8F", str_replace("🔲", "%F0%9F%94%B2", str_replace("🔶", "%F0%9F%94%B6", str_replace("🔷", "%F0%9F%94%B7", str_replace("📥", "%F0%9F%93%A5", str_replace("🇸🇦", "%F0%9F%87%B8%F0%9F%87%A6", str_replace("🟣", "%F0%9F%9F%A3", str_replace("\n", "%0D%0A", str_replace(" ", "%20", msg()))))))))));
 
@@ -434,7 +447,7 @@
 		 if (expression.test(navigator.platform)) {
 	     window.open("whatsapp://send?text='.$mrq.'","_self")
 		 } else {
-	     window.open("https://api.whatsapp.com/send/?phone=201559003611&text='.$mrq.'","_self")
+	     window.open("https://api.whatsapp.com/send/?phone='.$mobile.'&text='.$mrq.'","_self")
 		 }';
     print("</script>");
    }

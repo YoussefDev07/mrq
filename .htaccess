@@ -12,7 +12,7 @@ AddOutputFilterByType DEFLATE text/text text/html text/css text/xml text/plain a
 
 # index
 
-DirectoryIndex home.html
+DirectoryIndex index.php
 
 # errors
 

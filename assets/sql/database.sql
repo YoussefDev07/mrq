@@ -16,5 +16,6 @@ CREATE TABLE surveys (
   age int(2),
   message varchar(4000),
   send_date date,
-  send_time time
+  send_time time,
+  destination varchar(16)
 );

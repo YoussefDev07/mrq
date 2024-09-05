@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
    <loc>http://localhost/www/mrq/</loc>
-   <lastmod>2024-3-14</lastmod>
+   <lastmod>2024-9-5</lastmod>
    <changefreq>never</changefreq>
    <priority>1.0</priority>
   </url>
@@ -14,25 +14,25 @@
   </url>
   <url>
    <loc>http://localhost/www/mrq/survey/ksa/in.php</loc>
-   <lastmod>2024-3-14</lastmod>
+   <lastmod>2024-9-5</lastmod>
    <changefreq>yearly</changefreq>
    <priority>0.5</priority>
   </url>
   <url>
    <loc>http://localhost/www/mrq/survey/ksa/out.php</loc>
-   <lastmod>2024-3-14</lastmod>
+   <lastmod>2024-9-5</lastmod>
    <changefreq>yearly</changefreq>
    <priority>0.5</priority>
   </url>
   <url>
    <loc>http://localhost/www/mrq/survey/uae/uae.php</loc>
-   <lastmod>2024-3-14</lastmod>
+   <lastmod>2024-9-5</lastmod>
    <changefreq>yearly</changefreq>
    <priority>0.5</priority>
   </url>
   <url>
    <loc>http://localhost/www/mrq/survey/omn/om.php</loc>
-   <lastmod>2024-3-14</lastmod>
+   <lastmod>2024-9-5</lastmod>
    <changefreq>yearly</changefreq>
    <priority>0.5</priority>
   </url>
