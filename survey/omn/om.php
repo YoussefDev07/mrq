@@ -29,7 +29,7 @@
      <div>
       <span class="req">الجنسية</span>
       <class>
-       <input type="text" name="country" maxlength="100" minlength="3" placeholder="إجابتك" autocomplete="off" required>
+       <input type="text" name="nationality" maxlength="100" minlength="3" placeholder="إجابتك" autocomplete="off" required>
       </class>
      </div>
 
