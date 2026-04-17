@@ -16,7 +16,7 @@
   $job = trim(strip_tags($_POST["job"])); //select - required
   $license = trim(strip_tags($_POST["license"])); //radio - required
   $license_true = (empty($_POST["license_true"])) ? "":"\n\n🟪 الترخيص ساري حتى ⬅️ ".str_replace("-", "/", trim(strip_tags($_POST["license_true"]))); //date - hidden - required
-  $license_false = (empty($_POST["license_false"]) || $_POST["license_false"] == "none") ? "":"\n\n🟪 الترخيص منتهي من ⬅️ ".trim(strip_tags($_POST["license_false"])); //select - hidden - impartant
+  $license_false = (empty($_POST["license_false"]) || $_POST["license_false"] == "none") ? "":"\n\n🟪 الترخيص منتهي من ⬅️ ".trim(strip_tags($_POST["license_false"])); //select - hidden - required
   $expert_in = trim(strip_tags($_POST["expert_in"])); //required
   $expert_out = trim(strip_tags($_POST["expert_out"])); //required
   $job_submit = trim(strip_tags($_POST["job_submit"])); //select - required
