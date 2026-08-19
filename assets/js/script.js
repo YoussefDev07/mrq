@@ -128,6 +128,6 @@ $(".survey button").click(function(){
 
 // footer
 
-$("footer date").html(time.getFullYear());
+$("footer time").html(time.getFullYear());
 
 });
