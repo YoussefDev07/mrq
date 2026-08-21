@@ -1,4 +1,57 @@
-// form
+// compilations
+
+$("#phoneNumber, #phoneCode").on("input", function(){
+  let number = $("#phoneNumber").val();
+  let code = $("#phoneCode").val();
+  number = number.replace(/ /g, "").replace(/-/g, "").replace(/\(/g, "").replace(/\)/g, "");
+  code = code.replace("+", "").replace(/ /g, "");
+
+  $("#phoneHidden").val(code + number);
+});
+
+function whatsappCompilation() {
+  let number = $("#whatsappNumber").val();
+  let code = $("#whatsappCode").val();
+  number = number.replace(/ /g, "").replace(/-/g, "").replace(/\(/g, "").replace(/\)/g, "");;
+  code = code.replace("+", "").replace(/ /g, "");
+
+  $("#whatsappHidden").val(code + number);
+}
+$("#whatsappNumber, #whatsappCode").on("input", whatsappCompilation);
+
+// lock/unlock
+
+$("#phoneCode, #phoneNumber").on("input", function(){
+  if ($("#whatsappNumber").attr("disabled")) {
+   $("#whatsappCode").val($("#phoneCode").val());
+   $("#whatsappNumber").val($("#phoneNumber").val());
+   whatsappCompilation();
+  }
+});
+$("#anotherNumberForWhatsapp").on("change", function(){
+  if ($(this).is(":checked")) {
+    $("#whatsappNumber, #whatsappCode").removeAttr("disabled");
+    $("#whatsappNumber").val("");
+  } else {
+    $("#whatsappNumber, #whatsappCode").attr("disabled", "disabled");
+    $("#whatsappNumber").val($("#phoneNumber").val());
+    $("#whatsappCode").val($("#phoneCode").val());
+    whatsappCompilation();
+  }
+});
+
+$("#job").change(function(){
+  var selected = $(this).find("option:selected");
+  var group = selected.closest("optgroup");
+  var groupLabel = group.attr("label");
+
+  if (groupLabel == "طبي") {
+    $(".postgraduate").slideDown();
+  } else {
+    $(".postgraduate").slideUp();
+    $(".postgraduateInput").val("");
+  }
+});
 
 let t = "نعم";
 let f = "لا";
@@ -65,92 +118,7 @@ $(".c").change(function(){
   }
 });
 
-// input
-
-$("#add_age").click(function(){
-  let tag = "input[name=\"age\"]";
-  let val = parseInt($(tag).val());
-  var num = val + 1;
-  if (isNaN(val)) return $(tag).attr("value", 0);
-  if (num > 65) return;
-  $(tag).val(num);
-});
-$("#remove_age").click(function(){
-  let tag = "input[name=\"age\"]";
-  let val = parseInt($(tag).val());
-  var num = val - 1;
-  if (isNaN(val)) return $(tag).attr("value", 0);
-  if (num < 24) return;
-  $(tag).val(num);
-});
-
-$("#add_exp").click(function(){
-  let tag = "input[name=\"exp\"]";
-  let val = parseInt($(tag).val());
-  var num = val + 1;
-  if (isNaN(val)) return $(tag).attr("value", 0);
-  if (num > 47) return;
-  $(tag).val(num);
-});
-$("#remove_exp").click(function(){
-  let tag = "input[name=\"exp\"]";
-  let val = parseInt($(tag).val());
-  var num = val - 1;
-  if (isNaN(val)) return $(tag).attr("value", 0);
-  if (num < 0) return;
-  $(tag).val(num);
-});
-
-$("#add_master").click(function(){
-  let tag = "input[name=\"master\"]";
-  let val = parseInt($(tag).val());
-  var num = val + 1;
-  if (isNaN(val)) return $(tag).attr("value", 0);
-  if (num > 60) return;
-  $(tag).val(num);
-});
-$("#remove_master").click(function(){
-  let tag = "input[name=\"master\"]";
-  let val = parseInt($(tag).val());
-  var num = val - 1;
-  if (isNaN(val)) return $(tag).attr("value", 0);
-  if (num < 0) return;
-  $(tag).val(num);
-});
-
-$("#add_phd").click(function(){
-  let tag = "input[name=\"phd\"]";
-  let val = parseInt($(tag).val());
-  var num = val + 1;
-  if (isNaN(val)) return $(tag).attr("value", 0);
-  if (num > 60) return;
-  $(tag).val(num);
-});
-$("#remove_phd").click(function(){
-  let tag = "input[name=\"phd\"]";
-  let val = parseInt($(tag).val());
-  var num = val - 1;
-  if (isNaN(val)) return $(tag).attr("value", 0);
-  if (num < 0) return;
-  $(tag).val(num);
-});
-
-$("#add_f").click(function(){
-  let tag = "input[name=\"f\"]";
-  let val = parseInt($(tag).val());
-  var num = val + 1;
-  if (isNaN(val)) return $(tag).attr("value", 0);
-  if (num >= 100) return;
-  $(tag).val(num);
-});
-$("#remove_f").click(function(){
-  let tag = "input[name=\"f\"]";
-  let val = parseInt($(tag).val());
-  var num = val - 1;
-  if (isNaN(val)) return $(tag).attr("value", 0);
-  if (num < 0) return;
-  $(tag).val(num);
-});
+// increase/decrease
 
 $("#add_expert_in").click(function(){
   let tag = "input[name=\"expert_in\"]";

@@ -29,7 +29,42 @@
      <div>
       <span class="req">الجنسية</span>
       <class>
-       <input type="text" name="nationality" maxlength="100" minlength="3" placeholder="إجابتك" autocomplete="off" required>
+       <select name="nationality" required>
+        <?php include "../../includes/html/nationalities.html"; ?>
+       </select>
+      </class>
+     </div>
+
+     <div>
+      <span class="req">تاريخ الميلاد</span>
+      <class>
+       <input type="date" name="birth_date" min="1945-01-01" max="2030-12-31" autocomplete="off" required>
+      </class>
+     </div>
+
+     <div>
+      <span class="req">رقم الجوال (اتصال)</span>
+      <class>
+       <input type="hidden" name="phone" id="phoneHidden" autocomplete="off">
+       <input type="tel" id="phoneNumber" maxlength="18" minlength="6" autocomplete="off" required>
+       <input list="tels" id="phoneCode" min="2" max="5" autocomplete="off" value="+966" required>
+       <?php include "../../includes/html/countries_codes.html"; ?>
+      </class>
+     </div>
+
+     <div class="multiple">
+      <span class="req">رقم الجوال (واتساب)</span>
+      <class>
+       <input type="hidden" name="whatsapp" id="whatsappHidden" autocomplete="off">
+       <input type="tel" id="whatsappNumber" maxlength="18" minlength="6" autocomplete="off" required disabled>
+       <input list="tels" id="whatsappCode" min="2" max="5" autocomplete="off" value="+966" required disabled>
+       <?php include "../../includes/html/countries_codes.html"; ?>
+       <br>
+       <label class="checkbox-container">
+        <input type="checkbox" id="anotherNumberForWhatsapp">
+        <div class="checkmark"></div>
+        استخدام رقم واتساب مختلف
+       </label>
       </class>
      </div>
 
@@ -43,66 +78,47 @@
      <div>
       <span class="req">التخصص</span>
       <class>
-       <input type="text" name="spec" maxlength="150" placeholder="إجابتك" autocomplete="off" required>
+       <select name="spec" required>
+        <?php include "../../includes/html/specialties.html"; ?>
+       </select>
       </class>
      </div>
 
      <div>
-      <span class="req">رقم جوال (واتساب)</span>
+      <span class="req">التصنيف داخل المملكة</span>
       <class>
-       <input type="tel" name="whatsapp" maxlength="20" minlength="8" placeholder="الرقم" autocomplete="off" required>
-      </class>
-     </div>
-
-     <div>
-      <span class="req">رقم جوال (اتصال)</span>
-      <class>
-       <input type="tel" name="phone" maxlength="20" minlength="8" placeholder="الرقم" autocomplete="off" required>
-      </class>
-     </div>
-
-     <div>
-      <span class="req">العمر</span>
-      <class>
-       <button type="button" id="add_age">+</button>
-       <input type="number" name="age" min="24" max="65" placeholder="إجابتك" autocomplete="off" required>
-       <button type="button" id="remove_age">-</button>
-      </class>
-     </div>
-
-     <div>
-      <span class="req">سنوات الخبرة بعد التخرج</span>
-      <class>
-       <button type="button" id="add_exp">+</button>
-       <input type="number" name="exp" min="0" max="40" placeholder="إجابتك" autocomplete="off" required>
-       <button type="button" id="remove_exp">-</button>
-      </class>
-     </div>
-
-     <div>
-      <span>سنوات الخبرة بعد الماجستير</span>
-      <class>
-       <button type="button" id="add_master">+</button>
-       <input type="number" name="master" minlength="1" maxlength="2" placeholder="إجابتك" autocomplete="off">
-       <button type="button" id="remove_master">-</button>
-      </class>
-     </div>
-
-     <div>
-      <span>سنوات الخبرة بعد الدكتوراه</span>
-      <class>
-       <button type="button" id="add_phd">+</button>
-       <input type="number" name="phd" minlength="1" maxlength="2" placeholder="إجابتك" autocomplete="off">
-       <button type="button" id="remove_phd">-</button>
-      </class>
-     </div>
-
-     <div>
-      <span>سنوات الخبرة بعد الزمالة</span>
-      <class>
-       <button type="button" id="add_f">+</button>
-       <input type="number" name="f" minlength="1" maxlength="2" placeholder="إجابتك" autocomplete="off">
-       <button type="button" id="remove_f">-</button>
+       <select name="job" id="job" required>
+        <option value="none" disabled selected>اختر</option>
+        <optgroup label="ــــــــــــــــــــ"></optgroup>
+        <optgroup label="طبي">
+         <option>طبيب عام بشري</option>
+         <option>طبيب عام أسنان</option>
+         <option>مقيم</option>
+         <option>اخصائي</option>
+         <option>اخصائي اول</option>
+         <option>استشاري</option>
+         <option>فني</option>
+         <option>اخصائي غير طبيب</option>
+         <option>صيدلي</option>
+        </optgroup>
+        <optgroup label="إداري">
+         <option>مدير تنفيذي</option>
+         <option>مدير إداري</option>
+         <option>مدير تشغيل</option>
+         <option>مدير طبي</option>
+         <option>مدير مالي</option>
+         <option>مدير تسويق</option>
+         <option>مدير مبيعات</option>
+         <option>طبيب تأمين</option>
+         <option>مسؤول تأمين</option>
+         <option>مسوق</option>
+         <option>استقبال</option>
+         <option>علاقات عامة</option>
+         <option>محاسب مستوصف</option>
+         <option>مهندس اجهزة طبية</option>
+         <option>كول سنتر</option>
+        </optgroup>
+       </select>
       </class>
      </div>
 
@@ -114,32 +130,30 @@
      </div>
 
      <div>
-      <span class="req">التصنيف داخل المملكة</span>
+      <span class="req">تاريخ التخرج</span>
       <class>
-       <select name="job" required>
-        <option value="none" disabled selected>اختر</option>
-        <optgroup label="ــــــــــــــــــــ"></optgroup>
-        <option>طبيب عام</option>
-        <option>مقيم</option>
-        <option>اخصائي</option>
-        <option>اخصائي اول</option>
-        <option>استشاري</option>
-        <option>فني</option>
-        <option>اخصائي غير طبيب</option>
-        <option>صيدلي</option>
-        <option>مدير تشغيل</option>
-        <option>مدير طبي</option>
-        <option>مدير مالي</option>
-        <option>مدير تسويق</option>
-        <option>طبيب تأمين</option>
-        <option>مسؤول تأمين</option>
-        <option>مسوق</option>
-        <option>استقبال</option>
-        <option>علاقات عامة</option>
-        <option>محاسب مستوصف</option>
-        <option>مهندس اجهزة طبية</option>
-        <option>كول سنتر</option>
-       </select>
+       <input type="month" name="exp" min="1960-01" max="2032-12" autocomplete="off" required>
+      </class>
+     </div>
+
+     <div class="postgraduate" style="display:none">
+      <span class="opt">تاريخ الحصول على الماجستير</span>
+      <class>
+       <input type="month" name="master" class="postgraduateInput" min="1964-01" max="2035-12" autocomplete="off">
+      </class>
+     </div>
+
+     <div class="postgraduate" style="display:none">
+      <span class="opt">تاريخ الحصول على الدكتوراه</span>
+      <class>
+       <input type="month" name="phd" class="postgraduateInput" min="1964-01" max="2035-12" autocomplete="off">
+      </class>
+     </div>
+
+     <div class="postgraduate" style="display:none">
+      <span class="opt">تاريخ الحصول على الزمالة</span>
+      <class>
+       <input type="month" name="f" class="postgraduateInput" min="1964-01" max="2035-12" autocomplete="off">
       </class>
      </div>
 
@@ -374,7 +388,9 @@
     "\n\n".
     "🔲 الأسم الثلاثي ⬅️ ".$name.
     "\n\n".
-    "🟪 الجنسية ⬅️ ".$country.
+    "🟪 الجنسية ⬅️ ".$nationality.
+    "\n\n".
+    "🟪 العمر ⬅️ ".$age.
     "\n\n".
     "🔲 مدينة الإقامة الحالية ⬅️ ".$town.
     "\n\n".
@@ -383,8 +399,6 @@
     "🔲 رقم جوال (واتس) ⬅️ ".$whatsapp.
     "\n\n".
     "🔲 رقم جوال (اتصال) ⬅️ ".$phone.
-    "\n\n".
-    "🟪 العمر ⬅️ ".$age.
     "\n\n".
     "🔲 سنوات الخبرة بعد التخرج ⬅️ ".$exp.
     $master.
@@ -463,5 +477,5 @@
    </section>
   </div>
  <!--js-->
-  <script type="text/javascript" src="../../assets/js/sa.js"></script>
+  <script type="text/javascript" src="../../assets/js/surveys/sa.js"></script>
 <?php include "../../includes/html/footer.html"; ?>

@@ -2,18 +2,18 @@
   #form
   $email = trim(strip_tags($_POST["email"])); //required
   $name = trim(strip_tags($_POST["name"])); //required
-  $country = trim(strip_tags($_POST["nationality"])); //required
+  $nationality = trim(strip_tags($_POST["nationality"])); //required
+  $birth_date = trim(strip_tags($_POST["birth_date"])); //required
+  $phone = trim(strip_tags($_POST["phone"])); //required
+  $whatsapp = trim(strip_tags($_POST["whatsapp"])); //required
   $town = trim(strip_tags($_POST["town"])); //required
   $spec = trim(strip_tags($_POST["spec"])); //required
-  $whatsapp = trim(strip_tags($_POST["whatsapp"])); //required
-  $phone = trim(strip_tags($_POST["phone"])); //required
-  $age = trim(strip_tags($_POST["age"])); //required
+  $job = trim(strip_tags($_POST["job"])); //select - required
+  $work = trim(strip_tags($_POST["work"])); //required
   $exp = trim(strip_tags($_POST["exp"])); //required
   $master = (empty($_POST["master"])) ? "":"\n\n🟪 سنوات الخبرة بعد الماجستير ⬅️ ".trim(strip_tags($_POST["master"]));
   $phd = (empty($_POST["phd"])) ? "":"\n\n🟪 سنوات الخبرة بعد الدكتوراة ⬅️ ".trim(strip_tags($_POST["phd"]));
   $f = (empty($_POST["f"])) ? "":"\n\n🟪 سنوات الخبرة بعد الزمالة ⬅️ ".trim(strip_tags($_POST["f"]));
-  $work = trim(strip_tags($_POST["work"])); //required
-  $job = trim(strip_tags($_POST["job"])); //select - required
   $license = trim(strip_tags($_POST["license"])); //radio - required
   $license_true = (empty($_POST["license_true"])) ? "":"\n\n🟪 الترخيص ساري حتى ⬅️ ".str_replace("-", "/", trim(strip_tags($_POST["license_true"]))); //date - hidden - required
   $license_false = (empty($_POST["license_false"]) || $_POST["license_false"] == "none") ? "":"\n\n🟪 الترخيص منتهي من ⬅️ ".trim(strip_tags($_POST["license_false"])); //select - hidden - required
@@ -31,3 +31,8 @@
   $city = trim(strip_tags($_POST["city"])); //radio - required
   $c_true = (empty($_POST["c_true"])) ? "":"\n\n🔲 ما هي المدن/المدينة التي ترغب العمل بها؟ ⬅️ ".trim(strip_tags($_POST["c_true"])); //hidden - required
   $notes = (empty($_POST["notes"])) ? "":"\n\n🔲 ملاحظات ⬅️ ".trim(strip_tags($_POST["notes"]));
+
+  $birthdate = new DateTime($birth_date);
+  $now = new DateTime();
+  $age = $birthdate -> diff($now);
+  $age = $age -> y;

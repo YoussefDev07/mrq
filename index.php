@@ -64,7 +64,7 @@
      <main>
       <!--slidebar-->
        <section class="slidebar">
-        <p>استبيان توظيف للتقدم على وظيفة طبية</p>
+        <h6>استبيان توظيف للتقدم على وظيفة طبية</h6>
         <button type="button">بدء الاستبيان</button>
        </section>
      </main>
