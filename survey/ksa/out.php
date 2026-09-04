@@ -10,7 +10,7 @@
      <p>في المملكة العربية السعودية (خارج المملكة)</p>
     </div>
    <!--form-->
-    <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post" id="form">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="form">
 
      <div>
       <span class="req">عنوان البريد الإلكتروني</span>
@@ -29,7 +29,42 @@
      <div>
       <span class="req">الجنسية</span>
       <class>
-       <input type="text" name="nationality" maxlength="100" minlength="3" placeholder="إجابتك" autocomplete="off" required>
+       <select name="nationality" required>
+        <?php include "../../includes/html/nationalities.html"; ?>
+       </select>
+      </class>
+     </div>
+
+     <div>
+      <span class="req">تاريخ الميلاد</span>
+      <class>
+       <input type="date" name="birth_date" min="1945-01-01" max="<?= date('Y-m-d'); ?>" autocomplete="off" required>
+      </class>
+     </div>
+
+     <div>
+      <span class="req">رقم الجوال (اتصال)</span>
+      <class>
+       <input type="hidden" name="phone" id="phoneHidden" autocomplete="off">
+       <input type="tel" id="phoneNumber" maxlength="18" minlength="6" autocomplete="off" required>
+       <input list="tels" id="phoneCode" min="2" max="5" autocomplete="off" value="+966" required>
+       <?php include "../../includes/html/countries_codes.html"; ?>
+      </class>
+     </div>
+
+     <div class="multiple">
+      <span class="req">رقم الجوال (واتساب)</span>
+      <class>
+       <input type="hidden" name="whatsapp" id="whatsappHidden" autocomplete="off">
+       <input type="tel" id="whatsappNumber" maxlength="18" minlength="6" autocomplete="off" required disabled>
+       <input list="tels" id="whatsappCode" min="2" max="5" autocomplete="off" value="+966" required disabled>
+       <?php include "../../includes/html/countries_codes.html"; ?>
+       <br>
+       <label class="checkbox-container">
+        <input type="checkbox" id="anotherNumberForWhatsapp">
+        <div class="checkmark"></div>
+        استخدام رقم واتساب مختلف
+       </label>
       </class>
      </div>
 
@@ -43,66 +78,37 @@
      <div>
       <span class="req">التخصص</span>
       <class>
-       <input type="text" name="spec" maxlength="150" placeholder="إجابتك" autocomplete="off" required>
+       <select name="spec" required>
+        <?php include "../../includes/html/specialties.html"; ?>
+       </select>
       </class>
      </div>
 
      <div>
-      <span class="req">رقم جوال (واتساب)</span>
+      <span class="req">تاريخ التخرج</span>
       <class>
-       <input type="tel" name="whatsapp" maxlength="20" minlength="8" placeholder="الرقم" autocomplete="off" required>
+       <input type="month" name="exp" min="1960-01" max="<?= date('Y-m'); ?>" autocomplete="off" required>
       </class>
      </div>
 
      <div>
-      <span class="req">رقم جوال (اتصال)</span>
+      <span class="opt">تاريخ الحصول على الماجستير</span>
       <class>
-       <input type="tel" name="phone" maxlength="20" minlength="8" placeholder="الرقم" autocomplete="off" required>
+       <input type="month" name="master" min="1964-01" max="<?= date('Y-m'); ?>" autocomplete="off">
       </class>
      </div>
 
      <div>
-      <span class="req">العمر</span>
+      <span class="opt">تاريخ الحصول على الدكتوراه</span>
       <class>
-       <button type="button" id="add_age">+</button>
-       <input type="number" name="age" min="24" max="65" placeholder="إجابتك" autocomplete="off" required>
-       <button type="button" id="remove_age">-</button>
+       <input type="month" name="phd" min="1964-01" max="<?= date('Y-m'); ?>" autocomplete="off">
       </class>
      </div>
 
      <div>
-      <span class="req">سنوات الخبرة بعد التخرج</span>
+      <span class="opt">تاريخ الحصول على الزمالة</span>
       <class>
-       <button type="button" id="add_exp">+</button>
-       <input type="number" name="exp" min="0" max="40" placeholder="إجابتك" autocomplete="off" required>
-       <button type="button" id="remove_exp">-</button>
-      </class>
-     </div>
-
-     <div>
-      <span>سنوات الخبرة بعد الماجستير</span>
-      <class>
-       <button type="button" id="add_master">+</button>
-       <input type="number" name="master" minlength="1" maxlength="2" placeholder="إجابتك" autocomplete="off">
-       <button type="button" id="remove_master">-</button>
-      </class>
-     </div>
-
-     <div>
-      <span>سنوات الخبرة بعد الدكتوراه</span>
-      <class>
-       <button type="button" id="add_phd">+</button>
-       <input type="number" name="phd" minlength="1" maxlength="2" placeholder="إجابتك" autocomplete="off">
-       <button type="button" id="remove_phd">-</button>
-      </class>
-     </div>
-
-     <div>
-      <span>سنوات الخبرة بعد الزمالة</span>
-      <class>
-       <button type="button" id="add_f">+</button>
-       <input type="number" name="f" minlength="1" maxlength="2" placeholder="إجابتك" autocomplete="off">
-       <button type="button" id="remove_f">-</button>
+       <input type="month" name="f" min="1964-01" max="<?= date('Y-m'); ?>" autocomplete="off">
       </class>
      </div>
 
@@ -120,10 +126,17 @@
       </span>
      </div>
 
+     <div id="dataflowTrue" style="display:none">
+      <span class="req">تاريخ الحصول على الداتا فلو</span>
+      <class>
+       <input type="month" name="dataflow_date" id="df" min="1964-01" max="<?= date('Y-m'); ?>" autocomplete="off">
+      </class>
+     </div>
+
      <div>
       <span class="req">هل أنت حاصل على برومتريك؟</span>
       <class>
-       <select name="pro" required>
+       <select name="prometric" required>
         <option value="none" disabled selected>اختر</option>
         <optgroup label="ــــــــــــــــــــ"></optgroup>
         <option>نعم</option>
@@ -134,17 +147,33 @@
       </span>
      </div>
 
+     <div id="prometricTrue" style="display:none">
+      <span class="req">تاريخ الحصول على برومتريك</span>
+      <class>
+       <input type="month" name="prometric_date" id="pro" min="1964-01" max="<?= date('Y-m'); ?>" autocomplete="off">
+      </class>
+     </div>
+
      <div>
       <span class="req">هل لك خبرة سابقة بالمملكة؟</span>
       <class>
        <label>
         <a>نعم</a>
-        <input type="radio" name="kdexp" value="نعم" required>
+        <input type="radio" class="kdexp" name="kdexp" value="نعم" required>
        </label>
        <label>
         <a>لا</a>
-        <input type="radio" name="kdexp" value="لا" required>
+        <input type="radio" class="kdexp" name="kdexp" value="لا" required>
        </label>
+      </class>
+     </div>
+
+     <div id="expert_in_sa_true" style="display:none">
+      <span class="req">كم سنة خبرة في المملكة؟</span>
+      <class>
+       <button type="button" id="add_expert_in_sa">+</button>
+       <input type="number" id="kdexp_true" name="expert_in_sa" min="0" max="40" placeholder="إجابتك" autocomplete="off">
+       <button type="button" id="remove_expert_in_sa">-</button>
       </class>
      </div>
 
@@ -201,20 +230,6 @@
      </div>
 
      <div>
-      <span class="req">هل تم تطعيم كورونا؟</span>
-      <class>
-       <label>
-        <a>نعم</a>
-        <input type="radio" name="covid" value="نعم" required>
-       </label>
-       <label>
-        <a>لا</a>
-        <input type="radio" name="covid" value="لا" required>
-       </label>
-      </class>
-     </div>
-
-     <div>
       <span class="req long">هل تسمح لك وزارة الصحة بإجراء اجازة والسفر؟</span>
       <class>
        <label>
@@ -229,7 +244,7 @@
      </div>
 
 		 <div>
-		  <span>ملاحظات تود ذكرها</span>
+		  <span class="opt">ملاحظات تود ذكرها</span>
 			<class>
 			 <textarea name="notes" placeholder="ملاحظاتك..."></textarea>
 			</class>
@@ -261,28 +276,31 @@
     "\n\n".
     "🔲 الأسم الثلاثي ⬅️ ".$name.
     "\n\n".
-    "🟦 الجنسية ⬅️ ".$country.
+    "🟦 الجنسية ⬅️ ".$nationality.
+    "\n\n".
+    "🟦 العمر ⬅️ {age}".
+    "\n\n".
+    "🔲 رقم جوال (اتصال) ⬅️ ".$phone.
+    "\n\n".
+    "🔲 رقم جوال (واتس) ⬅️ ".$whatsapp.
     "\n\n".
     "🔲 مدينة الإقامة الحالية ⬅️ ".$town.
     "\n\n".
     "🟦 التخصص ⬅️ ".$spec.
     "\n\n".
-    "🔲 رقم جوال (واتس) ⬅️ ".$whatsapp.
-    "\n\n".
-    "🔲 رقم جوال (اتصال) ⬅️ ".$phone.
-    "\n\n".
-    "🟦 العمر ⬅️ ".$age.
-    "\n\n".
-    "🔲 سنوات الخبرة بعد التخرج ⬅️ ".$exp.
+    "🔲 سنوات الخبرة بعد التخرج ⬅️ {exp}".
     $master.
     $phd.
     $f.
     "\n\n".
     "🟦 هل معك داتا فلو؟ ⬅️ ".$dataflow.
+    $dataflow_date.
     "\n\n".
-    "🟦 هل أنت حاصل على برومتريك؟ ⬅️ ".$pro.
+    "🟦 هل أنت حاصل على برومتريك؟ ⬅️ ".$prometric.
+    $prometric_date.
     "\n\n".
     "🔲 هل لك خبرة سابقة بالمملكة؟ ⬅️ ".$kdexp.
+    $expert_in_sa.
     "\n\n".
     "🔲 هل ترغب بالعمل في مدينة معينة بالمملكة؟ ⬅️ ".$city.
     $c_true.
@@ -291,39 +309,39 @@
     "\n\n".
     "🔲 هل كل الأوراق جاهزة وموثقة؟ ⬅️ ".$papers.
     "\n\n".
-    "🔲 هل تم تطعيم كورونا؟ ⬅️ ".$covid.
-    "\n\n".
     "🔲 هل تسمح لك وزارة الصحة بإجراء اجازة والسفر؟ ⬅️ ".$allow.
 		$notes;
   }
-   if (isset($_POST["submit"])) {
+   if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
      require_once "../../master/connect.php";
      include "./vars/out.php";
 
-     if (empty($_SESSION["send_to"])) {
-       $stmt = $conn -> prepare("INSERT INTO surveys (type, email, name, country, spec, whatsapp, phone, age, message, send_date, send_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-       $stmt -> execute(["ksa_out", $email, $name, $country, $spec, $whatsapp, $phone, $age, msg(), date("Y-m-d"), date("H:i:s")]);
+     $mobile = (isset($_SESSION["send_to"])) ? $_SESSION["send_to"]:null;
 
-       $mobile = "201559003611";
-     }
-     else {
-       $stmt = $conn -> prepare("INSERT INTO surveys (type, email, name, country, spec, whatsapp, phone, age, message, send_date, send_time, destination) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-       $stmt -> execute(["ksa_out", $email, $name, $country, $spec, $whatsapp, $phone, $age, msg(), date("Y-m-d"), date("H:i:s"), $_SESSION["send_to"]]);
+     $stmt = $conn -> prepare("INSERT INTO surveys (type, email, name, nationality, birth_date, phone, whatsapp, spec, graduation, master, phd, f, dataflow, prometric, message, send_date, send_time, destination) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+     $stmt -> execute(["ksa_out", $email, $name, $nationality, $birth_date, $phone, $whatsapp, $spec, $exp, $master_raw, $phd_raw, $f_raw, $dataflow_raw, $prometric_raw, msg(), date("Y-m-d"), date("H:i:s"), $mobile]);
 
-       $mobile = $_SESSION["send_to"];
-     }
-
-		 $mrq = str_replace("🟦", "%F0%9F%9F%A6", str_replace("⬅️", "%E2%AC%85%EF%B8%8F", str_replace("🔲", "%F0%9F%94%B2", str_replace("🔶", "%F0%9F%94%B6", str_replace("🔷", "%F0%9F%94%B7", str_replace("📤", "%F0%9F%93%A4", str_replace("🇸🇦", "%F0%9F%87%B8%F0%9F%87%A6", str_replace("🔵", "%F0%9F%94%B5", str_replace("\n", "%0D%0A", str_replace(" ", "%20", msg()))))))))));
-
-     #js
+     $mrq_search = array("{age}", "{exp}", "{master}", "{phd}", "{f}", "{dataflow}", "{prometric}");
+     $mrq_replace = array($age ?? 0, $exp_years ?? 0, $master_years ?? 0, $phd_years ?? 0, $f_years ?? 0, $dataflow_years ?? 0, $prometric_years ?? 0);
+     $mrq = str_replace($mrq_search, $mrq_replace, msg());
      print("<script>");
-      echo 'const expression = /(iPhone|iPod|iPad)/i;
-		  if (expression.test(navigator.platform)) {
-	      window.open("whatsapp://send?text='.$mrq.'", "_self")
-		  } else {
-	      window.open("https://api.whatsapp.com/send/?phone='.$mobile.'&text='.$mrq.'", "_self")
-		  }';
+     echo "localStorage.setItem('type', 'ksa_out');";
+     echo "localStorage.setItem('email', '".$email."');";
+     echo "localStorage.setItem('num', '".$mobile."');";
+     echo "localStorage.setItem('mrq', ".json_encode($mrq).");";
+     echo "localStorage.setItem('msg', `".urlencode($mrq)."`);";
      print("</script>");
+     $mrq = urlencode($mrq);
+
+     if (isset($_SESSION["send_to"])) {
+      print("<script>");
+      echo "location.href = '../send.php?method=whatsapp&msg=$mrq'";
+      print("</script>");
+     } else {
+      print("<script>");
+      echo "location.href = '../send.php?msg=$mrq'";
+      print("</script>");
+     }
    }
   ?>
  <!--remove-->
@@ -337,5 +355,5 @@
    </section>
   </div>
  <!--js-->
-  <script type="text/javascript" src="../../assets/js/sa.js"></script>
+  <script type="text/javascript" src="../../assets/js/surveys/sa.js"></script>
 <?php include "../../includes/html/footer.html"; ?>

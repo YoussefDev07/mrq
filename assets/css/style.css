@@ -12,11 +12,11 @@ body[role="frozen-page"] {
 /*:variables*/
 
 :root {
-  --main: #185a50;
-  --bg: #0ea68f;
-  --text: #e6f6f3;
-  --ad: #04241f;
-  --footer: #021814;
+  --main: #422464;
+  --bg: #805ca6;
+  --text: #d7d5d4;
+  --ad: #cc9426;
+  --footer: #261539;
   --clear: transparent;
   --font: "Cairo";
 }
@@ -150,6 +150,201 @@ img::selection {
 	}
 }
 
+/*resend*/
+
+.resend {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--text);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.resend-card {
+  width: 800px;
+  height: 500px;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0px 12px 18px -4px var(--footer);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.resend p {
+  font-weight: 700;
+  font-family: var(--font);
+  font-size: 38px;
+  color: var(--main);
+}
+
+.resend span {
+  margin-top: 50px;
+}
+
+.resend span button {
+  direction: rtl;
+  margin-left: 10px;
+  padding: 7px 22px;
+  background-color: var(--main);
+  border: 2px solid var(--main);
+  border-radius: 10px;
+  font-family: var(--font);
+  font-size: 18px;
+  color: var(--text);
+  cursor: pointer;
+  transition: 1s;
+}
+
+.resend span button:nth-child(1) {
+  margin-left: 0
+}
+
+.resend span button > i {
+  margin-left: 10px;
+}
+
+.resend span button:hover {
+  background: none;
+  border-color: var(--footer);
+  color: var(--footer);
+}
+
+#mrqMessage, #mrqMSG {
+  display: none;
+}
+
+/*@media: resend*/
+
+@media (max-width:1024px) {
+  .resend-card {
+   width: 90%;
+   height: auto;
+   padding: 100px 0;
+  }
+  .resend p {
+   font-size: 75px;
+  }
+  .resend span {
+   display: flex;
+   flex-direction: column;
+  }
+  .resend span button {
+   margin-top: 25px;
+   margin-left: 0;
+   padding: 15px 50px;
+   border-width: 5px;
+   font-size: 50px;
+   transition: 0.3s;
+  }
+  .resend span button > i {
+   margin-left: 25px;
+  }
+}
+
+/*hidden-frame*/
+
+.hidden-frame {
+  width: 1px;
+  height: 1px;
+  visibility: hidden;
+}
+
+/*success*/
+
+.success-card {
+  width: 100%;
+  max-width: 480px;
+  padding: 40px 30px;
+  background-color: var(--main);
+  border-top: 5px solid var(--ad);
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+   opacity: 0;
+   transform: translateY(20px);
+  }
+  to {
+   opacity: 1;
+   transform: translateY(0);
+  }
+}
+
+.success-card .icon-container {
+  width: 100px;
+  height: 100px;
+  background-color: var(--footer);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.success-card i {
+  font-size: 45px;
+  color: var(--text);
+  animation: drawCheck 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+}
+
+@keyframes drawCheck {
+  to {
+   stroke-dashoffset: 0;
+  }
+}
+
+.success-card h6 {
+  margin-top: 25px;
+  margin-bottom: 12px;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--ad);
+}
+
+.success-card p {
+  margin-bottom: 30px;
+  font-size: 22px;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.success-card a {
+  padding: 12px 32px;
+  background-color: var(--ad);
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: 700;
+  color: var(--footer);
+  display: inline-block;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(204, 148, 38, 0.2);
+}
+
+.success-card a:hover {
+  background-color: var(--text);
+  color: var(--main);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(215, 213, 212, 0.3);
+}
+
+.success-card a:active {
+  transform: translateY(0);
+}
+
 /*container*/
 
 ._container {
@@ -212,7 +407,7 @@ header {
 .switch {
   color-scheme: dark;
   margin-right: 50px;
-  background-color: #ffce00;
+  background-color: #185a50;
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -460,6 +655,9 @@ header {
 main {
   width: 100%;
   height: calc(100vh - 75px);
+  background-image: url("../images/SlideBar.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /*@media: main*/
@@ -467,6 +665,7 @@ main {
 @media (max-width:1024px) {
   main {
     height: calc(100vh - 150px);
+    background-image: url("../images/SlideBar_Media.gif");
   }
 }
 
@@ -474,10 +673,6 @@ main {
 
 .slidebar {
   height: calc(100vh - 75px);
-  background-image: url("../images/SlideBar.gif");
-  background-repeat: no-repeat;
-  background-size: cover;
-  filter: grayscale(10%);
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -485,7 +680,8 @@ main {
   align-items: center;
 }
 
-.slidebar p {
+.slidebar h6, .slidebar h4 {
+  font-weight: normal;
   font-size: 45px;
   color: var(--text);
   text-shadow: 3px 3px var(--main);
@@ -520,16 +716,15 @@ main {
 
 @media (max-width:1024px) {
   .slidebar {
-   background-image: url("../images/SlideBar_Media.gif");
    height: calc(100vh - 150px);
   }
 
-  .slidebar p {
+  .slidebar h6, .slidebar h4 {
    font-size: 55px;
    text-shadow: -2px 5px var(--main);
   }
 
-  .slidebar p.s {
+  .slidebar h4 {
    font-size: 99px;
    text-shadow: 0 8px var(--main);
   }
@@ -729,6 +924,14 @@ form div > span.req::after {
   font-size: 25px;
 }
 
+form div > span.opt::after {
+  content: "(اختياري)";
+  margin-right: 10px;
+  opacity: 0.6;
+  font-size: 18px;
+  font-style: italic;
+}
+
 form div class {
   width: 100%;
   height: auto;
@@ -746,13 +949,13 @@ form div class > input, form div class > textarea {
   border-radius: 5px;
   padding: 0 10px;
   font-size: 18px;
-  color: var(--main);
+  color: var(--ad);
   caret-color: var(--main);
   direction: rtl;
 }
 
 form div class > input::placeholder, form div class > textarea::placeholder {
-  color: var(--bg);
+  color: var(--ad);
 }
 
 form div class > input::selection, form div class > textarea::selection {
@@ -760,11 +963,87 @@ form div class > input::selection, form div class > textarea::selection {
   color: var(--text);
 }
 
+form div class > input[disabled] {
+  opacity: .75;
+  cursor: not-allowed;
+}
+
 form div class > input::-webkit-outer-spin-button, form div class > input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 form div class > input[type="number"] {
   -moz-appearance: textfield;
+}
+
+form div class > input[type="tel"] {
+  direction: ltr !important;
+}
+
+form div class > input[list="tels"] {
+  width: 100px;
+  direction: ltr !important;
+}
+
+form .checkbox-container {
+  margin-top: 25px;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  color: var(--text);
+  gap: 10px;
+}
+
+form .checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+form .checkmark {
+  position: relative;
+  box-shadow: var(--bg) 0px 0px 0px 2px;
+  background-color: rgba(16, 16, 16, 0.4);
+  height: 22px;
+  width: 22px;
+  flex-shrink: 0;
+  transition: all 0.2s ease 0s;
+  cursor: pointer;
+  transform-origin: 0px 10px;
+  border-radius: 4px;
+  margin: -1px 10px 0 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+form .checkbox-container .checkmark:after {
+  content: "";
+  display: none;
+  position: absolute;
+  left: 0.40em;
+  top: 0.20em;
+  width: 0.25em;
+  height: 0.5em;
+  border: solid white;
+  border-width: 0 0.15em 0.15em 0;
+  transform: rotate(45deg);
+  transition: all 500ms ease-in-out;
+}
+
+form .checkbox-container input:checked ~ .checkmark {
+  box-shadow: var(--bg) 0px 0px 0px 2px;
+  background-color: var(--bg);
+  flex-shrink: 0;
+  transition: all 0.2s ease 0s;
+  cursor: pointer;
+  transform-origin: 0px 10px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+form .checkbox-container input:checked ~ .checkmark:after {
+  display: block;
 }
 
 form class > label {
@@ -826,7 +1105,7 @@ form div class > select {
   height: 45px;
   outline: none;
   border: none;
-  color: var(--bg);
+  color: var(--ad);
   background-color: var(--text);
   border-bottom: 4px solid var(--bg);
   border-radius: 5px;
@@ -895,6 +1174,20 @@ form div class > textarea {
 
   form div class a {
    font-size: 35px;
+  }
+
+  form div class > input[list="tels"] {
+   width: 200px;
+ }
+
+  form .checkbox-container {
+   font-size: 42px;
+  }
+
+  form .checkmark {
+   width: 50px;
+   height: 50px;
+   margin-left: 15px;
   }
 
   form div class input[type="radio"] {

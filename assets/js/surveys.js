@@ -9,14 +9,14 @@ $(window).ready(function(){
 // switch
 
 function theme() {
-  if (localStorage.getItem("theme") == "yellow") {
+  if (localStorage.getItem("theme") == "old") {
     $(`<link rel="stylesheet" href="../../assets/css/theme.css"/>`).insertAfter(`link[href="../../assets/css/style.css"]`);
     $(".wait embed").attr("src", "../../assets/svg/theme-wait.svg");
-    $(`meta[name="theme-color"]`).attr("content", "#ffce00");
+    $(`meta[name="theme-color"]`).attr("content", "#185a50");
     $(`link[rel="icon"]`).attr("href", "../../assets/images/theme-icon.png");
   } else {
     $(`link[href="../../assets/css/theme.css"]`).remove();
-    $(`meta[name="theme-color"]`).attr("content", "#185a50");
+    $(`meta[name="theme-color"]`).attr("content", "#422464");
     $(`link[rel="icon"]`).attr("href", "../../assets/images/icon.png");
   }
 }
@@ -25,7 +25,7 @@ theme();
 
 $(".switch").click(function(){
   if (!localStorage.getItem("theme")) {
-    localStorage.setItem("theme", "yellow");
+    localStorage.setItem("theme", "old");
     theme();
   } else {
     localStorage.removeItem("theme");

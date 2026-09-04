@@ -10,7 +10,7 @@
      <p>في المملكة العربية السعودية (مقيم داخل المملكة)</p>
     </div>
    <!--form-->
-    <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post" id="form">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="form">
 
      <div>
       <span class="req">عنوان البريد الإلكتروني</span>
@@ -29,80 +29,97 @@
      <div>
       <span class="req">الجنسية</span>
       <class>
-       <input type="text" name="nationality" maxlength="100" minlength="3" placeholder="إجابتك" autocomplete="off" required>
+       <select name="nationality" required>
+        <?php include "../../includes/html/nationalities.html"; ?>
+       </select>
+      </class>
+     </div>
+
+     <div>
+      <span class="req">تاريخ الميلاد</span>
+      <class>
+       <input type="date" name="birth_date" min="1945-01-01" max="<?= date('Y-m-d'); ?>" autocomplete="off" required>
+      </class>
+     </div>
+
+     <div>
+      <span class="req">رقم الجوال (اتصال)</span>
+      <class>
+       <input type="hidden" name="phone" id="phoneHidden" autocomplete="off">
+       <input type="tel" id="phoneNumber" maxlength="18" minlength="6" autocomplete="off" required>
+       <input list="tels" id="phoneCode" min="2" max="5" autocomplete="off" value="+966" required>
+       <?php include "../../includes/html/countries_codes.html"; ?>
+      </class>
+     </div>
+
+     <div class="multiple">
+      <span class="req">رقم الجوال (واتساب)</span>
+      <class>
+       <input type="hidden" name="whatsapp" id="whatsappHidden" autocomplete="off">
+       <input type="tel" id="whatsappNumber" maxlength="18" minlength="6" autocomplete="off" required disabled>
+       <input list="tels" id="whatsappCode" min="2" max="5" autocomplete="off" value="+966" required disabled>
+       <?php include "../../includes/html/countries_codes.html"; ?>
+       <br>
+       <label class="checkbox-container">
+        <input type="checkbox" id="anotherNumberForWhatsapp">
+        <div class="checkmark"></div>
+        استخدام رقم واتساب مختلف
+       </label>
       </class>
      </div>
 
      <div>
       <span class="req">مدينة الإقامة الحالية</span>
       <class>
-       <input type="text" name="town" maxlength="100" placeholder="إجابتك" autocomplete="off" required>
+       <input list="saudicities" name="town" placeholder="إجابتك" autocomplete="off" required>
+       <?php include "../../includes/html/saudicities.html"; ?>
       </class>
      </div>
 
      <div>
       <span class="req">التخصص</span>
       <class>
-       <input type="text" name="spec" maxlength="150" placeholder="إجابتك" autocomplete="off" required>
+       <select name="spec" required>
+        <?php include "../../includes/html/specialties.html"; ?>
+       </select>
       </class>
      </div>
 
      <div>
-      <span class="req">رقم جوال (واتساب)</span>
+      <span class="req">التصنيف داخل المملكة</span>
       <class>
-       <input type="tel" name="whatsapp" maxlength="20" minlength="8" placeholder="الرقم" autocomplete="off" required>
-      </class>
-     </div>
-
-     <div>
-      <span class="req">رقم جوال (اتصال)</span>
-      <class>
-       <input type="tel" name="phone" maxlength="20" minlength="8" placeholder="الرقم" autocomplete="off" required>
-      </class>
-     </div>
-
-     <div>
-      <span class="req">العمر</span>
-      <class>
-       <button type="button" id="add_age">+</button>
-       <input type="number" name="age" min="24" max="65" placeholder="إجابتك" autocomplete="off" required>
-       <button type="button" id="remove_age">-</button>
-      </class>
-     </div>
-
-     <div>
-      <span class="req">سنوات الخبرة بعد التخرج</span>
-      <class>
-       <button type="button" id="add_exp">+</button>
-       <input type="number" name="exp" min="0" max="40" placeholder="إجابتك" autocomplete="off" required>
-       <button type="button" id="remove_exp">-</button>
-      </class>
-     </div>
-
-     <div>
-      <span>سنوات الخبرة بعد الماجستير</span>
-      <class>
-       <button type="button" id="add_master">+</button>
-       <input type="number" name="master" minlength="1" maxlength="2" placeholder="إجابتك" autocomplete="off">
-       <button type="button" id="remove_master">-</button>
-      </class>
-     </div>
-
-     <div>
-      <span>سنوات الخبرة بعد الدكتوراه</span>
-      <class>
-       <button type="button" id="add_phd">+</button>
-       <input type="number" name="phd" minlength="1" maxlength="2" placeholder="إجابتك" autocomplete="off">
-       <button type="button" id="remove_phd">-</button>
-      </class>
-     </div>
-
-     <div>
-      <span>سنوات الخبرة بعد الزمالة</span>
-      <class>
-       <button type="button" id="add_f">+</button>
-       <input type="number" name="f" minlength="1" maxlength="2" placeholder="إجابتك" autocomplete="off">
-       <button type="button" id="remove_f">-</button>
+       <select name="job" id="job" required>
+        <option value="none" disabled selected>اختر</option>
+        <optgroup label="ــــــــــــــــــــ"></optgroup>
+        <optgroup label="طبي">
+         <option>طبيب عام بشري</option>
+         <option>طبيب عام أسنان</option>
+         <option>مقيم</option>
+         <option>اخصائي</option>
+         <option>اخصائي اول</option>
+         <option>استشاري</option>
+         <option>فني</option>
+         <option>اخصائي غير طبيب</option>
+         <option>صيدلي</option>
+        </optgroup>
+        <optgroup label="إداري">
+         <option>مدير تنفيذي</option>
+         <option>مدير إداري</option>
+         <option>مدير تشغيل</option>
+         <option>مدير طبي</option>
+         <option>مدير مالي</option>
+         <option>مدير تسويق</option>
+         <option>مدير مبيعات</option>
+         <option>طبيب تأمين</option>
+         <option>مسؤول تأمين</option>
+         <option>مسوق</option>
+         <option>استقبال</option>
+         <option>علاقات عامة</option>
+         <option>محاسب مستوصف</option>
+         <option>مهندس اجهزة طبية</option>
+         <option>كول سنتر</option>
+        </optgroup>
+       </select>
       </class>
      </div>
 
@@ -114,32 +131,30 @@
      </div>
 
      <div>
-      <span class="req">التصنيف داخل المملكة</span>
+      <span class="req">تاريخ التخرج</span>
       <class>
-       <select name="job" required>
-        <option value="none" disabled selected>اختر</option>
-        <optgroup label="ــــــــــــــــــــ"></optgroup>
-        <option>طبيب عام</option>
-        <option>مقيم</option>
-        <option>اخصائي</option>
-        <option>اخصائي اول</option>
-        <option>استشاري</option>
-        <option>فني</option>
-        <option>اخصائي غير طبيب</option>
-        <option>صيدلي</option>
-        <option>مدير تشغيل</option>
-        <option>مدير طبي</option>
-        <option>مدير مالي</option>
-        <option>مدير تسويق</option>
-        <option>طبيب تأمين</option>
-        <option>مسؤول تأمين</option>
-        <option>مسوق</option>
-        <option>استقبال</option>
-        <option>علاقات عامة</option>
-        <option>محاسب مستوصف</option>
-        <option>مهندس اجهزة طبية</option>
-        <option>كول سنتر</option>
-       </select>
+       <input type="month" name="exp" min="1960-01" max="<?= date('Y-m'); ?>" autocomplete="off" required>
+      </class>
+     </div>
+
+     <div class="postgraduate" style="display:none">
+      <span class="opt">تاريخ الحصول على الماجستير</span>
+      <class>
+       <input type="month" name="master" class="postgraduateInput" min="1964-01" max="<?= date('Y-m'); ?>" autocomplete="off">
+      </class>
+     </div>
+
+     <div class="postgraduate" style="display:none">
+      <span class="opt">تاريخ الحصول على الدكتوراه</span>
+      <class>
+       <input type="month" name="phd" class="postgraduateInput" min="1964-01" max="<?= date('Y-m'); ?>" autocomplete="off">
+      </class>
+     </div>
+
+     <div class="postgraduate" style="display:none">
+      <span class="opt">تاريخ الحصول على الزمالة</span>
+      <class>
+       <input type="month" name="f" class="postgraduateInput" min="1964-01" max="<?= date('Y-m'); ?>" autocomplete="off">
       </class>
      </div>
 
@@ -201,18 +216,6 @@
        <button type="button" id="add_expert_out">+</button>
        <input type="number" name="expert_out" min="0" max="40" placeholder="إجابتك" autocomplete="off" required>
        <button type="button" id="remove_expert_out">-</button>
-      </class>
-     </div>
-
-     <div>
-      <span class="req">الوظيفة المتقدم لها؟</span>
-      <class>
-       <select name="job_submit" required>
-        <option value="none" disabled selected>اختر</option>
-        <optgroup label="ــــــــــ"></optgroup>
-        <option>طبية</option>
-        <option>إدارية</option>
-       </select>
       </class>
      </div>
 
@@ -298,11 +301,11 @@
       <class>
        <label>
         <a>نعم</a>
-        <input type="radio" value="نعم" name="strong" required>
+        <input type="radio" value="نعم" name="qiwa" required>
        </label>
        <label>
         <a>لا</a>
-        <input type="radio" value="لا" name="strong" required>
+        <input type="radio" value="لا" name="qiwa" required>
        </label>
       </class>
      </div>
@@ -342,7 +345,7 @@
      </div>
 
 		 <div>
-		  <span>ملاحظات تود ذكرها</span>
+		  <span class="opt">ملاحظات تود ذكرها</span>
 			<class>
 			 <textarea name="notes" placeholder="ملاحظاتك..."></textarea>
 			</class>
@@ -374,26 +377,26 @@
     "\n\n".
     "🔲 الأسم الثلاثي ⬅️ ".$name.
     "\n\n".
-    "🟪 الجنسية ⬅️ ".$country.
+    "🟪 الجنسية ⬅️ ".$nationality.
+    "\n\n".
+    "🟪 العمر ⬅️ {age}".
+    "\n\n".
+    "🔲 رقم الجوال (اتصال) ⬅️ ".$phone.
+    "\n\n".
+    "🔲 رقم الجوال (واتس) ⬅️ ".$whatsapp.
     "\n\n".
     "🔲 مدينة الإقامة الحالية ⬅️ ".$town.
     "\n\n".
     "🟪 التخصص ⬅️ ".$spec.
     "\n\n".
-    "🔲 رقم جوال (واتس) ⬅️ ".$whatsapp.
-    "\n\n".
-    "🔲 رقم جوال (اتصال) ⬅️ ".$phone.
-    "\n\n".
-    "🟪 العمر ⬅️ ".$age.
-    "\n\n".
-    "🔲 سنوات الخبرة بعد التخرج ⬅️ ".$exp.
-    $master.
-    $phd.
-    $f.
+    "🟪 التصنيف داخل المملكة ⬅️ ".$job.
     "\n\n".
     "🔲 المهنة بالاقامة ⬅️ ".$work.
     "\n\n".
-    "🟪 التصنيف داخل المملكة ⬅️ ".$job.
+    "🔲 سنوات الخبرة بعد التخرج ⬅️ {exp}".
+    $master.
+    $phd.
+    $f.
     "\n\n".
     "🟪 هل الترخيص ساري؟ ⬅️ ".$license.
     $license_true.
@@ -402,8 +405,6 @@
     "🔲 عدد سنوات الخبرة داخل المملكة؟ ⬅️ ".$expert_in.
     "\n\n".
     "🔲 عدد سنوات الخبرة خارج المملكة؟ ⬅️ ".$expert_out.
-    "\n\n".
-    "🔲 الوظيفة المتقدم لها؟ ⬅️ ".$job_submit.
     "\n\n".
     "🟪 هل الإقامة سارية؟ ⬅️ ".$est.
     $est_true.
@@ -414,7 +415,7 @@
     "\n\n".
     "🔲 هل هناك موافقة من الكفيل علي نقل الكفالة؟ ⬅️ ".$pat.
     "\n\n".
-    "🔲 هل انت مسجل على منصة قوى؟ ⬅️ ".$strong.
+    "🔲 هل انت مسجل على منصة قوى؟ ⬅️ ".$qiwa.
     "\n\n".
     "🟪 الكفالة على ⬅️ ".$warr.
     "\n\n".
@@ -422,34 +423,36 @@
     $c_true.
 		$notes;
   }
-   if (isset($_POST["submit"])) {
+   if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
      require_once "../../master/connect.php";
      include "./vars/in.php";
 
-     if (empty($_SESSION["send_to"])) {
-       $stmt = $conn -> prepare("INSERT INTO surveys (type, email, name, country, spec, whatsapp, phone, age, message, send_date, send_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-       $stmt -> execute(["ksa_in", $email, $name, $country, $spec, $whatsapp, $phone, $age, msg(), date("Y-m-d"), date("H:i:s")]);
+     $mobile = (isset($_SESSION["send_to"])) ? $_SESSION["send_to"]:null;
 
-       $mobile = "201559003611";
+     $stmt = $conn -> prepare("INSERT INTO surveys (type, email, name, nationality, birth_date, phone, whatsapp, spec, job, graduation, master, phd, f, message, send_date, send_time, destination) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+     $stmt -> execute(["ksa_in", $email, $name, $nationality, $birth_date, $phone, $whatsapp, $spec, $job, $exp, $master_raw, $phd_raw, $f_raw, msg(), date("Y-m-d"), date("H:i:s"), $mobile]);
+
+     $mrq_search = array("{age}", "{exp}", "{master}", "{phd}", "{f}");
+     $mrq_replace = array($age ?? 0, $exp_years ?? 0, $master_years ?? 0, $phd_years ?? 0, $f_years ?? 0);
+     $mrq = str_replace($mrq_search, $mrq_replace, msg());
+     print("<script>");
+     echo "localStorage.setItem('type', 'ksa_in');";
+     echo "localStorage.setItem('email', '".$email."');";
+     echo "localStorage.setItem('num', '".$mobile."');";
+     echo "localStorage.setItem('mrq', ".json_encode($mrq).");";
+     echo "localStorage.setItem('msg', `".urlencode($mrq)."`);";
+     print("</script>");
+     $mrq = urlencode($mrq);
+
+     if (isset($_SESSION["send_to"])) {
+      print("<script>");
+      echo "location.href = '../send.php?method=whatsapp&msg=$mrq'";
+      print("</script>");
+     } else {
+      print("<script>");
+      echo "location.href = '../send.php?msg=$mrq'";
+      print("</script>");
      }
-     else {
-       $stmt = $conn -> prepare("INSERT INTO surveys (type, email, name, country, spec, whatsapp, phone, age, message, send_date, send_time, destination) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-       $stmt -> execute(["ksa_in", $email, $name, $country, $spec, $whatsapp, $phone, $age, msg(), date("Y-m-d"), date("H:i:s"), $_SESSION["send_to"]]);
-
-       $mobile = $_SESSION["send_to"];
-     }
-
-		 $mrq = str_replace("🟪", "%F0%9F%9F%AA", str_replace("⬅️", "%E2%AC%85%EF%B8%8F", str_replace("🔲", "%F0%9F%94%B2", str_replace("🔶", "%F0%9F%94%B6", str_replace("🔷", "%F0%9F%94%B7", str_replace("📥", "%F0%9F%93%A5", str_replace("🇸🇦", "%F0%9F%87%B8%F0%9F%87%A6", str_replace("🟣", "%F0%9F%9F%A3", str_replace("\n", "%0D%0A", str_replace(" ", "%20", msg()))))))))));
-
-    #js
-    print("<script>");
-     echo 'const expression = /(iPhone|iPod|iPad)/i;
-		 if (expression.test(navigator.platform)) {
-	     window.open("whatsapp://send?text='.$mrq.'","_self")
-		 } else {
-	     window.open("https://api.whatsapp.com/send/?phone='.$mobile.'&text='.$mrq.'","_self")
-		 }';
-    print("</script>");
    }
   ?>
  <!--remove-->
@@ -463,5 +466,5 @@
    </section>
   </div>
  <!--js-->
-  <script type="text/javascript" src="../../assets/js/sa.js"></script>
+  <script type="text/javascript" src="../../assets/js/surveys/sa.js"></script>
 <?php include "../../includes/html/footer.html"; ?>
