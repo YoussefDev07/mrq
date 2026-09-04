@@ -3,20 +3,18 @@
   <head>
    <!--meta-->
     <meta charset = "utf-8"/>
-    <meta name = "theme-color" content = "#185a50"/>
+    <meta name = "theme-color" content = "#422464"/>
     <meta name = "color-scheme" content = "light"/>
-    <meta name = "author" content = "Youssef Dev"/>
-    <meta name = "owner" content = "أشرف يوسف داوود"/>
-    <meta name = "copyright" content = "Kawader Medical"/>
+    <meta name = "author" content = "Youssef Ibrahim"/>
     <meta name = "google" content = "notranslate"/>
     <meta name = "robots" content = "none"/>
     <meta name = "description" content = "استبيان توظيف للتقدم على وظيفة طبية"/>
     <meta name = "twitter:card" content = "summary"/>
     <meta property = "og:type" content = "website"/>
     <meta property = "og:url" content = "http://localhost/www/mrq"/>
-    <meta property = "og:site_name" content = "Medical Recruitment Questionnaire (GER - KSA - UAE - OMN)"/>
-    <meta property = "og:title" content = "استبيان توظيف للتقدم على وظيفة طبية"/>
-    <meta property = "og:description" content = "في المانيا والسعودية والإمارات وعمان"/>
+    <meta property = "og:site_name" content = "mrq"/>
+    <meta property = "og:title" content = "Kawader Medical"/>
+    <meta property = "og:description" content = "استبيان توظيف للتقدم على وظيفة طبية"/>
     <meta property = "og:image" content = "./assets/images/icon.png"/>
     <meta property = "og:image:alt" content = "Icon"/>
     <!--link-->
@@ -25,11 +23,13 @@
      <link rel="icon" type="image/png" href="./assets/images/icon.png"/>
      <link rel="stylesheet" type="text/css" href="./assets/css/style.css"/>
      <link rel="stylesheet" media="all" href="./assets/libs/css/fontawesome.css"/>
+     <link rel="stylesheet" href="./assets/libs/css/toastr.css"/>
     <!--title-->
      <title>استبيان العمل الطبي</title>
     <!--script-->
      <script src="./assets/libs/js/jquery.js"></script>
-     <script type="application/javascript" src="./assets/js/script.js" defer></script>
+     <script src="./assets/libs/js/toastr.js"></script>
+     <script type="text/javascript" src="./assets/js/script.js" defer></script>
      <noscript>لفتح الإستبيان (JavaScript) الرجاء فتح الجافا سكريبت</noscript>
    </head>
   <body>
@@ -37,6 +37,18 @@
     <div id="loading">
      <!--load-->
       <embed class="load" src="./assets/svg/load.svg"></embed>
+    </div>
+   <!--resend-->
+    <div class="resend" style="display:none">
+     <div class="resend-card">
+      <p>لديك استبيان مُعبأ سابقاً</p>
+      <textarea id="mrqMessage"></textarea>
+      <textarea id="mrqMSG"></textarea>
+      <span>
+       <button type="button" id="copySurvey"><i class="fas fa-copy"></i>نسخ الاستبيان</button>
+       <button type="button" id="resendSurvey"><i class="fas fa-paper-plane"></i>إعادة ارسال الاستبيان</button>
+      </span>
+     </div>
     </div>
    <!--container-->
     <div class="_container">
@@ -60,11 +72,6 @@
            <button id="ksa" type="button">المملكة العربية السعودية</button>
            <button id="uae" type="button" disabled>الإمارات العربية المتحدة</button>
            <button id="omn" type="button" disabled>سلطنة عمان</button>
-          </section>
-         <!--option: ger-->
-          <section class="option ger">
-           <button class="out" id="out-gr" type="button">خارج المانيا</button>
-           <button class="in" id="in-gr" type="button">داخل المانيا</button>
           </section>
          <!--option: ksa-->
           <section class="option ksa">

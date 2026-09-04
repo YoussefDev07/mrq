@@ -13,21 +13,19 @@
   <!--meta-->
    <meta charset = "utf-8"/>
    <meta name = "keywords" content = "توظيف طبي، توظيف طبيب، توظيف أطباء، توظيف اطباء، توظيف دكتور، توظيف طبيب في السعودية، توظيف دكتور في السعودية، توظيف طبيب في الإمارات، توظيف دكتور في الإمارات، توظيف طبيب في عمان، توظيف دكتور في عمان، توظيف طبي في المانيا، توظيف طبي 2026، توظيف طبيب، 2026، توظيف أطباء 2026، توظيف اطباء 2026، توظيف دكتور 2026"/>
-   <meta name = "theme-color" content = "#185a50"/>
+   <meta name = "theme-color" content = "#422464"/>
    <meta name = "color-scheme" content = "light"/>
    <meta name = "author" content = "Youssef Ibrahim"/>
-   <meta name = "owner" content = "أشرف يوسف داوود"/>
-   <meta name = "copyright" content = "Kawader Medical"/>
    <meta name = "google" content = "notranslate"/>
    <meta name = "robots" content = "all"/>
    <meta name = "description" content = "استبيان توظيف للتقدم على وظيفة طبية"/>
    <meta name = "twitter:card" content = "summary"/>
    <meta property = "og:type" content = "website"/>
    <meta property = "og:url" content = "http://localhost/www/mrq"/>
-   <meta property = "og:site_name" content = "Medical Recruitment Questionnaire (GER - KSA - UAE - OMN)"/>
+   <meta property = "og:site_name" content = "mrq"/>
    <meta property = "og:locale" content = "ar"/>
-   <meta property = "og:title" content = "استبيان توظيف للتقدم على وظيفة طبية"/>
-   <meta property = "og:description" content = "في المانيا والسعودية والإمارات وعمان"/>
+   <meta property = "og:title" content = "Kawader Medical"/>
+   <meta property = "og:description" content = "استبيان توظيف للتقدم على وظيفة طبية"/>
    <meta property = "og:image" content = "./assets/images/icon.png"/>
    <meta property = "og:image:alt" content = "Icon"/>
   <!--link-->
@@ -40,7 +38,7 @@
    <title>استبيان العمل الطبي</title>
   <!--script-->
    <script src="./assets/libs/js/jquery.js"></script>
-   <script type="application/javascript" src="./assets/js/script.js" defer></script>
+   <script type="text/javascript" src="./assets/js/script.js" defer></script>
    <noscript>لفتح الإستبيان (JavaScript) الرجاء فتح الجافا سكريبت</noscript>
  </head>
  <body>

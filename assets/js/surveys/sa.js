@@ -1,10 +1,10 @@
 // compilations
 
-$("#phoneNumber, #phoneCode").on("input", function(){
+$("#phoneNumber, #phoneCode").on("input change", function(){
   let number = $("#phoneNumber").val();
   let code = $("#phoneCode").val();
-  number = number.replace(/ /g, "").replace(/-/g, "").replace(/\(/g, "").replace(/\)/g, "");
-  code = code.replace("+", "").replace(/ /g, "");
+  number = number.replace(/ /g, "").replace(/-/g, "").replace(/\(/g, "").replace(/\)/g, "").replace(/\D/g, "");
+  code = code.replace("+", "").replace(/ /g, "").replace(/\D/g, "");
 
   $("#phoneHidden").val(code + number);
 });
@@ -12,17 +12,17 @@ $("#phoneNumber, #phoneCode").on("input", function(){
 function whatsappCompilation() {
   let number = $("#whatsappNumber").val();
   let code = $("#whatsappCode").val();
-  number = number.replace(/ /g, "").replace(/-/g, "").replace(/\(/g, "").replace(/\)/g, "");;
-  code = code.replace("+", "").replace(/ /g, "");
+  number = number.replace(/ /g, "").replace(/-/g, "").replace(/\(/g, "").replace(/\)/g, "").replace(/\D/g, "");
+  code = code.replace("+", "").replace(/ /g, "").replace(/\D/g, "");
 
   $("#whatsappHidden").val(code + number);
 }
-$("#whatsappNumber, #whatsappCode").on("input", whatsappCompilation);
+$("#whatsappNumber, #whatsappCode").on("input change", whatsappCompilation);
 
 // lock/unlock
 
-$("#phoneCode, #phoneNumber").on("input", function(){
-  if ($("#whatsappNumber").attr("disabled")) {
+$("#phoneCode, #phoneNumber").on("input change", function(){
+  if ($("#whatsappNumber").prop("disabled")) {
    $("#whatsappCode").val($("#phoneCode").val());
    $("#whatsappNumber").val($("#phoneNumber").val());
    whatsappCompilation();
@@ -30,10 +30,10 @@ $("#phoneCode, #phoneNumber").on("input", function(){
 });
 $("#anotherNumberForWhatsapp").on("change", function(){
   if ($(this).is(":checked")) {
-    $("#whatsappNumber, #whatsappCode").removeAttr("disabled");
+    $("#whatsappNumber, #whatsappCode").prop("disabled", false);
     $("#whatsappNumber").val("");
   } else {
-    $("#whatsappNumber, #whatsappCode").attr("disabled", "disabled");
+    $("#whatsappNumber, #whatsappCode").prop("disabled", true);
     $("#whatsappNumber").val($("#phoneNumber").val());
     $("#whatsappCode").val($("#phoneCode").val());
     whatsappCompilation();
@@ -49,12 +49,46 @@ $("#job").change(function(){
     $(".postgraduate").slideDown();
   } else {
     $(".postgraduate").slideUp();
-    $(".postgraduateInput").val("");
+    $(".postgraduateInput").val(null);
   }
 });
 
 let t = "نعم";
 let f = "لا";
+
+$("select[name='dataflow']").change(function(){
+  if (this.value == t) {
+	  $("#dataflowTrue").slideDown();
+	  $("#df").attr("required", "required");
+  } else {	
+	  $("#dataflowTrue").slideUp();
+	  $("#df").removeAttr("required");
+	  $("#df").val(null);
+  }
+});
+
+$("select[name='prometric']").change(function(){
+  if (this.value == t) {
+	  $("#prometricTrue").slideDown();
+	  $("#pro").attr("required", "required");
+  } else {	
+	  $("#prometricTrue").slideUp();
+	  $("#pro").removeAttr("required");
+	  $("#pro").val(null);
+  }
+});
+
+$(".kdexp").change(function(){
+  if (this.value == t) {
+	  $("#expert_in_sa_true").slideDown();
+	  $("#kdexp_true").attr("required", "required");
+  }
+  else if (this.value == f) {	
+	  $("#expert_in_sa_true").slideUp();
+	  $("#kdexp_true").removeAttr("required");
+	  $("#kdexp_true").val(null);
+  }
+});
 
 $(".l").change(function(){
   if (this.value == t) {
@@ -62,7 +96,7 @@ $(".l").change(function(){
 	  $("#l_true").attr("required", "required");
 	
 	  $("#license_false").slideUp();
-	  $("#l_false").removeAttr('required');
+	  $("#l_false").removeAttr("required");
 	  $("#l_false").val("none");
   }
   else if (this.value == f) {
@@ -70,7 +104,7 @@ $(".l").change(function(){
 	  $("#l_false").attr("required", "required");
 	
 	  $("#license_true").slideUp();
-	  $("#l_true").removeAttr('required');
+	  $("#l_true").removeAttr("required");
 	  $("#l_true").val(null);
   }
 });
@@ -147,6 +181,23 @@ $("#add_expert_out").click(function(){
 });
 $("#remove_expert_out").click(function(){
   let tag = "input[name=\"expert_out\"]";
+  let val = parseInt($(tag).val());
+  var num = val - 1;
+  if (isNaN(val)) return $(tag).attr("value", 0);
+  if (num < 0) return;
+  $(tag).val(num);
+});
+
+$("#add_expert_in_sa").click(function(){
+  let tag = "input[name=\"expert_in_sa\"]";
+  let val = parseInt($(tag).val());
+  var num = val + 1;
+  if (isNaN(val)) return $(tag).attr("value", 0);
+  if (num > 40) return;
+  $(tag).val(num);
+});
+$("#remove_expert_in_sa").click(function(){
+  let tag = "input[name=\"expert_in_sa\"]";
   let val = parseInt($(tag).val());
   var num = val - 1;
   if (isNaN(val)) return $(tag).attr("value", 0);
