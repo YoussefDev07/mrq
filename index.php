@@ -21,7 +21,7 @@
    <meta name = "description" content = "استبيان توظيف للتقدم على وظيفة طبية"/>
    <meta name = "twitter:card" content = "summary"/>
    <meta property = "og:type" content = "website"/>
-   <meta property = "og:url" content = "http://localhost/www/mrq"/>
+   <meta property = "og:url" content = "http://localhost/www/Kawader%20Medical"/>
    <meta property = "og:site_name" content = "mrq"/>
    <meta property = "og:locale" content = "ar"/>
    <meta property = "og:title" content = "Kawader Medical"/>
@@ -29,7 +29,7 @@
    <meta property = "og:image" content = "./assets/images/icon.png"/>
    <meta property = "og:image:alt" content = "Icon"/>
   <!--link-->
-   <link rel="canonical" href="http://localhost/www/mrq"/>
+   <link rel="canonical" href="http://localhost/www/Kawader%20Medical/"/>
    <link rel="me" href="https://youssefdev.42web.io"/>
    <link rel="icon" type="image/png" href="./assets/images/icon.png"/>
    <link rel="stylesheet" type="text/css" href="./assets/css/style.css"/>

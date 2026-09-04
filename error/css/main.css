@@ -40,8 +40,8 @@
 .error-page h1, .error-page p {
   font-family: "Cairo";
   font-weight: bold;
-  color: #e6f6f3;
-  text-shadow: 3px 3px #185a50;
+  color: #d7d5d4;
+  text-shadow: 3px 3px #422464;
 }
 .error-page h1 {
   margin-top: 50px;
@@ -53,11 +53,11 @@
 .error-page button {
   margin-top: 45px;
   padding: 10px 25px;
-  background-color: #185a50;
+  background-color: #422464;
   border: none;
   border-radius: 25px;
   font-family: "Cairo";
   font-size: 18px;
-  color: #e6f6f3;
+  color: #d7d5d4;
   cursor: pointer;
 }/*# sourceMappingURL=main.css.map */

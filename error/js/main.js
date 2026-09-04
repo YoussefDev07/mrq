@@ -1,6 +1,6 @@
 var home, refresh;
 
-if (localStorage.getItem("theme") === "yellow") {
+if (localStorage.getItem("theme") === "old") {
   document.querySelector('link[href="./css/main.css"]').insertAdjacentHTML("afterend", '<link rel="stylesheet" type="text/css" href="./css/theme.css">');
 }
 
@@ -11,7 +11,7 @@ refresh = document.getElementById("refresh");
 
 if (home != null) {
   home.onclick = function() {
-    return window.location.replace("file:///C:/xampp/htdocs/www/mrq/home.html");
+    return window.location.replace("http://localhost/www/Kawader%20Medical");
   };
 }
 

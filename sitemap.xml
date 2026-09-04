@@ -1,49 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-   <loc>http://localhost/www/mrq/</loc>
-   <lastmod>2024-9-5</lastmod>
+   <loc>http://localhost/www/Kawader%20Medical/</loc>
+   <lastmod>2026-9-4</lastmod>
    <changefreq>never</changefreq>
    <priority>1.0</priority>
   </url>
   <url>
-   <loc>http://localhost/www/mrq/select.html</loc>
-   <lastmod>2024-3-14</lastmod>
-   <changefreq>yearly</changefreq>
+   <loc>http://localhost/www/Kawader%20Medical/select.html</loc>
+   <lastmod>2026-9-4</lastmod>
+   <changefreq>never</changefreq>
    <priority>0.8</priority>
   </url>
   <url>
-   <loc>http://localhost/www/mrq/survey/ksa/in.php</loc>
-   <lastmod>2025-8-28</lastmod>
+   <loc>http://localhost/www/Kawader%20Medical/survey/ksa/in.php</loc>
+   <lastmod>2026-9-4</lastmod>
    <changefreq>yearly</changefreq>
    <priority>0.5</priority>
   </url>
   <url>
-   <loc>http://localhost/www/mrq/survey/ksa/out.php</loc>
-   <lastmod>2025-8-28</lastmod>
+   <loc>http://localhost/www/Kawader%20Medical/survey/ksa/out.php</loc>
+   <lastmod>2026-9-4</lastmod>
    <changefreq>yearly</changefreq>
    <priority>0.5</priority>
   </url>
   <url>
-   <loc>http://localhost/www/mrq/survey/uae/uae.php</loc>
-   <lastmod>2025-8-28</lastmod>
-   <changefreq>yearly</changefreq>
-   <priority>0.5</priority>
-  </url>
-  <url>
-   <loc>http://localhost/www/mrq/survey/omn/om.php</loc>
-   <lastmod>2025-8-28</lastmod>
-   <changefreq>yearly</changefreq>
-   <priority>0.5</priority>
-  </url>
-  <url>
-   <loc>http://localhost/www/mrq/admin/</loc>
+   <loc>http://localhost/www/Kawader%20Medical/admin/</loc>
    <lastmod>2024-3-14</lastmod>
    <changefreq>never</changefreq>
    <priority>0.8</priority>
   </url>
   <url>
-   <loc>http://localhost/www/mrq/admin/surveys.php</loc>
+   <loc>http://localhost/www/Kawader%20Medical/admin/surveys.php</loc>
    <lastmod>2024-6-30</lastmod>
    <changefreq>always</changefreq>
    <priority>1.0</priority>
