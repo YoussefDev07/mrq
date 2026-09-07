@@ -1,4 +1,6 @@
 <?php
+  session_start();
+
   if (empty($_GET["msg"])) {
     header("Location:../index.php");
     exit();
