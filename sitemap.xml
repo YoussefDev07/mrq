@@ -2,25 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
    <loc>http://localhost/www/Kawader%20Medical/</loc>
-   <lastmod>2026-9-4</lastmod>
+   <lastmod>2026-9-7</lastmod>
    <changefreq>never</changefreq>
    <priority>1.0</priority>
   </url>
   <url>
    <loc>http://localhost/www/Kawader%20Medical/select.html</loc>
-   <lastmod>2026-9-4</lastmod>
+   <lastmod>2026-9-7</lastmod>
    <changefreq>never</changefreq>
    <priority>0.8</priority>
   </url>
   <url>
    <loc>http://localhost/www/Kawader%20Medical/survey/ksa/in.php</loc>
-   <lastmod>2026-9-4</lastmod>
+   <lastmod>2026-9-7</lastmod>
    <changefreq>yearly</changefreq>
    <priority>0.5</priority>
   </url>
   <url>
    <loc>http://localhost/www/Kawader%20Medical/survey/ksa/out.php</loc>
-   <lastmod>2026-9-4</lastmod>
+   <lastmod>2026-9-7</lastmod>
    <changefreq>yearly</changefreq>
    <priority>0.5</priority>
   </url>
