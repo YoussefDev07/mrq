@@ -77,15 +77,6 @@
      </div>
 
      <div>
-      <span class="req">التخصص</span>
-      <class>
-       <select name="spec" required>
-        <?php include "../../includes/html/specialties.html"; ?>
-       </select>
-      </class>
-     </div>
-
-     <div>
       <span class="req">التصنيف داخل المملكة</span>
       <class>
        <select name="job" id="job" required>
@@ -119,6 +110,15 @@
          <option>مهندس اجهزة طبية</option>
          <option>كول سنتر</option>
         </optgroup>
+       </select>
+      </class>
+     </div>
+
+     <div id="spec" style="display:none">
+      <span class="req">التخصص</span>
+      <class>
+       <select name="spec">
+        <?php include "../../includes/html/specialties.html"; ?>
        </select>
       </class>
      </div>
@@ -387,9 +387,8 @@
     "\n\n".
     "🔲 مدينة الإقامة الحالية ⬅️ ".$town.
     "\n\n".
-    "🟪 التخصص ⬅️ ".$spec.
-    "\n\n".
     "🟪 التصنيف داخل المملكة ⬅️ ".$job.
+    $spec.
     "\n\n".
     "🔲 المهنة بالاقامة ⬅️ ".$work.
     "\n\n".
@@ -430,7 +429,7 @@
      $mobile = (isset($_SESSION["send_to"])) ? $_SESSION["send_to"]:null;
 
      $stmt = $conn -> prepare("INSERT INTO surveys (type, email, name, nationality, birth_date, phone, whatsapp, spec, job, graduation, master, phd, f, message, send_date, send_time, destination) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-     $stmt -> execute(["ksa_in", $email, $name, $nationality, $birth_date, $phone, $whatsapp, $spec, $job, $exp, $master_raw, $phd_raw, $f_raw, msg(), date("Y-m-d"), date("H:i:s"), $mobile]);
+     $stmt -> execute(["ksa_in", $email, $name, $nationality, $birth_date, $phone, $whatsapp, $spec_row, $job, $exp, $master_raw, $phd_raw, $f_raw, msg(), date("Y-m-d"), date("H:i:s"), $mobile]);
 
      $mrq_search = array("{age}", "{exp}", "{master}", "{phd}", "{f}");
      $mrq_replace = array($age ?? 0, $exp_years ?? 0, $master_years ?? 0, $phd_years ?? 0, $f_years ?? 0);

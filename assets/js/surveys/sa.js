@@ -46,10 +46,12 @@ $("#job").change(function(){
   var groupLabel = group.attr("label");
 
   if (groupLabel == "طبي") {
-    $(".postgraduate").slideDown();
+    $(".postgraduate, #spec").slideDown();
+    $(".required").prop("required", true);
   } else {
-    $(".postgraduate").slideUp();
+    $(".postgraduate, #spec, #df, #pro").slideUp();
     $(".postgraduateInput").val(null);
+    $(".required").prop("required", false);
   }
 });
 

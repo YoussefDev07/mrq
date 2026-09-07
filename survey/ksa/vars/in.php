@@ -7,8 +7,8 @@
   $phone = trim(strip_tags($_POST["phone"])); //required
   $whatsapp = trim(strip_tags($_POST["whatsapp"])); //required
   $town = trim(strip_tags($_POST["town"])); //required
-  $spec = trim(strip_tags($_POST["spec"])); //required
   $job = trim(strip_tags($_POST["job"])); //select - required
+  $spec = (empty($_POST["spec"])) ? "":"🟪 التخصص ⬅️ ".trim(strip_tags($_POST["spec"])); //select - hidden
   $work = trim(strip_tags($_POST["work"])); //required
   $exp = trim(strip_tags($_POST["exp"]))."-01"; //date - required
   $master = (empty($_POST["master"])) ? "":"\n\n🟪 سنوات الخبرة بعد الماجستير ⬅️ {master}"; //date - hidden
@@ -32,6 +32,7 @@
   $notes = (empty($_POST["notes"])) ? "":"\n\n🔲 ملاحظات ⬅️ ".trim(strip_tags($_POST["notes"]));
 
   #raw
+  $spec_raw = (empty($_POST["spec"])) ? null:trim(strip_tags($_POST["spec"]));
   $master_raw = (empty($_POST["master"])) ? null:trim(strip_tags($_POST["master"]))."-01";
   $phd_raw = (empty($_POST["phd"])) ? null:trim(strip_tags($_POST["phd"]))."-01";
   $f_raw = (empty($_POST["f"])) ? null:trim(strip_tags($_POST["f"]))."-01";

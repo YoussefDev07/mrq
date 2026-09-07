@@ -76,9 +76,47 @@
      </div>
 
      <div>
+      <span class="req">التصنيف</span>
+      <class>
+       <select name="job" id="job" required>
+        <option value="none" disabled selected>اختر</option>
+        <optgroup label="ــــــــــــــــــــ"></optgroup>
+        <optgroup label="طبي">
+         <option>طبيب عام بشري</option>
+         <option>طبيب عام أسنان</option>
+         <option>مقيم</option>
+         <option>اخصائي</option>
+         <option>اخصائي اول</option>
+         <option>استشاري</option>
+         <option>فني</option>
+         <option>اخصائي غير طبيب</option>
+         <option>صيدلي</option>
+        </optgroup>
+        <optgroup label="إداري">
+         <option>مدير تنفيذي</option>
+         <option>مدير إداري</option>
+         <option>مدير تشغيل</option>
+         <option>مدير طبي</option>
+         <option>مدير مالي</option>
+         <option>مدير تسويق</option>
+         <option>مدير مبيعات</option>
+         <option>طبيب تأمين</option>
+         <option>مسؤول تأمين</option>
+         <option>مسوق</option>
+         <option>استقبال</option>
+         <option>علاقات عامة</option>
+         <option>محاسب مستوصف</option>
+         <option>مهندس اجهزة طبية</option>
+         <option>كول سنتر</option>
+        </optgroup>
+       </select>
+      </class>
+     </div>
+
+     <div id="spec" style="display:none">
       <span class="req">التخصص</span>
       <class>
-       <select name="spec" required>
+       <select name="spec" class="required">
         <?php include "../../includes/html/specialties.html"; ?>
        </select>
       </class>
@@ -91,31 +129,31 @@
       </class>
      </div>
 
-     <div>
+     <div class="postgraduate" style="display:none">
       <span class="opt">تاريخ الحصول على الماجستير</span>
       <class>
-       <input type="month" name="master" min="1964-01" max="<?= date('Y-m'); ?>" autocomplete="off">
+       <input type="month" name="master" class="postgraduateInput" min="1964-01" max="<?= date('Y-m'); ?>" autocomplete="off">
       </class>
      </div>
 
-     <div>
+     <div class="postgraduate" style="display:none">
       <span class="opt">تاريخ الحصول على الدكتوراه</span>
       <class>
-       <input type="month" name="phd" min="1964-01" max="<?= date('Y-m'); ?>" autocomplete="off">
+       <input type="month" name="phd" class="postgraduateInput" min="1964-01" max="<?= date('Y-m'); ?>" autocomplete="off">
       </class>
      </div>
 
-     <div>
+     <div class="postgraduate" style="display:none">
       <span class="opt">تاريخ الحصول على الزمالة</span>
       <class>
-       <input type="month" name="f" min="1964-01" max="<?= date('Y-m'); ?>" autocomplete="off">
+       <input type="month" name="f" class="postgraduateInput" min="1964-01" max="<?= date('Y-m'); ?>" autocomplete="off">
       </class>
      </div>
 
-     <div>
+     <div class="postgraduate" style="display:none">
       <span class="req">هل معك داتا فلو؟</span>
       <class>
-       <select name="dataflow" required>
+       <select name="dataflow" class="required">
         <option value="none" disabled selected>اختر</option>
         <optgroup label="ــــــــــــــــــــ"></optgroup>
         <option>نعم</option>
@@ -129,14 +167,14 @@
      <div id="dataflowTrue" style="display:none">
       <span class="req">تاريخ الحصول على الداتا فلو</span>
       <class>
-       <input type="month" name="dataflow_date" id="df" min="1964-01" max="<?= date('Y-m'); ?>" autocomplete="off">
+       <input type="month" name="dataflow_date" id="df" class="postgraduateInput" min="1964-01" max="<?= date('Y-m'); ?>" autocomplete="off">
       </class>
      </div>
 
-     <div>
+     <div class="postgraduate" style="display:none">
       <span class="req">هل أنت حاصل على برومتريك؟</span>
       <class>
-       <select name="prometric" required>
+       <select name="prometric" class="required">
         <option value="none" disabled selected>اختر</option>
         <optgroup label="ــــــــــــــــــــ"></optgroup>
         <option>نعم</option>
@@ -150,7 +188,7 @@
      <div id="prometricTrue" style="display:none">
       <span class="req">تاريخ الحصول على برومتريك</span>
       <class>
-       <input type="month" name="prometric_date" id="pro" min="1964-01" max="<?= date('Y-m'); ?>" autocomplete="off">
+       <input type="month" name="prometric_date" id="pro" class="postgraduateInput" min="1964-01" max="<?= date('Y-m'); ?>" autocomplete="off">
       </class>
      </div>
 
@@ -286,17 +324,16 @@
     "\n\n".
     "🔲 مدينة الإقامة الحالية ⬅️ ".$town.
     "\n\n".
-    "🟦 التخصص ⬅️ ".$spec.
+    "🟦 التصنيف ⬅️ ".$job.
+    $spec.
     "\n\n".
     "🔲 سنوات الخبرة بعد التخرج ⬅️ {exp}".
     $master.
     $phd.
     $f.
-    "\n\n".
-    "🟦 هل معك داتا فلو؟ ⬅️ ".$dataflow.
+    $dataflow.
     $dataflow_date.
-    "\n\n".
-    "🟦 هل أنت حاصل على برومتريك؟ ⬅️ ".$prometric.
+    $prometric.
     $prometric_date.
     "\n\n".
     "🔲 هل لك خبرة سابقة بالمملكة؟ ⬅️ ".$kdexp.
@@ -318,8 +355,8 @@
 
      $mobile = (isset($_SESSION["send_to"])) ? $_SESSION["send_to"]:null;
 
-     $stmt = $conn -> prepare("INSERT INTO surveys (type, email, name, nationality, birth_date, phone, whatsapp, spec, graduation, master, phd, f, dataflow, prometric, message, send_date, send_time, destination) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-     $stmt -> execute(["ksa_out", $email, $name, $nationality, $birth_date, $phone, $whatsapp, $spec, $exp, $master_raw, $phd_raw, $f_raw, $dataflow_raw, $prometric_raw, msg(), date("Y-m-d"), date("H:i:s"), $mobile]);
+     $stmt = $conn -> prepare("INSERT INTO surveys (type, email, name, nationality, birth_date, phone, whatsapp, spec, job, graduation, master, phd, f, dataflow, prometric, message, send_date, send_time, destination) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+     $stmt -> execute(["ksa_out", $email, $name, $nationality, $birth_date, $phone, $whatsapp, $spec, $job, $exp, $master_raw, $phd_raw, $f_raw, $dataflow_raw, $prometric_raw, msg(), date("Y-m-d"), date("H:i:s"), $mobile]);
 
      $mrq_search = array("{age}", "{exp}", "{master}", "{phd}", "{f}", "{dataflow}", "{prometric}");
      $mrq_replace = array($age ?? 0, $exp_years ?? 0, $master_years ?? 0, $phd_years ?? 0, $f_years ?? 0, $dataflow_years ?? 0, $prometric_years ?? 0);
