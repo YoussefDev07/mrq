@@ -367,7 +367,7 @@ img::selection {
 
 header {
   width: 100%;
-  height: 75px;
+  height: 100px;
   background-color: var(--main);
   overflow: hidden;
   display: flex;
@@ -381,24 +381,30 @@ header {
 
 @media (max-width:1024px) {
   header {
-   height: 150px;
+   height: 175px;
   }
 }
 
-/*time*/
+/*logo*/
 
-.time {
-  margin-left: 50px;
-  font-size: 45px;
-  color: var(--text);
-  cursor: default;
+.logo {
+  margin-left: 25px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/*@media: time*/
+.logo img {
+  width: auto;
+  height: 90px;
+}
+
+/*@media: logo*/
 
 @media (max-width:1024px) {
-  .time {
-   font-size: 75px;
+  .logo img {
+   height: 150px;
   }
 }
 
@@ -408,8 +414,8 @@ header {
   color-scheme: dark;
   margin-right: 50px;
   background-color: #185a50;
-  width: 32px;
-  height: 32px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   cursor: pointer;
 }
@@ -418,8 +424,8 @@ header {
 
 @media (max-width:1024px) {
   .switch {
-   width: 55px;
-   height: 55px;
+   width: 64px;
+   height: 64px;
   }
 }
 
@@ -1659,27 +1665,44 @@ button[type="submit"]:active {
 
 footer {
   width: 100%;
-  height: 45px;
+  height: 100px;
   background-color: var(--footer);
-  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
 }
 
 footer p {
+  margin-right: 25px;
+  font-size: large;
   color: var(--text);
-  position: absolute;
-  top: 50%;
-  right: 25px;
-  transform: translateY(-50%);
+}
+
+footer a {
+  margin-left: 25px;
+  text-decoration: underline;
+  font-size: large;
+  color: var(--text);
+}
+
+footer img {
+  width: auto;
+  height: 80px;
 }
 
 /*@media: footer*/
 
 @media (max-width:1024px) {
   footer {
-   height: 100px;
+   height: 150px;
   }
   
   footer p {
-   font-size: 32px;
+   font-size: xx-large;
+  }
+
+  footer img {
+   height: 140px;
   }
 }

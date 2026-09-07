@@ -36,15 +36,6 @@ $(".switch").click(function(){
   }
 });
 
-// time
-
-$("#time").html(`${time.getHours().toString().padStart(2, "0")}:${time.getMinutes().toString().padStart(2, "0")}`);
-
-setInterval(function(){
-  const time = new Date();
-  $("#time").html(`${time.getHours().toString().padStart(2, "0")}:${time.getMinutes().toString().padStart(2, "0")}`);
-}, 250);
-
 // slidebar
 
 $(".slidebar > button").click(function(){

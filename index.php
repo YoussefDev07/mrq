@@ -53,10 +53,10 @@
    <div class="_container">
     <!--header-->
      <header>
-      <!--time-->
-       <nav class="time">
-        <time id="time"></time>
-       </nav>
+      <!--logo-->
+       <div class="logo">
+        <img title="كوادر الطب" src="./assets/images/icon.png" alt="logo">
+       </div>
       <!--switch-->
        <button type="button" title="تغيير المظهر" class="switch"></button>
      </header>
@@ -71,6 +71,7 @@
     <!--footer-->
      <footer>
       <p><time></time> جميع الحقوق محفوظة <i class="far fa-copyright"></i></p>
+      <a href="https://www.04000.tel" target="_blank"><img src="./assets/images/ehotline.webp" alt="www.04000.tel"></a>
      </footer>
    </div>
  </body>

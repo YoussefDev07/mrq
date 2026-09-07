@@ -42,10 +42,10 @@
    <div class="_container">
     <!--header-->
      <header>
-      <!--time-->
-       <nav class="time">
-        <span id="time"></span>
-       </nav>
+      <!--logo-->
+       <div class="logo">
+        <img title="كوادر الطب" src="../../assets/images/icon.png" alt="logo">
+       </div>
       <!--switch-->
        <button type="button" class="switch"></button>
      </header>
