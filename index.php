@@ -31,6 +31,8 @@
   <!--link-->
    <link rel="canonical" href="http://localhost/www/Kawader%20Medical/"/>
    <link rel="me" href="https://youssefdev.42web.io"/>
+   <link rel="apple-touch-icon" type="image/png" href="./assets/images/icon.png"/>
+   <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico"/>
    <link rel="icon" type="image/png" href="./assets/images/icon.png"/>
    <link rel="stylesheet" type="text/css" href="./assets/css/style.css"/>
    <link rel="stylesheet" media="all" href="./assets/libs/css/fontawesome.css"/>

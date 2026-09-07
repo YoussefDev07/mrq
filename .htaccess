@@ -7,7 +7,7 @@ Options -Indexes
 # GZIP
 
 <ifmodule mod_deflate.c>
-AddOutputFilterByType DEFLATE text/text text/html text/css text/javascript text/xml text/plain font/ttf font/woff2 image/png image/gif image/svg+xml
+AddOutputFilterByType DEFLATE text/text text/html text/css text/javascript text/xml text/plain font/ttf font/woff2 image/x-icon image/png image/gif image/svg+xml
 </ifmodule>
 
 # index
