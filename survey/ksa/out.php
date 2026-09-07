@@ -20,9 +20,9 @@
      </div>
 
      <div>
-      <span class="req">الاسم الثلاثي</span>
+      <span class="req">الاسم الرباعي</span>
       <class>
-       <input type="text" name="name" maxlength="250" minlength="11" placeholder="اسمك الثلاثي" autocomplete="off" required>
+       <input type="text" name="name" maxlength="250" minlength="16" placeholder="اسمك الرباعي" autocomplete="off" required>
       </class>
      </div>
 
