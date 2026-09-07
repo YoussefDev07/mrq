@@ -89,7 +89,7 @@ if (localStorage.getItem("type")) {
 
   var mrqMessage = localStorage.getItem("mrq");
   var mrqMSG = localStorage.getItem("msg");
-  let numberSendTo = localStorage.getItem("num");
+  var numberSendTo = localStorage.getItem("num");
   $("#mrqMessage").text(mrqMessage);
 }
 
