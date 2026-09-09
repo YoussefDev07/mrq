@@ -17,7 +17,6 @@
    <meta property = "og:image" content = "../../assets/images/icon.png"/>
    <meta property = "og:image:alt" content = "Icon"/>
   <!--link-->
-   <link rel="canonical" href="<?= $_SERVER["PHP_SELF"]; ?>"/>
    <link rel="me" href="https://youssefdev.42web.io"/>
    <link rel="icon" type="image/png" href="../../assets/images/icon.png"/>
    <link rel="stylesheet" type="text/css" href="../../assets/css/style.css"/>
