@@ -32,7 +32,6 @@
   background-image: url("../../assets/images/SlideBar.gif");
   background-repeat: no-repeat;
   background-size: cover;
-  filter: grayscale(10%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -60,4 +59,10 @@
   font-size: 18px;
   color: #d7d5d4;
   cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+  .error-page {
+    background-image: url("../../assets/images/SlideBar_Media.gif");
+  }
 }/*# sourceMappingURL=main.css.map */

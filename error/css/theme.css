@@ -1,5 +1,5 @@
 .error-page {
-  filter: grayscale(28%);
+  background-image: url("../../assets/images/SlideBar-theme.gif");
 }
 .error-page h1, .error-page p {
   color: #185a50;
@@ -8,4 +8,10 @@
 .error-page button {
   background-color: #185a50;
   color: #e6f6f3;
+}
+
+@media (max-width: 1024px) {
+  .error-page {
+    background-image: url("../../assets/images/SlideBar_Media-theme.gif");
+  }
 }/*# sourceMappingURL=theme.css.map */
