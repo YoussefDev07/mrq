@@ -687,11 +687,12 @@ main {
 }
 
 .slidebar h6, .slidebar h4 {
+  margin-bottom: 25px;
   font-weight: normal;
   font-size: 45px;
   color: var(--text);
+  text-align: center;
   text-shadow: 3px 3px var(--main);
-  margin-bottom: 25px;
 }
 
 .slidebar .buttons {
@@ -952,7 +953,7 @@ form div class {
   margin-bottom: 10px;
 }
 
-form div class > input, form div class > textarea {
+form input, form div class > textarea {
   width: 32%;
   height: 45px;
   background-color: var(--text);
@@ -967,21 +968,21 @@ form div class > input, form div class > textarea {
   direction: rtl;
 }
 
-form div class > input::placeholder, form div class > textarea::placeholder {
+form input::placeholder, form div class > textarea::placeholder {
   color: var(--ad);
 }
 
-form div class > input::selection, form div class > textarea::selection {
+form input::selection, form div class > textarea::selection {
   background-color: var(--main);
   color: var(--text);
 }
 
-form div class > input[disabled] {
+form input[disabled] {
   opacity: .75;
   cursor: not-allowed;
 }
 
-form div class > input::-webkit-outer-spin-button, form div class > input::-webkit-inner-spin-button {
+form input::-webkit-outer-spin-button, form div class > input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 form div class > input[type="number"] {
@@ -1173,7 +1174,7 @@ form div class > textarea {
    margin-right: 32px;
   }
 
-  form div class > input, form div class > textarea {
+  form input, form div class > textarea {
    width: 60%;
    height: 64px;
    border-bottom-width: 8px;
@@ -1181,7 +1182,7 @@ form div class > textarea {
    font-size: 45px;
   }
 
-  form div class > input::placeholder, form div class > textarea::placeholder {
+  form input::placeholder, form div class > textarea::placeholder {
    font-size: 32px;
   }
 
@@ -1278,13 +1279,13 @@ form div class > textarea {
 
 button[type="submit"] {
   margin-right: 10px;
-  width: 175px;
-  height: 45px;
+  padding: 6px 32px;
   background-color: var(--main);
   border: 3px solid var(--main);
   border-radius: 10px;
+  font-family: var(--font);
+  font-size: 22px;
   color: var(--text);
-  font-size: 25px;
   cursor: pointer;
   transition: 1s;
 }
@@ -1303,8 +1304,7 @@ button[type="submit"]:active {
 
 @media (max-width:1024px) {
   button[type="submit"] {
-   width: 325px;
-   height: 75px;
+   padding: 10px 45px;
    font-size: 45px;
    transition: 0.3;
   }

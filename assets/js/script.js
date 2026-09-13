@@ -46,6 +46,12 @@ $("#updateSurvey").click(function(){
   window.open("./update.html", "_self");
 });
 
+if (window.location.href.includes("update.html") && localStorage.getItem("email")) {
+  $("#emailUpdateSurvey").val(localStorage.getItem("email"));
+  $("#emailUpdateSurvey").prop("disabled", true);
+  $("#typeSurvey").val(localStorage.getItem("type"));
+}
+
 if (window.location.href.includes("admin/surveys.php")) {
   $(".slidebar").css({
     "height": "auto",
