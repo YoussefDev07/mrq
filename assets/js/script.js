@@ -38,8 +38,12 @@ $(".switch").click(function(){
 
 // slidebar
 
-$(".slidebar > button").click(function(){
+$("#startSurvey").click(function(){
   window.open("./select.html", "_self");
+});
+
+$("#updateSurvey").click(function(){
+  window.open("./update.html", "_self");
 });
 
 if (window.location.href.includes("admin/surveys.php")) {

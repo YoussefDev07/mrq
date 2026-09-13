@@ -694,14 +694,18 @@ main {
   margin-bottom: 25px;
 }
 
+.slidebar .buttons {
+  direction: rtl;
+}
+
 .slidebar button {
-  width: 175px;
-  height: 50px;
+  padding: 6px 32px;
   background-color: var(--main);
   border: 2px solid var(--main);
   border-radius: 15px;
   text-decoration: none;
-  font-size: 28px;
+  font-family: var(--font);
+  font-size: 22px;
   color: var(--text);
   cursor: pointer;
   transition: 1s;
@@ -735,12 +739,15 @@ main {
    text-shadow: 0 8px var(--main);
   }
 
+  .slidebar .buttons {
+   display: flex;
+   flex-direction: column;
+  }
+
   .slidebar button {
-   margin-top: 25px;
-   margin-bottom: 250px;
-   width: 320px;
-   height: 80px;
-   font-size: 45px;
+   margin-top: 50px;
+   padding: 10px 45px;
+   font-size: 50px;
    border-width: 3px;
    transition: 0.3;
   }
