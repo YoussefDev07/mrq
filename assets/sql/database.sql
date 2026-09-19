@@ -15,6 +15,7 @@ CREATE TABLE surveys (
   whatsapp varchar(20),
   spec varchar(250),
   job varchar(150),
+  job_type ENUM("طبي", "إداري"),
   graduation date,
   master date,
   phd date,
@@ -25,4 +26,19 @@ CREATE TABLE surveys (
   send_date date,
   send_time time,
   destination varchar(16)
+);
+
+-- Create `surveys_data` Table
+
+CREATE TABLE surveys_data (
+  id int(11) PRIMARY KEY AUTO_INCREMENT,
+  email varchar(256),
+  phone_code varchar(5),
+  phone_number varchar(5),
+  whatsapp_code varchar(5),
+  whatsapp_number varchar(5),
+  town varchar(100),
+  expert_in int(3),
+  expert_out int(3),
+  kdexp int(3)
 );

@@ -1,3 +1,11 @@
+// wait
+
+$(document).ready(function(){
+  $(".wait").fadeOut(800);
+});
+
+$(window).ready(function(){
+
 // compilations
 
 $("#phoneNumber, #phoneCode").on("input change", function(){
@@ -18,14 +26,6 @@ function whatsappCompilation() {
   $("#whatsappHidden").val(code + number);
 }
 $("#whatsappNumber, #whatsappCode").on("input change", whatsappCompilation);
-
-$("#job").change(function(){
-  var selected = $(this).find("option:selected");
-  var group = selected.closest("optgroup");
-  var groupLabel = group.attr("label");
-
-  $("#jobType").val(groupLabel);
-});
 
 // lock/unlock
 
@@ -48,73 +48,24 @@ $("#anotherNumberForWhatsapp").on("change", function(){
   }
 });
 
-$("#job").change(function(){
-  var selected = $(this).find("option:selected");
-  var group = selected.closest("optgroup");
-  var groupLabel = group.attr("label");
-
-  if (groupLabel == "طبي") {
-    $(".postgraduate, #spec").slideDown();
-    $(".required").prop("required", true);
-  } else {
-    $(".postgraduate, #spec, #df, #pro").slideUp();
-    $(".postgraduateInput").val(null);
-    $(".required").prop("required", false);
-  }
-});
-
 let t = "نعم";
 let f = "لا";
-
-$("select[name='dataflow']").change(function(){
-  if (this.value == t) {
-	  $("#dataflowTrue").slideDown();
-	  $("#df").attr("required", "required");
-  } else {	
-	  $("#dataflowTrue").slideUp();
-	  $("#df").removeAttr("required");
-	  $("#df").val(null);
-  }
-});
-
-$("select[name='prometric']").change(function(){
-  if (this.value == t) {
-	  $("#prometricTrue").slideDown();
-	  $("#pro").attr("required", "required");
-  } else {	
-	  $("#prometricTrue").slideUp();
-	  $("#pro").removeAttr("required");
-	  $("#pro").val(null);
-  }
-});
-
-$(".kdexp").change(function(){
-  if (this.value == t) {
-	  $("#expert_in_sa_true").slideDown();
-	  $("#kdexp_true").attr("required", "required");
-  }
-  else if (this.value == f) {	
-	  $("#expert_in_sa_true").slideUp();
-	  $("#kdexp_true").removeAttr("required");
-	  $("#kdexp_true").val(null);
-  }
-});
 
 $(".l").change(function(){
   if (this.value == t) {
 	  $("#license_true").slideDown();
-	  $("#l_true").attr("required", "required");
+	  $("#l_true").prop("required", true);
 	
 	  $("#license_false").slideUp();
-	  $("#l_false").removeAttr("required");
+	  $("#l_false").prop("required", false);
 	  $("#l_false").val("none");
   }
   else if (this.value == f) {
 	  $("#license_false").slideDown();
-	  $("#l_false").attr("required", "required");
+	  $("#l_false").prop("required", true);
 	
 	  $("#license_true").slideUp();
-	  $("#l_true").removeAttr("required");
+	  $("#l_true").prop("required", false);
 	  $("#l_true").val(null);
   }
 });
@@ -122,18 +73,18 @@ $(".l").change(function(){
 $(".e").change(function(){
   if (this.value == t) {
 	  $("#est_true").slideDown();
-	  $("#e_true").attr("required", "required");
+	  $("#e_true").prop("required", true);
 	
 	  $("#est_false").slideUp();
-	  $("#e_false").removeAttr("required");
+	  $("#e_false").prop("required", false);
 	  $("#e_false").val("none");
   }
   else if (this.value == f) {
 	  $("#est_false").slideDown();
-	  $("#e_false").attr("required", "required");
+	  $("#e_false").prop("required", true);
 	
 	  $("#est_true").slideUp();
-	  $("#e_true").removeAttr("required");
+	  $("#e_true").prop("required", false);
 	  $("#e_true").val(null);
   }
 });
@@ -141,24 +92,12 @@ $(".e").change(function(){
 $(".con").change(function(){
   if (this.value == t) {
 	  $("#condate").slideDown();
-	  $("#cond").attr("required", "required");
+	  $("#cond").prop("required", true);
   }
   else if (this.value == f) {
 	  $("#condate").slideUp();
-	  $("#cond").removeAttr("required");
+	  $("#cond").prop("required", false);
 	  $("#cond").val(null);
-  }
-});
-
-$(".c").change(function(){
-  if (this.value == t) {
-	  $("#city_true").slideDown();
-	  $("#c_true").attr("required", "required");
-  }
-  else if (this.value == f) {
-	  $("#city_true").slideUp();
-	  $("#c_true").removeAttr("required");
-	  $("#c_true").val(null);
   }
 });
 
@@ -198,19 +137,4 @@ $("#remove_expert_out").click(function(){
   $(tag).val(num);
 });
 
-$("#add_expert_in_sa").click(function(){
-  let tag = "input[name=\"expert_in_sa\"]";
-  let val = parseInt($(tag).val());
-  var num = val + 1;
-  if (isNaN(val)) return $(tag).attr("value", 0);
-  if (num > 40) return;
-  $(tag).val(num);
-});
-$("#remove_expert_in_sa").click(function(){
-  let tag = "input[name=\"expert_in_sa\"]";
-  let val = parseInt($(tag).val());
-  var num = val - 1;
-  if (isNaN(val)) return $(tag).attr("value", 0);
-  if (num < 0) return;
-  $(tag).val(num);
 });

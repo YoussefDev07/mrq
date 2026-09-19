@@ -16,6 +16,7 @@ function theme() {
     $(".load").attr("src", "./assets/svg/theme-load.svg");
     $(`meta[name="theme-color"]`).attr("content", "#185a50");
     $(`link[rel="icon"]`).attr("href", "./assets/images/theme-icon.png");
+    $(".wait embed").attr("src", "./assets/svg/theme-wait.svg");
   } else {
     $(`link[href="./assets/css/theme.css"]`).remove();
     $(`meta[name="theme-color"]`).attr("content", "#422464");
@@ -49,7 +50,6 @@ $("#updateSurvey").click(function(){
 if (window.location.href.includes("update.html") && localStorage.getItem("email")) {
   $("#emailUpdateSurvey").val(localStorage.getItem("email"));
   $("#emailUpdateSurvey").prop("disabled", true);
-  $("#typeSurvey").val(localStorage.getItem("type"));
 }
 
 if (window.location.href.includes("admin/surveys.php")) {

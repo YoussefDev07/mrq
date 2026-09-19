@@ -8,6 +8,7 @@
   $whatsapp = trim(strip_tags($_POST["whatsapp"])); //required
   $town = trim(strip_tags($_POST["town"])); //required
   $job = trim(strip_tags($_POST["job"])); //select - required
+  $job_type = trim(strip_tags($_POST["job_type"]));
   $spec = (empty($_POST["spec"])) ? "":"🟦 التخصص ⬅️ ".trim(strip_tags($_POST["spec"])); //select - hidden
   $exp = trim(strip_tags($_POST["exp"]))."-01"; //date - required
   $master = (empty($_POST["master"])) ? "":"\n\n🟦 سنوات الخبرة بعد الماجستير ⬅️ {master}"; //date - hidden
@@ -18,7 +19,7 @@
   $prometric = (empty($_POST["prometric"])) ? "":"\n\n🟦 هل أنت حاصل على برومتريك؟ ⬅️ ".trim(strip_tags($_POST["prometric"])); //date - hidden - required
   $prometric_date = (empty($_POST["prometric_date"])) ? "":"\n\n🟦 سنوات الخبرة بعد البروميتك ⬅️ {prometric}"; //date - hidden - required
   $kdexp = trim(strip_tags($_POST["kdexp"])); //radio - required
-  $expert_in_sa = (empty($_POST["master"])) ? "":"\n\n🔲 سنوات الخبرة بعد الماجستير ⬅️ ".trim(strip_tags($_POST["expert_in_sa"])); //hidden
+  $expert_in_sa = (empty($_POST["expert_in_sa"])) ? "":"\n\n🔲 كم سنة خبرة في المملكة؟ ⬅️ ".trim(strip_tags($_POST["expert_in_sa"])); //hidden
   $city = trim(strip_tags($_POST["city"])); //radio - required
   $c_true = (empty($_POST["c_true"])) ? "":"\n\n🔲 ما هي المدن/المدينة التي ترغب العمل بها؟ ⬅️ ".trim(strip_tags($_POST["c_true"])); //hidden - required
   $travel = trim(strip_tags($_POST["travel"])); //select - required
