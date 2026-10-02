@@ -65,7 +65,10 @@
       <!--slidebar-->
        <section class="slidebar">
         <h6>استبيان توظيف للتقدم على وظيفة طبية</h6>
-        <button type="button">بدء الاستبيان</button>
+        <div class="buttons">
+         <button id="startSurvey" type="button">بدء استبيان جديد</button>
+         <button id="updateSurvey" type="button">تحديث بيانات الاستبيان</button>
+        </div>
        </section>
      </main>
     <!--footer-->

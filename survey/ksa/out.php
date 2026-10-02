@@ -14,9 +14,9 @@
 
      <div>
       <span class="req">عنوان البريد الإلكتروني</span>
-       <class>
-        <input type="text" name="email" placeholder="بريدك الإلكتروني" autocomplete="on" required>
-       </class>
+      <class>
+       <input type="text" name="email" placeholder="بريدك الإلكتروني" autocomplete="on" required>
+      </class>
      </div>
 
      <div>
@@ -46,8 +46,8 @@
       <span class="req">رقم الجوال (اتصال)</span>
       <class>
        <input type="hidden" name="phone" id="phoneHidden" autocomplete="off">
-       <input type="tel" id="phoneNumber" maxlength="18" minlength="6" autocomplete="off" required>
-       <input list="tels" id="phoneCode" min="2" max="5" autocomplete="off" value="+966" required>
+       <input type="tel" name="phone_number" id="phoneNumber" maxlength="18" minlength="6" autocomplete="off" required>
+       <input list="tels" name="phone_code" id="phoneCode" min="2" max="5" autocomplete="off" required>
        <?php include "../../includes/html/countries_codes.html"; ?>
       </class>
      </div>
@@ -56,8 +56,8 @@
       <span class="req">رقم الجوال (واتساب)</span>
       <class>
        <input type="hidden" name="whatsapp" id="whatsappHidden" autocomplete="off">
-       <input type="tel" id="whatsappNumber" maxlength="18" minlength="6" autocomplete="off" required disabled>
-       <input list="tels" id="whatsappCode" min="2" max="5" autocomplete="off" value="+966" required disabled>
+       <input type="tel" name="whatsapp_number" id="whatsappNumber" maxlength="18" minlength="6" autocomplete="off" required readonly>
+       <input list="tels" name="whatsapp_code" id="whatsappCode" min="2" max="5" autocomplete="off" required readonly>
        <?php include "../../includes/html/countries_codes.html"; ?>
        <br>
        <label class="checkbox-container">
@@ -78,6 +78,7 @@
      <div>
       <span class="req">التصنيف</span>
       <class>
+       <input type="hidden" name="job_type" id="jobType" required>
        <select name="job" id="job" required>
         <option value="none" disabled selected>اختر</option>
         <optgroup label="ــــــــــــــــــــ"></optgroup>
@@ -318,11 +319,13 @@
     "\n\n".
     "🟦 العمر ⬅️ {age}".
     "\n\n".
-    "🔲 رقم جوال (اتصال) ⬅️ ".$phone.
+    "🔲 رقم جوال (اتصال) ⬅️ {phone}".
     "\n\n".
-    "🔲 رقم جوال (واتس) ⬅️ ".$whatsapp.
+    "🔲 رقم جوال (واتس) ⬅️ {whatsapp}".
     "\n\n".
-    "🔲 مدينة الإقامة الحالية ⬅️ ".$town.
+    "🔲 مدينة الإقامة الحالية ⬅️ {town}".
+    "\n\n".
+    "🔲 الوظيفة ⬅️ ".$job_type.
     "\n\n".
     "🟦 التصنيف ⬅️ ".$job.
     $spec.
@@ -331,9 +334,7 @@
     $master.
     $phd.
     $f.
-    $dataflow.
     $dataflow_date.
-    $prometric.
     $prometric_date.
     "\n\n".
     "🔲 هل لك خبرة سابقة بالمملكة؟ ⬅️ ".$kdexp.
@@ -342,7 +343,7 @@
     "🔲 هل ترغب بالعمل في مدينة معينة بالمملكة؟ ⬅️ ".$city.
     $c_true.
     "\n\n".
-    "🔲 متى تكون جاهز للسفر؟ ⬅️ ".$travel.
+    "🔲 متى تكون جاهز للسفر؟ ⬅️ {travel}".
     "\n\n".
     "🔲 هل كل الأوراق جاهزة وموثقة؟ ⬅️ ".$papers.
     "\n\n".
@@ -355,12 +356,20 @@
 
      $mobile = (isset($_SESSION["send_to"])) ? $_SESSION["send_to"]:null;
 
-     $stmt = $conn -> prepare("INSERT INTO surveys (type, email, name, nationality, birth_date, phone, whatsapp, spec, job, graduation, master, phd, f, dataflow, prometric, message, send_date, send_time, destination) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-     $stmt -> execute(["ksa_out", $email, $name, $nationality, $birth_date, $phone, $whatsapp, $spec, $job, $exp, $master_raw, $phd_raw, $f_raw, $dataflow_raw, $prometric_raw, msg(), date("Y-m-d"), date("H:i:s"), $mobile]);
+     $conn -> exec("DELETE FROM surveys WHERE email = '$email'");
+     $conn -> exec("DELETE FROM surveys_data WHERE email = '$email'");
+     $stmt = $conn -> prepare("INSERT INTO surveys (type, email, name, nationality, birth_date, phone, whatsapp, spec, job, job_type, graduation, master, phd, f, dataflow, prometric, message, send_date, send_time, destination) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+     $stmt -> execute(["ksa_out", $email, $name, $nationality, $birth_date, $phone, $whatsapp, $spec_raw, $job, $job_type, $exp, $master_raw, $phd_raw, $f_raw, $dataflow_raw, $prometric_raw, msg(), date("Y-m-d"), date("H:i:s"), $mobile]);
+     $stmt2 = $conn -> prepare("INSERT INTO surveys_data (email, phone_code, phone_number, whatsapp_code, whatsapp_number, town, expert_in_sa) VALUES (?, ?, ?, ?, ?, ?, ?)");
+     $stmt2 -> execute([$email, trim(strip_tags($_POST["phone_code"])), trim(strip_tags($_POST["phone_number"])), trim(strip_tags($_POST["whatsapp_code"])), trim(strip_tags($_POST["whatsapp_number"])), $town, trim(strip_tags($_POST["expert_in_sa"]))]);
 
-     $mrq_search = array("{age}", "{exp}", "{master}", "{phd}", "{f}", "{dataflow}", "{prometric}");
-     $mrq_replace = array($age ?? 0, $exp_years ?? 0, $master_years ?? 0, $phd_years ?? 0, $f_years ?? 0, $dataflow_years ?? 0, $prometric_years ?? 0);
+     $mrq_search = array("{age}", "{exp}", "{master}", "{phd}", "{f}", "{dataflow}", "{prometric}", "{phone}", "{whatsapp}", "{town}", "{expert_in_sa}", "{travel}", "{note}");
+     $mrq_replace = array($age ?? 0, $exp_years ?? 0, $master_years ?? 0, $phd_years ?? 0, $f_years ?? 0, $dataflow_years ?? 0, $prometric_years ?? 0, $phone ?? "0000000000", $whatsapp ?? "+0000000000", $town ?? "", trim(strip_tags($_POST["expert_in_sa"])) ?? 0, $travel ?? "", trim(strip_tags($_POST["notes"])));
      $mrq = str_replace($mrq_search, $mrq_replace, msg());
+
+     $stmt2 = $conn -> prepare("UPDATE surveys_data SET msg = ? WHERE email = '$email'");
+     $stmt2 -> execute([$mrq]);
+
      print("<script>");
      echo "localStorage.setItem('type', 'ksa_out');";
      echo "localStorage.setItem('email', '".$email."');";

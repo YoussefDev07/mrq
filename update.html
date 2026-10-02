@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+ <html lang="ar" type="text/html">
+  <head>
+   <!--meta-->
+    <meta charset = "utf-8"/>
+    <meta name = "theme-color" content = "#422464"/>
+    <meta name = "color-scheme" content = "light"/>
+    <meta name = "author" content = "Youssef Ibrahim"/>
+    <meta name = "google" content = "notranslate"/>
+    <meta name = "robots" content = "none"/>
+    <meta name = "description" content = "استبيان توظيف للتقدم على وظيفة طبية"/>
+    <meta name = "twitter:card" content = "summary"/>
+    <meta property = "og:type" content = "website"/>
+    <meta property = "og:url" content = "http://localhost/www/Kawader%20Medical"/>
+    <meta property = "og:site_name" content = "mrq"/>
+    <meta property = "og:title" content = "Kawader Medical"/>
+    <meta property = "og:description" content = "استبيان توظيف للتقدم على وظيفة طبية"/>
+    <meta property = "og:image" content = "./assets/images/icon.png"/>
+    <meta property = "og:image:alt" content = "Icon"/>
+    <!--link-->
+     <link rel="me" href="https://youssefdev.42web.io"/>
+     <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico"/>
+     <link rel="icon" type="image/png" href="./assets/images/icon.png"/>
+     <link rel="stylesheet" type="text/css" href="./assets/css/style.css"/>
+     <link rel="stylesheet" media="all" href="./assets/libs/css/fontawesome.css"/>
+     <link rel="stylesheet" href="./assets/libs/css/toastr.css"/>
+    <!--title-->
+     <title>استبيان العمل الطبي</title>
+    <!--script-->
+     <script src="./assets/libs/js/jquery.js"></script>
+     <script type="text/javascript" src="./assets/js/script.js" defer></script>
+     <noscript>لفتح الإستبيان (JavaScript) الرجاء فتح الجافا سكريبت</noscript>
+   </head>
+  <body>
+   <!--loading-->
+    <div id="loading">
+     <!--load-->
+      <embed class="load" src="./assets/svg/load.svg"></embed>
+    </div>
+   <!--container-->
+    <div class="_container">
+     <!--header-->
+      <header>
+       <!--logo-->
+        <div class="logo">
+         <img title="كوادر الطب" src="./assets/images/icon.png" alt="logo">
+        </div>
+       <!--switch-->
+        <button type="button" title="تغيير المظهر" class="switch"></button>
+      </header>
+     <!--main-->
+      <main>
+       <!--slidebar-->
+        <section class="slidebar">
+         <h6>ادخل البريد الالكتروني لاسترجاع بيانات الاستبيان</h6>
+         <span class="invalid-message" id="invalidMessage" style="display:none">لا يوجد استبيان بالبريد الإلكتروني المُدخل، الرجاء إنشاء استبيان جديد.</span>
+         <form action="./update.php" method="post">
+          <input type="email" name="email" id="emailUpdateSurvey" placeholder="البريد الالكتروني" autocomplete="on" required>
+          <br>
+          <button type="submit">استرجاع الاستبيان</button>
+         </form>
+        </section>
+      </main>
+     <!--footer-->
+      <footer>
+       <p><time></time> جميع الحقوق محفوظة <i class="far fa-copyright"></i></p>
+       <a href="https://www.04000.tel" target="_blank"><img src="./assets/images/ehotline.webp" alt="www.04000.tel"></a>
+      </footer>
+    </div>
+  </body>
+ </html>

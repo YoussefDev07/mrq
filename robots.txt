@@ -6,4 +6,6 @@ Disallow: /error/
 Disallow: /includes/
 Disallow: /master/
 Disallow: /select.html
+Disallow: /update.html
+Disallow: /update.php
 Sitemap: http://localhost/www/Kawader%20Medical/sitemap.xml

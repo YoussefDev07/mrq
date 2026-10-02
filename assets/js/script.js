@@ -16,6 +16,7 @@ function theme() {
     $(".load").attr("src", "./assets/svg/theme-load.svg");
     $(`meta[name="theme-color"]`).attr("content", "#185a50");
     $(`link[rel="icon"]`).attr("href", "./assets/images/theme-icon.png");
+    $(".wait embed").attr("src", "./assets/svg/theme-wait.svg");
   } else {
     $(`link[href="./assets/css/theme.css"]`).remove();
     $(`meta[name="theme-color"]`).attr("content", "#422464");
@@ -38,15 +39,28 @@ $(".switch").click(function(){
 
 // slidebar
 
-$(".slidebar > button").click(function(){
+$("#startSurvey").click(function(){
   window.open("./select.html", "_self");
 });
+
+$("#updateSurvey").click(function(){
+  window.open("./update.html", "_self");
+});
+
+if (window.location.href.includes("update.html") && localStorage.getItem("email")) {
+  $("#emailUpdateSurvey").val(localStorage.getItem("email"));
+  $("#emailUpdateSurvey").prop("readonly", true);
+}
 
 if (window.location.href.includes("admin/surveys.php")) {
   $(".slidebar").css({
     "height": "auto",
     "background-attachment": "fixed"
   });
+}
+
+if (window.location.hash == "#invalid") {
+  $("#invalidMessage").show();
 }
 
 // country
