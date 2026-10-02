@@ -1,3 +1,25 @@
+<?php
+  session_start();
+  require_once "./master/connect.php";
+
+  function invalid_email_action() {
+    header("Location:update.html#invalid");
+    exit();
+  }
+
+  if (empty($_POST["email"])) {
+    invalid_email_action();
+  }
+  else {
+    $email = htmlspecialchars($_POST["email"]);
+    $survey = $conn -> query("SELECT * FROM surveys WHERE email = '$email' ORDER BY id DESC") -> fetchAll(PDO::FETCH_ASSOC); $survey = $survey[0];
+    $survey_data = $conn -> query("SELECT * FROM surveys_data WHERE email = '$email' ORDER BY id DESC") -> fetchAll(PDO::FETCH_ASSOC); $survey_data = $survey_data[0];
+
+    if (empty($survey_data["id"])) {
+      invalid_email_action();
+    }
+  }
+?>
 <html lang="ar" type="text/html">
  <head>
   <!--meta-->
@@ -55,30 +77,16 @@
         <h1>تحديث بيانات الاستبيان</h1>
        </div>
       <!--form-->
-       <?php require_once "./master/connect.php"; ?>
        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="form">
-
-       <?php
-         $email = htmlspecialchars($_POST["email"]);
-         $survey = $conn -> query("SELECT * FROM surveys WHERE email = '$email' ORDER BY id DESC") -> fetchAll(PDO::FETCH_ASSOC); $survey = $survey[0];
-         $survey_data = $conn -> query("SELECT * FROM surveys_data WHERE email = '$email' ORDER BY id DESC") -> fetchAll(PDO::FETCH_ASSOC); $survey_data = $survey_data[0];
-       ?>
-
-       <?php if (empty($survey["birth_date"])): ?>
-        <div>
-         <span class="req">تاريخ الميلاد</span>
-         <class>
-          <input type="date" name="birth_date" min="1945-01-01" max="<?= date('Y-m-d'); ?>" autocomplete="off" required>
-         </class>
-        </div>
-       <?php endif; ?>
         
+       <input type="hidden" name="email" value="<?= $email; ?>">
+
         <div>
          <span class="req">رقم الجوال (اتصال)</span>
          <class>
           <input type="hidden" name="phone" id="phoneHidden" autocomplete="off" value="<?= $survey["phone"]; ?>">
-          <input type="tel" id="phoneNumber" maxlength="18" minlength="6" autocomplete="off" value="<?= $survey_data["phone_number"]; ?>" required>
-          <input list="tels" id="phoneCode" min="2" max="5" autocomplete="off" value="<?= $survey_data["phone_code"]; ?>" required>
+          <input type="tel" id="phoneNumber" name="phone_number" maxlength="18" minlength="6" autocomplete="off" value="<?= $survey_data["phone_number"]; ?>" required>
+          <input list="tels" id="phoneCode" name="phone_code" min="2" max="5" autocomplete="off" value="<?= $survey_data["phone_code"]; ?>" required>
           <?php include "./includes/html/countries_codes.html"; ?>
          </class>
         </div>
@@ -87,8 +95,8 @@
          <span class="req">رقم الجوال (واتساب)</span>
          <class>
           <input type="hidden" name="whatsapp" id="whatsappHidden" value="<?= $survey["whatsapp"]; ?>" autocomplete="off">
-          <input type="tel" id="whatsappNumber" maxlength="18" minlength="6" autocomplete="off" value="<?= $survey_data["whatsapp_number"]; ?>" required disabled>
-          <input list="tels" id="whatsappCode" min="2" max="5" autocomplete="off" value="<?= $survey_data["whatsapp_code"]; ?>" required disabled>
+          <input type="tel" id="whatsappNumber" name="whatsapp_number" maxlength="18" minlength="6" autocomplete="off" value="<?= $survey_data["whatsapp_number"]; ?>" required readonly>
+          <input list="tels" id="whatsappCode" name="whatsapp_code" min="2" max="5" autocomplete="off" value="<?= $survey_data["whatsapp_code"]; ?>" required readonly>
           <?php include "./includes/html/countries_codes.html"; ?>
           <br>
           <label class="checkbox-container">
@@ -120,7 +128,7 @@
          <div>
           <span class="opt">تاريخ الحصول على الدكتوراه</span>
           <class>
-           <input type="month" name="phd" min="1964-01" max="<?= date('Y-m'); ?>" autocomplete="off">
+           <input type="month" name="phd" min="1964-01" max="<?= date('Y-m'); ?>" value="<?= $survey["phd"]; ?>" autocomplete="off">
           </class>
          </div>
         <?php endif; ?>
@@ -129,7 +137,7 @@
          <div>
           <span class="opt">تاريخ الحصول على الزمالة</span>
           <class>
-           <input type="month" name="f" min="1964-01" max="<?= date('Y-m'); ?>" autocomplete="off">
+           <input type="month" name="f" min="1964-01" max="<?= date('Y-m'); ?>" value="<?= $survey["f"]; ?>" autocomplete="off">
           </class>
          </div>
         <?php endif; ?>
@@ -138,7 +146,7 @@
          <div>
           <span class="opt">تاريخ الحصول على الداتا فلو</span>
           <class>
-           <input type="month" name="dataflow_date" min="1964-01" max="<?= date('Y-m'); ?>" autocomplete="off">
+           <input type="month" name="dataflow_date" min="1964-01" max="<?= date('Y-m'); ?>" value="<?= $survey["dataflow"]; ?>" autocomplete="off">
           </class>
          </div>
         <?php endif; ?>
@@ -147,7 +155,7 @@
          <div>
           <span class="opt">تاريخ الحصول على برومتريك</span>
           <class>
-           <input type="month" name="prometric_date" min="1964-01" max="<?= date('Y-m'); ?>" autocomplete="off">
+           <input type="month" name="prometric_date" min="1964-01" max="<?= date('Y-m'); ?>" value="<?= $survey["prometric"]; ?>" autocomplete="off">
           </class>
          </div>
         <?php endif; ?>
@@ -170,7 +178,29 @@
          <div id="license_true" style="display:none">
           <span class="req">الترخيص ساري حتى</span>
           <class>
-           <input type="date" id="l_true" name="license_true" required>
+           <input type="date" id="l_true" name="license_true" min="<?= date('Y-m-d'); ?>" required>
+          </class>
+         </div>
+
+         <div id="license_false" style="display:none">
+          <span class="req">الترخيص منتهي من</span>
+          <class>
+           <select id="l_false" name="license_false" required>
+            <option value="none" disabled selected>اختر</option>
+            <optgroup label="ــــــــــــــــــــ"></optgroup>
+            <option>أقل من شهر</option>
+            <option>شهر</option>
+            <option>شهرين</option>
+            <option>3 شهور</option>
+            <option>4 شهور</option>
+            <option>5 شهور</option>
+            <option>6 شهور</option>
+            <option>أكثر من 6 شهور</option>
+            <option>سنة</option>
+            <option>سنتين</option>
+            <option>3 سنين</option>
+            <option>أكثر من 3 سنين</option>
+           </select> 
           </class>
          </div>
         <?php endif; ?>
@@ -197,10 +227,10 @@
 
         <?php if ($survey["type"] == "ksa_out"): ?>
          <div>
-          <span class="req">عدد سنوات الخبرة في المملكة العربية السعودية؟</span>
+          <span class="opt">عدد سنوات الخبرة في المملكة العربية السعودية؟</span>
           <class>
            <button type="button" id="add_expert_in_sa">+</button>
-           <input type="number" id="kdexp" name="expert_in_sa" min="0" max="40" placeholder="إجابتك" value="<?= $survey_data["kdexp"]; ?>" autocomplete="off">
+           <input type="number" id="kdexp" name="expert_in_sa" min="0" max="40" placeholder="إجابتك" value="<?= $survey_data["expert_in_sa"]; ?>" autocomplete="off">
            <button type="button" id="remove_expert_in_sa">-</button>
           </class>
          </div>
@@ -224,7 +254,7 @@
          <div id="est_true" style="display:none">
           <span class="req">الإقامة سارية حتى</span>
           <class>
-           <input type="date" id="e_true" name="est_true" required>
+           <input type="date" id="e_true" name="est_true" min="<?= date('Y-m-d'); ?>" required>
           </class>
          </div>
 
@@ -269,7 +299,7 @@
           <div id="condate" style="display:none">
            <span class="req">عقدك الحالي ينتهي بتاريخ</span>
            <class>
-            <input type="date" id="cond" name="condate" required>
+            <input type="date" id="cond" name="condate" min="<?= date('Y-m-d'); ?>" required>
            </class>
           </div>
         <?php endif; ?>
@@ -300,6 +330,14 @@
 			    </class>
 		     </div>
 
+         <!--foot-->
+          <section class="foot">
+           <!--submit-->
+            <button type="submit" name="submit">إرسال</button>
+           <!--reset-->
+            <strong class="reset">محو الإستبيان <i class="fas fa-times"></i></strong>
+          </section>
+
        </form>
      <main>
     <!--footer-->
@@ -307,6 +345,55 @@
       <p><time></time> جميع الحقوق محفوظة <i class="far fa-copyright"></i></p>
       <a href="https://www.04000.tel" target="_blank"><img src="./assets/images/ehotline.webp" alt="www.04000.tel"></a>
      </footer>
+    <!--remove-->
+     <div class="remove" style="display:none">
+      <section>
+       <p>هل أنت متأكد من محو الإستبيان؟ <i class="fas fa-exclamation-triangle"></i></p>
+       <span>
+        <button type="button">لا</button>
+        <input type="reset" form="form" value="نعم">
+       </span>
+      </section>
+     </div>
    </div>
  </body>
 </html>
+<?php
+  #php
+  if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
+    $current_msg = $survey["message"];
+    include "./hooks/update_vars.php";
+
+    $stmt1 = $conn -> prepare("UPDATE surveys SET phone = ?, whatsapp = ?, master = ?, phd = ?, f = ?, dataflow = ?, prometric = ? WHERE email = '$email'");
+    $stmt1 -> execute([$phone["full"], $whatsapp["full"], $master_raw, $phd_raw, $f_raw, $dataflow_raw, $prometric_raw]);
+    $stmt2 = $conn -> prepare("UPDATE surveys_data SET phone_code = ?, phone_number = ?, whatsapp_code = ?, whatsapp_number = ?, town = ?, expert_in = ?, expert_out = ?, expert_in_sa = ?, last_edit = ? WHERE email = '$email'");
+    $stmt2 -> execute([$phone["code"], $phone["number"], $whatsapp["code"], $whatsapp["number"], $town, $expert_in, $expert_out, $expert_in_sa, date("Y-m-d H:i:s")]);
+
+    $mrq_search = array("{age}", "{exp}", "{master}", "{phd}", "{f}", "{dataflow}", "{prometric}", "{phone}", "{whatsapp}", "{town}", "{license}", "{est}", "{expert_in}", "{expert_out}", "{expert_in_sa}", "{travel}", "{con}", "{note}", "\n\n\n");
+    $mrq_replace = array($age ?? 0, $exp_years ?? 0, $master_years ?? 0, $phd_years ?? 0, $f_years ?? 0, $dataflow_years ?? 0, $prometric_years ?? 0, $phone["full"] ?? "0000000000", $whatsapp["full"] ?? "+0000000000", $town ?? "", $license ?? null, $expert_in ?? null, $expert_out ?? null, $expert_in_sa ?? null, $travel ?? "", $est ?? null, $con ?? null, trim(strip_tags($_POST["notes"])) ?? "", "\n");
+    $mrq = str_replace($mrq_search, $mrq_replace, $current_msg);
+
+    $stmt2 = $conn -> prepare("UPDATE surveys_data SET msg = ? WHERE email = '$email'");
+    $stmt2 -> execute([$mrq]);
+
+    print("<script>");
+    echo "localStorage.setItem('type', 'ksa_in');";
+    echo "localStorage.setItem('email', '".$email."');";
+    echo "localStorage.setItem('num', '".$mobile."');";
+    echo "localStorage.setItem('mrq', ".json_encode($mrq).");";
+    echo "localStorage.setItem('msg', `".urlencode($mrq)."`);";
+    print("</script>");
+    $mrq = urlencode($mrq);
+
+    $_SESSION["send_to"] = $survey["destination"] ?? null;
+    if (isset($_SESSION["send_to"])) {
+      print("<script>");
+      echo "location.href = './survey/send.php?method=whatsapp&msg=$mrq'";
+      print("</script>");
+    } else {
+      print("<script>");
+      echo "location.href = './survey/send.php?msg=$mrq'";
+      print("</script>");
+    }
+  }
+?>

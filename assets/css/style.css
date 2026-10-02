@@ -695,6 +695,16 @@ main {
   text-shadow: 3px 3px var(--main);
 }
 
+.slidebar span.invalid-message {
+  padding: 10px 20px;
+  margin-bottom: 25px;
+  direction: rtl;
+  background-color: rgb(192, 24, 24);
+  border-radius: 5px;
+  font-size: 20px;
+  color: white;
+}
+
 .slidebar .buttons {
   direction: rtl;
 }
@@ -738,6 +748,10 @@ main {
   .slidebar h4 {
    font-size: 99px;
    text-shadow: 0 8px var(--main);
+  }
+
+  .slidebar span.invalid-message {
+   font-size: 32px;
   }
 
   .slidebar .buttons {
@@ -977,7 +991,7 @@ form input::selection, form div class > textarea::selection {
   color: var(--text);
 }
 
-form input[disabled] {
+input[disabled], input[readonly] {
   opacity: .75;
   cursor: not-allowed;
 }

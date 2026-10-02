@@ -34,11 +34,13 @@ CREATE TABLE surveys_data (
   id int(11) PRIMARY KEY AUTO_INCREMENT,
   email varchar(256),
   phone_code varchar(5),
-  phone_number varchar(5),
+  phone_number varchar(20),
   whatsapp_code varchar(5),
-  whatsapp_number varchar(5),
+  whatsapp_number varchar(20),
   town varchar(100),
-  expert_in int(3),
-  expert_out int(3),
-  kdexp int(3)
+  expert_in int(3) DEFAULT NULL,
+  expert_out int(3) DEFAULT NULL,
+  expert_in_sa int(3) DEFAULT NULL,
+  msg varchar(4000),
+  last_edit datetime
 );

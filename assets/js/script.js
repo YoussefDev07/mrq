@@ -49,7 +49,7 @@ $("#updateSurvey").click(function(){
 
 if (window.location.href.includes("update.html") && localStorage.getItem("email")) {
   $("#emailUpdateSurvey").val(localStorage.getItem("email"));
-  $("#emailUpdateSurvey").prop("disabled", true);
+  $("#emailUpdateSurvey").prop("readonly", true);
 }
 
 if (window.location.href.includes("admin/surveys.php")) {
@@ -57,6 +57,10 @@ if (window.location.href.includes("admin/surveys.php")) {
     "height": "auto",
     "background-attachment": "fixed"
   });
+}
+
+if (window.location.hash == "#invalid") {
+  $("#invalidMessage").show();
 }
 
 // country

@@ -30,7 +30,7 @@ $("#job").change(function(){
 // lock/unlock
 
 $("#phoneCode, #phoneNumber").on("input change", function(){
-  if ($("#whatsappNumber").prop("disabled")) {
+  if ($("#whatsappNumber").prop("readonly")) {
    $("#whatsappCode").val($("#phoneCode").val());
    $("#whatsappNumber").val($("#phoneNumber").val());
    whatsappCompilation();
@@ -38,10 +38,10 @@ $("#phoneCode, #phoneNumber").on("input change", function(){
 });
 $("#anotherNumberForWhatsapp").on("change", function(){
   if ($(this).is(":checked")) {
-    $("#whatsappNumber, #whatsappCode").prop("disabled", false);
+    $("#whatsappNumber, #whatsappCode").prop("readonly", false);
     $("#whatsappNumber").val("");
   } else {
-    $("#whatsappNumber, #whatsappCode").prop("disabled", true);
+    $("#whatsappNumber, #whatsappCode").prop("readonly", true);
     $("#whatsappNumber").val($("#phoneNumber").val());
     $("#whatsappCode").val($("#phoneCode").val());
     whatsappCompilation();
@@ -199,7 +199,7 @@ $("#remove_expert_out").click(function(){
 });
 
 $("#add_expert_in_sa").click(function(){
-  let tag = "input[name=\"expert_in_sa\"]";
+  let tag = "#kdexp_true";
   let val = parseInt($(tag).val());
   var num = val + 1;
   if (isNaN(val)) return $(tag).attr("value", 0);
@@ -207,7 +207,7 @@ $("#add_expert_in_sa").click(function(){
   $(tag).val(num);
 });
 $("#remove_expert_in_sa").click(function(){
-  let tag = "input[name=\"expert_in_sa\"]";
+  let tag = "#kdexp_true";
   let val = parseInt($(tag).val());
   var num = val - 1;
   if (isNaN(val)) return $(tag).attr("value", 0);

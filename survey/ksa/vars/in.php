@@ -8,8 +8,8 @@
   $whatsapp = trim(strip_tags($_POST["whatsapp"])); //required
   $town = trim(strip_tags($_POST["town"])); //required
   $job = trim(strip_tags($_POST["job"])); //select - required
-  $job_type = trim(strip_tags($_POST["job_type"]));
-  $spec = (empty($_POST["spec"])) ? "":"🟪 التخصص ⬅️ ".trim(strip_tags($_POST["spec"])); //select - hidden
+  $job_type = trim(strip_tags($_POST["job_type"]))."ة";
+  $spec = (empty($_POST["spec"])) ? "":"\n\n🟪 التخصص ⬅️ ".trim(strip_tags($_POST["spec"])); //select - hidden
   $work = trim(strip_tags($_POST["work"])); //required
   $exp = trim(strip_tags($_POST["exp"]))."-01"; //date - required
   $master = (empty($_POST["master"])) ? "":"\n\n🟪 سنوات الخبرة بعد الماجستير ⬅️ {master}"; //date - hidden
@@ -30,7 +30,7 @@
   $warr = trim(strip_tags($_POST["warr"])); //select - required
   $city = trim(strip_tags($_POST["city"])); //radio - required
   $c_true = (empty($_POST["c_true"])) ? "":"\n\n🔲 ما هي المدن/المدينة التي ترغب العمل بها؟ ⬅️ ".trim(strip_tags($_POST["c_true"])); //hidden - required
-  $notes = (empty($_POST["notes"])) ? "":"\n\n🔲 ملاحظات ⬅️ ".trim(strip_tags($_POST["notes"]));
+  $notes = (empty($_POST["notes"])) ? "":"\n\n🔲 ملاحظات ⬅️ {note}";
 
   #raw
   $spec_raw = (empty($_POST["spec"])) ? null:trim(strip_tags($_POST["spec"]));
@@ -49,3 +49,8 @@
   $master_years = $get_years($master_raw);
   $phd_years = $get_years($phd_raw);
   $f_years = $get_years($f_raw);
+
+  #parts
+  $license = "\n\n🟪 هل الترخيص ساري؟ ⬅️ ".$license.$license_true.$license_false;
+  $est = "\n\n🟪 هل الإقامة سارية؟ ⬅️ ".$est.$est_true.$est_false;
+  $con = "\n\n🟪 عقدك الحالي ⬅️ ".$con.$condate;
