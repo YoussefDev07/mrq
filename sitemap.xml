@@ -2,45 +2,39 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
    <loc>http://localhost/www/Kawader%20Medical/</loc>
-   <lastmod>2026-9-13</lastmod>
+   <lastmod>2026-09-13</lastmod>
    <changefreq>never</changefreq>
    <priority>1.0</priority>
   </url>
   <url>
    <loc>http://localhost/www/Kawader%20Medical/select.html</loc>
-   <lastmod>2026-9-7</lastmod>
+   <lastmod>2026-09-07</lastmod>
    <changefreq>never</changefreq>
    <priority>0.8</priority>
   </url>
   <url>
    <loc>http://localhost/www/Kawader%20Medical/update.html</loc>
-   <lastmod>2026-9-13</lastmod>
+   <lastmod>2026-09-13</lastmod>
    <changefreq>never</changefreq>
    <priority>0.8</priority>
   </url>
   <url>
    <loc>http://localhost/www/Kawader%20Medical/update.php</loc>
-   <lastmod>2026-10-2</lastmod>
+   <lastmod>2026-10-02</lastmod>
    <changefreq>yearly</changefreq>
    <priority>0.5</priority>
   </url>
   <url>
    <loc>http://localhost/www/Kawader%20Medical/survey/ksa/in.php</loc>
-   <lastmod>2026-10-2</lastmod>
+   <lastmod>2026-10-02</lastmod>
    <changefreq>yearly</changefreq>
    <priority>0.5</priority>
   </url>
   <url>
    <loc>http://localhost/www/Kawader%20Medical/survey/ksa/out.php</loc>
-   <lastmod>2026-10-2</lastmod>
+   <lastmod>2026-10-02</lastmod>
    <changefreq>yearly</changefreq>
    <priority>0.5</priority>
-  </url>
-  <url>
-   <loc>http://localhost/www/Kawader%20Medical/admin/</loc>
-   <lastmod>2026-10-05</lastmod>
-   <changefreq>always</changefreq>
-   <priority>0.8</priority>
   </url>
   <url>
    <loc>http://localhost/www/Kawader%20Medical/surveys.php</loc>
