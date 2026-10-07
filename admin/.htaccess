@@ -4,9 +4,9 @@ AddDefaultCharset utf-8
 
 AuthType Basic
 AuthName "Staff only."
-AuthUserFile C:/xampp/htdocs/www/mrq/admin/.htpasswd
+AuthUserFile "C:/xampp/htdocs/www/Kawader Medical/admin/.htpasswd"
 Require valid-user
 
 # index
 
-DirectoryIndex default.html
+DirectoryIndex surveys.php

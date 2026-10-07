@@ -8,7 +8,7 @@
   $whatsapp = trim(strip_tags($_POST["whatsapp"])); //required
   $town = trim(strip_tags($_POST["town"])); //required
   $job = trim(strip_tags($_POST["job"])); //select - required
-  $job_type = trim(strip_tags($_POST["job_type"]))."ة";
+  $job_type = trim(strip_tags($_POST["job_type"]));
   $spec = (empty($_POST["spec"])) ? "":"🟦 التخصص ⬅️ ".trim(strip_tags($_POST["spec"])); //select - hidden
   $exp = trim(strip_tags($_POST["exp"]))."-01"; //date - required
   $master = (empty($_POST["master"])) ? "":"\n\n🟦 سنوات الخبرة بعد الماجستير ⬅️ {master}"; //date - hidden

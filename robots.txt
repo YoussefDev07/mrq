@@ -3,9 +3,11 @@ Allow: /
 Disallow: /admin/
 Disallow: /assets/
 Disallow: /error/
+Disallow: /hooks/
 Disallow: /includes/
 Disallow: /master/
 Disallow: /select.html
 Disallow: /update.html
 Disallow: /update.php
+Disallow: /surveys.php
 Sitemap: http://localhost/www/Kawader%20Medical/sitemap.xml

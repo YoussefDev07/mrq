@@ -22,7 +22,7 @@
      <div>
       <span class="req">الاسم الرباعي</span>
       <class>
-       <input type="text" name="name" maxlength="250" minlength="16" placeholder="اسمك الرباعي" autocomplete="off" required>
+       <input type="text" name="name" maxlength="250" minlength="15" placeholder="اسمك الرباعي" autocomplete="off" required>
       </class>
      </div>
 
@@ -30,6 +30,7 @@
       <span class="req">الجنسية</span>
       <class>
        <select name="nationality" required>
+        <option value="none" disabled selected>اختر</option>
         <?php include "../../includes/html/nationalities.html"; ?>
        </select>
       </class>
@@ -118,6 +119,7 @@
       <span class="req">التخصص</span>
       <class>
        <select name="spec" class="required">
+        <option value="none" disabled selected>اختر</option>
         <?php include "../../includes/html/specialties.html"; ?>
        </select>
       </class>
@@ -325,7 +327,7 @@
     "\n\n".
     "🔲 مدينة الإقامة الحالية ⬅️ {town}".
     "\n\n".
-    "🔲 الوظيفة ⬅️ ".$job_type.
+    "🔲 الوظيفة ⬅️ ".$job_type."ة".
     "\n\n".
     "🟦 التصنيف ⬅️ ".$job.
     $spec.

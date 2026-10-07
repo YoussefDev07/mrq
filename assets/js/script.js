@@ -27,7 +27,7 @@ function theme() {
 theme();
 
 $(".switch").click(function(){
-  if (window.location.href.includes("survey") || window.location.href.includes("admin")) return;
+  if (window.location.href.includes("survey/") || window.location.href.includes("admin")) return;
   if (!localStorage.getItem("theme")) {
     localStorage.setItem("theme", "old");
     theme();

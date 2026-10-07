@@ -1,6 +1,6 @@
 <?php
-  require_once "../master/connect.php";
-  require_once "../includes/php/surveys_list.php";
+  require_once "./master/connect.php";
+  require_once "./includes/php/surveys_list.php";
 ?>
 <html lang="ar" type="text/html">
  <head>
@@ -9,30 +9,30 @@
    <meta name="viewport" content="width=device-width, initial-scale=0.8"/>
    <meta name="theme-color" content="#422464"/>
    <meta name="color-scheme" content="light"/>
-   <meta name="author" content="Youssef Dev"/>
+   <meta name="author" content="Youssef Ibrahim"/>
    <meta name="google" content="notranslate"/>
    <meta name="robots" content="none"/>
-   <meta name="description" content="إدارة استبيانات التوظيف الطبي"/>
+   <meta name="description" content="استبيانات التوظيف الطبي"/>
   <!--link-->
-   <link rel="icon" type="image/png" href="../assets/images/icon.png"/>
-   <link rel="stylesheet" type="text/css" href="../assets/css/style.css"/>
-   <link rel="stylesheet" type="text/css" href="../assets/css/surveys-list.css"/>
-   <link rel="stylesheet" media="all" href="../assets/libs/css/fontawesome.css"/>
-   <link rel="stylesheet" href="../assets/libs/css/toastr.css"/>
+   <link rel="icon" type="image/png" href="./assets/images/icon.png"/>
+   <link rel="stylesheet" type="text/css" href="./assets/css/style.css"/>
+   <link rel="stylesheet" type="text/css" href="./assets/css/surveys-list.css"/>
+   <link rel="stylesheet" media="all" href="./assets/libs/css/fontawesome.css"/>
+   <link rel="stylesheet" href="./assets/libs/css/toastr.css"/>
   <!--title-->
-   <title>إدارة استبيانات الكوادر الطبية</title>
+   <title>استبيانات الكوادر الطبية</title>
   <!--script-->
-   <script src="../assets/libs/js/jquery.js"></script>
-   <script src="../assets/libs/js/toastr.js"></script>
-   <script type="text/javascript" src="../assets/js/admin.js" defer></script>
-   <script type="text/javascript" src="../assets/js/surveysList.js" defer></script>
+   <script src="./assets/libs/js/jquery.js"></script>
+   <script src="./assets/libs/js/toastr.js"></script>
+   <script type="text/javascript" src="./assets/js/script.js" defer></script>
+   <script type="text/javascript" src="./assets/js/surveysList.js" defer></script>
    <noscript>لفتح الصفحة بالشكل الصحيح، الرجاء تفعيل الجافا سكريبت (JavaScript)</noscript>
  </head>
  <body>
   <!--loading-->
    <div id="loading">
     <!--load-->
-     <embed class="load" src="../assets/svg/load.svg"></embed>
+     <embed class="load" src="./assets/svg/load.svg"></embed>
    </div>
   <!--container-->
    <div class="_container">
@@ -40,7 +40,7 @@
      <header>
       <!--logo-->
        <div class="logo">
-        <img title="كوادر الطب" src="../assets/images/icon.png" alt="logo">
+        <img title="كوادر الطب" src="./assets/images/icon.png" alt="logo">
        </div>
       <!--switch-->
        <button type="button" title="تغيير المظهر" class="switch"></button>
@@ -49,13 +49,13 @@
      <main class="surveys-main">
       <!--head-->
        <div class="surveys-head">
-        <h1>إدارة الاستبيانات</h1>
+        <h1>استبيانات الكوادر الطبية</h1>
        </div>
       <!--toolbar-->
        <section class="surveys-toolbar">
         <span class="summary">إجمالي الاستبيانات: <?= $total; ?> | الصفحة <?= $page; ?> من <?= $total_pages; ?></span>
         <div class="toolbar-buttons">
-         <button type="button" id="filterToolbar"><i class="fas fa-filter"></i>تصفية</button>
+         <button type="button" id="filterToolbar"><i class="fas fa-filter"></i> تصفية</button>
         </div>
        </section>
       <!--surveys-->
@@ -66,10 +66,9 @@
             $survey_data = array(
               "msg" => isset($survey["msg"]) ? $survey["msg"]:""
             );
-            $message = $survey_data["msg"];
+            $message = survey_public_message($survey_data["msg"]);
             $age = survey_age($survey["birth_date"]);
             $experience = survey_experience($survey["graduation"]);
-            $whatsapp = survey_whatsapp_number($survey["whatsapp"]);
           ?>
           <article class="survey-card">
            <div class="survey-card-head">
@@ -89,15 +88,12 @@
             <?php if (!empty($survey["town"])): ?>
              <span><strong>مدينة الاقامة:</strong><?= survey_escape($survey["town"]); ?></span>
             <?php endif; ?>
-            <span><strong>تاريخ الاستبيان:</strong><?= str_replace("-", "/", survey_escape($survey["send_date"])); ?></span>
            </div>
            <textarea class="survey-message"><?= survey_escape($message); ?></textarea>
            <div class="survey-actions">
-            <?php if ($message !== ""): ?>
+            <?php if ($message !== ''): ?>
              <button type="button" class="show-message"><i class="fas fa-envelope-open-text"></i> الرسالة كاملة</button>
-            <?php endif; ?>
-            <?php if ($whatsapp !== ""): ?>
-             <a class="whatsapp" href="https://wa.me/<?= survey_escape($whatsapp); ?>" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> واتساب</a>
+             <button type="button" class="copyID" data-id="<?= (int) $survey["id"]; ?>"><i class="far fa-copy"></i> نسخ المعرّف</button>
             <?php endif; ?>
            </div>
           </article>
@@ -134,7 +130,7 @@
     <!--footer-->
      <footer>
       <p><time></time> جميع الحقوق محفوظة <i class="far fa-copyright"></i></p>
-      <a href="https://www.04000.tel" target="_blank"><img src="../assets/images/ehotline.webp" alt="www.04000.tel"></a>
+      <a href="https://www.04000.tel" target="_blank"><img src="./assets/images/ehotline.webp" alt="www.04000.tel"></a>
      </footer>
    </div>
   <!--filter-->
@@ -162,14 +158,14 @@
       </select>
       <select name="spec">
        <option value="">كل التخصصات</option>
-       <?php include "../includes/html/specialties.html"; ?>
+       <?php include "./includes/html/specialties.html"; ?>
       </select>
       <select name="nationality">
        <option value="">كل الجنسيات</option>
-       <?php include "../includes/html/nationalities.html"; ?>
+       <?php include "./includes/html/nationalities.html"; ?>
       </select>
       <input type="text" name="town" list="saudicities" autocomplete="off" placeholder="مدينة الإقامة" value="<?= survey_escape($filters['town']); ?>" >
-      <?php include "../includes/html/saudicities.html"; ?>
+      <?php include "./includes/html/saudicities.html"; ?>
       <div class="age">
        <label>العمر</label>
        <div class="age-inputs">

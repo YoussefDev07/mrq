@@ -19,14 +19,6 @@ function whatsappCompilation() {
 }
 $("#whatsappNumber, #whatsappCode").on("input change", whatsappCompilation);
 
-$("#job").change(function(){
-  var selected = $(this).find("option:selected");
-  var group = selected.closest("optgroup");
-  var groupLabel = group.attr("label");
-
-  $("#jobType").val(groupLabel);
-});
-
 // lock/unlock
 
 $("#phoneCode, #phoneNumber").on("input change", function(){
@@ -52,6 +44,7 @@ $("#job").change(function(){
   var selected = $(this).find("option:selected");
   var group = selected.closest("optgroup");
   var groupLabel = group.attr("label");
+  $("#jobType").val(groupLabel);
 
   if (groupLabel == "طبي") {
     $(".postgraduate, #spec").slideDown();

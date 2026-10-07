@@ -38,14 +38,14 @@
   </url>
   <url>
    <loc>http://localhost/www/Kawader%20Medical/admin/</loc>
-   <lastmod>2024-3-14</lastmod>
-   <changefreq>never</changefreq>
+   <lastmod>2026-10-05</lastmod>
+   <changefreq>always</changefreq>
    <priority>0.8</priority>
   </url>
   <url>
-   <loc>http://localhost/www/Kawader%20Medical/admin/surveys.php</loc>
-   <lastmod>2024-6-30</lastmod>
+   <loc>http://localhost/www/Kawader%20Medical/surveys.php</loc>
+   <lastmod>2026-10-05</lastmod>
    <changefreq>always</changefreq>
-   <priority>1.0</priority>
+   <priority>0.5</priority>
   </url>
 </urlset>
