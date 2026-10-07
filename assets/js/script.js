@@ -143,12 +143,6 @@ $("#resendSurvey").click(function(){
 	}
 });
 
-// surveys
-
-$(".survey button").click(function(){
-  window.location.assign("./hooks/more.php?msg=" + this.id);
-});
-
 // footer
 
 $("footer time").html(time.getFullYear());
