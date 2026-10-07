@@ -3,7 +3,12 @@
 
   if (isset($_GET["st"])) {
     $phone_number = $_GET["st"];
-    if (strlen(strval($phone_number)) > 6 && strlen(strval($phone_number)) < 17) {
+    $numbers = array();
+
+    if ($phone_number == "r") {
+      $_SESSION["send_to"] = $numbers[array_rand($numbers)];
+    }
+    else if (strlen(strval($phone_number)) > 8 && strlen(strval($phone_number)) < 17) {
       $_SESSION["send_to"] = $phone_number;
     }
   }
