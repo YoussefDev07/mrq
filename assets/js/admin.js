@@ -26,7 +26,7 @@ theme();
 
 $(".switch").click(function(){
   if (!localStorage.getItem("theme")) {
-    localStorage.setItem("theme", "yellow");
+    localStorage.setItem("theme", "old");
     theme();
   } else {
     localStorage.removeItem("theme");
