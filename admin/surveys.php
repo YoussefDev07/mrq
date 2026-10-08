@@ -64,10 +64,10 @@
          <?php foreach ($surveys as $survey): ?>
           <?php
             $survey_data = array(
-              "msg" => isset($survey["msg"]) ? $survey["msg"]:""
+              "msg" => isset($survey["msg"]) ? $survey["msg"]:$survey["message"]
             );
             $message = $survey_data["msg"];
-            $age = survey_age($survey["birth_date"]);
+            $age = (isset($survey["birth_date"])) ? survey_age($survey["birth_date"]):$survey["age"];
             $experience = survey_experience($survey["graduation"]);
             $whatsapp = survey_whatsapp_number($survey["whatsapp"]);
           ?>
@@ -93,12 +93,8 @@
            </div>
            <textarea class="survey-message"><?= survey_escape($message); ?></textarea>
            <div class="survey-actions">
-            <?php if ($message !== ""): ?>
              <button type="button" class="show-message"><i class="fas fa-envelope-open-text"></i> الرسالة كاملة</button>
-            <?php endif; ?>
-            <?php if ($whatsapp !== ""): ?>
              <a class="whatsapp" href="https://wa.me/<?= survey_escape($whatsapp); ?>" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> واتساب</a>
-            <?php endif; ?>
            </div>
           </article>
          <?php endforeach; ?>

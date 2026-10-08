@@ -434,7 +434,7 @@
      $stmt2 = $conn -> prepare("INSERT INTO surveys_data (email, phone_code, phone_number, whatsapp_code, whatsapp_number, town, expert_in, expert_out) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
      $stmt2 -> execute([$email, trim(strip_tags($_POST["phone_code"])), trim(strip_tags($_POST["phone_number"])), trim(strip_tags($_POST["whatsapp_code"])), trim(strip_tags($_POST["whatsapp_number"])), $town, trim(strip_tags($_POST["expert_in"])), trim(strip_tags($_POST["expert_out"]))]);
 
-     $mrq_search = array("{age}", "{exp}", "{master}", "{phd}", "{f}", "{phone}", "{whatsapp}", "{town}", "{license}", "{est}", "{expert_in}", "{expert_out}", "{con}", "{note}");
+     $mrq_search = array("{age}", "{exp}", "{master}", "{phd}", "{f}", "{phone}", "{whatsapp}", "{town}", "{license}", "{expert_in}", "{expert_out}", "{est}", "{con}", "{note}");
      $mrq_replace = array($age ?? 0, $exp_years ?? 0, $master_years ?? 0, $phd_years ?? 0, $f_years ?? 0, $phone ?? "0000000000", $whatsapp ?? "+0000000000", $town ?? "", $license ?? null, $expert_in ?? 0, $expert_out ?? 0, $est ?? null, $con ?? null, trim(strip_tags($_POST["notes"])) ?? "");
      $mrq = str_replace($mrq_search, $mrq_replace, msg());
 

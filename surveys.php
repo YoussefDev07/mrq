@@ -64,10 +64,10 @@
          <?php foreach ($surveys as $survey): ?>
           <?php
             $survey_data = array(
-              "msg" => isset($survey["msg"]) ? $survey["msg"]:""
+              "msg" => isset($survey["msg"]) ? $survey["msg"]:$survey["message"]
             );
             $message = survey_public_message($survey_data["msg"]);
-            $age = survey_age($survey["birth_date"]);
+            $age = (isset($survey["birth_date"])) ? survey_age($survey["birth_date"]):$survey["age"];
             $experience = survey_experience($survey["graduation"]);
           ?>
           <article class="survey-card">
@@ -91,10 +91,8 @@
            </div>
            <textarea class="survey-message"><?= survey_escape($message); ?></textarea>
            <div class="survey-actions">
-            <?php if ($message !== ''): ?>
              <button type="button" class="show-message"><i class="fas fa-envelope-open-text"></i> الرسالة كاملة</button>
              <button type="button" class="copyID" data-id="<?= (int) $survey["id"]; ?>"><i class="far fa-copy"></i> نسخ المعرّف</button>
-            <?php endif; ?>
            </div>
           </article>
          <?php endforeach; ?>
