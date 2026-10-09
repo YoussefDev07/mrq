@@ -139,7 +139,7 @@
      <button type="button" id="closeFilter"><i class="fas fa-times"></i></button>
      <h3>تصفية الاستبيانات</h3>
      <form method="get" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-      <input type="text" name="q" autocomplete="off" placeholder="بحث بالاسم أو رقم الاستبيان" value="<?= survey_escape($filters['q']); ?>">
+      <input type="text" name="q" autocomplete="off" placeholder="بحث عام" value="<?= survey_escape($filters['q']); ?>">
       <select name="type">
        <option value="">كل أماكن التقديم</option>
        <option value="ksa_in" <?= ($filters['type'] == 'ksa_in') ? 'selected' : ''; ?>>مقيم داخل المملكة</option>
@@ -150,13 +150,11 @@
        <option value="طبي" <?= ($filters['job_type'] == 'طبي') ? 'selected' : ''; ?>>طبي</option>
        <option value="إداري" <?= ($filters['job_type'] == 'إداري') ? 'selected' : ''; ?>>إداري</option>
       </select>
-      <select name="job">
-       <option value="">كل الوظائف</option>
-       <?php foreach ($filter_jobs as $value): ?>
-        <option value="<?= survey_escape($value); ?>" <?= ($filters['job'] === $value) ? 'selected' : ''; ?>><?= survey_escape($value); ?></option>
-       <?php endforeach; ?>
+      <select id="job" name="job">
+       <option value="">كل التصنيفات</option>
+       <?php include "../includes/html/jobs.html"; ?>
       </select>
-      <select name="spec">
+      <select id="spec" name="spec" style="display:none">
        <option value="">كل التخصصات</option>
        <?php include "../includes/html/specialties.html"; ?>
       </select>
@@ -164,8 +162,10 @@
        <option value="">كل الجنسيات</option>
        <?php include "../includes/html/nationalities.html"; ?>
       </select>
-      <input type="text" name="town" list="saudicities" autocomplete="off" placeholder="مدينة الإقامة" value="<?= survey_escape($filters['town']); ?>" >
+      <input name="town" list="cities" autocomplete="off" placeholder="مدينة/دولة الإقامة" value="<?= survey_escape($filters['town']); ?>" >
+      <datalist id="cities"></datalist>
       <?php include "../includes/html/saudicities.html"; ?>
+      <?php include "../includes/html/countries.html"; ?>
       <div class="age">
        <label>العمر</label>
        <div class="age-inputs">
@@ -180,7 +180,7 @@
         <input type="number" id="toExp" name="to_exp" min="0" max="60" value="<?= survey_escape($filters['to_exp']); ?>" placeholder="إلى" autocomplete="off">
        </div>
       </div>
-      <input type="submit" id="submitFilter" value="تطبيق">
+      <input type="submit" id="submitFilter" value="تصفية">
       <a href="./surveys.php" id="resetFilter">محو التصفية</a>
      </form>
     </span>

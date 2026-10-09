@@ -30,7 +30,7 @@
     return $job_type ?: "غير محدد";
   }
 
-  function survey_public_message($message) {
+  function survey_public_message($message, $id) {
     $lines = preg_split("/\R/u", (string) $message);
     $clean = array();
 
@@ -47,20 +47,13 @@
     $message = implode("\n", $clean);
     $message = preg_replace("/\n{3,}/u", "\n\n", $message);
 
+    $message = str_replace("🔷🔶🔷🔶🔷🔶🔷🔶", "🔷🔶🔷🔶🔷🔶🔷🔶\n🔲 معرّف الاستبيان ⬅️ $id", $message);
+
     return trim($message);
   }
 
   function survey_whatsapp_number($whatsapp) {
     return preg_replace("/\D+/", "", (string) $whatsapp);
-  }
-
-  function survey_filter_values($conn, $field) {
-    $allowed = array("nationality", "spec", "job");
-
-    if (!in_array($field, $allowed, true)) return array();
-
-    $stmt = $conn->query("SELECT DISTINCT `$field` FROM surveys WHERE `$field` IS NOT NULL AND `$field` <> '' ORDER BY `$field` ASC");
-    return $stmt->fetchAll(PDO::FETCH_COLUMN);
   }
 
   $filters = array(
@@ -80,22 +73,28 @@
   $where = array();
   $params = array();
 
-  if ($filters["q"] !== "") {
+  $q = str_replace("#", "", $filters["q"]);
+  if ($q !== "" && ctype_digit($q)) {
+    $where[] = "s.id = $q";
+  }
+  elseif (preg_match('/🔲\s*معرّف\s*الاستبيان\s*⬅️\s*(\d+)/u', $filters["q"], $matches_id)) {
+    $survey_id = $matches_id[1];
+    $where[] = "s.id = $survey_id";
+  }
+  elseif (preg_match('/🔲\s*البريد\s*الإلكتروني\s*⬅️\s*([^\s]+)/u', $filters["q"], $matches_email)) {
+    $survey_email = $matches_email[1];
+    $where[] = "s.email = '$survey_email'";
+  }
+  elseif ($filters["q"] !== "") {
     $where[] = "(
       s.name LIKE :q_name OR
-      s.nationality LIKE :q_nationality OR
       s.spec LIKE :q_spec OR
-      s.job LIKE :q_job OR
-      sd.town LIKE :q_town OR
-      CAST(s.id AS CHAR) LIKE :q_id
+      s.job LIKE :q_job
     )";
     $search = "%" . $filters["q"] . "%";
     $params[":q_name"] = $search;
-    $params[":q_nationality"] = $search;
     $params[":q_spec"] = $search;
     $params[":q_job"] = $search;
-    $params[":q_town"] = $search;
-    $params[":q_id"] = $search;
   }
 
   if ($filters["type"] == "ksa_in" || $filters["type"] == "ksa_out") {
@@ -151,7 +150,7 @@
   }
 
   $where_sql = (count($where) > 0) ? "WHERE " . implode(" AND ", $where):"";
-  $per_page = 50;
+  $per_page = 26;
 
   $count_stmt = $conn->prepare("SELECT COUNT(DISTINCT s.id) FROM surveys s LEFT JOIN surveys_data sd ON sd.email = s.email $where_sql");
   foreach ($params as $key => $value) {
@@ -174,10 +173,6 @@
   $stmt->bindValue(":per_page", $per_page, PDO::PARAM_INT);
   $stmt->execute();
   $surveys = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-  $filter_nationalities = survey_filter_values($conn, "nationality");
-  $filter_specs = survey_filter_values($conn, "spec");
-  $filter_jobs = survey_filter_values($conn, "job");
 
   $pagination_query = $_GET;
   unset($pagination_query["page"]);

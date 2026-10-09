@@ -14,6 +14,24 @@ $("#resetFilter").click(function(){
   window.location.assign(window.location.pathname);
 });
 
+$("#job").change(function(){
+  var selected = $(this).find("option:selected");
+  var group = selected.closest("optgroup");
+  var groupLabel = group.attr("label");
+
+  if (groupLabel == "طبي") {
+    $("#spec").slideDown();
+  } else {
+    $("#spec").slideUp();
+    $("#spec").val("");
+  }
+});
+
+const saudicities = $("#saudicities").html();
+const countries = $("#countries").html();
+$("#cities").html(saudicities + countries);
+$("#saudicities, #countries").remove();
+
 // message
 
 function openMessage(message, title) {
