@@ -47,11 +47,13 @@ $("#job").change(function(){
   $("#jobType").val(groupLabel);
 
   if (groupLabel == "طبي") {
-    $(".postgraduate, #spec").slideDown();
+    $(".postgraduate, #spec, #license").slideDown();
     $(".required").prop("required", true);
   } else {
-    $(".postgraduate, #spec, #df, #pro").slideUp();
+    $(".postgraduate, #spec, #df, #pro, #license").slideUp();
     $(".postgraduateInput").val(null);
+    $(".licenseInput").prop("checked", false);
+    $(".licenseSelect").val("none");
     $(".required").prop("required", false);
   }
 });
@@ -93,7 +95,7 @@ $(".kdexp").change(function(){
   }
 });
 
-$(".l").change(function(){
+$(".licenseInput").change(function(){
   if (this.value == t) {
 	  $("#license_true").slideDown();
 	  $("#l_true").attr("required", "required");

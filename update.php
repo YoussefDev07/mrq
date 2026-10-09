@@ -107,11 +107,24 @@
          </class>
         </div>
 
+        <?php
+         $word = null;
+         $list = null;
+
+          if ($survey["type"] == "ksa_in") {
+            $word = "مدينة";
+            $list = "saudicities";
+          }
+          else if ($survey["type"] == "ksa_out") {
+            $word = "دولة";
+            $list = "countries";
+          }
+        ?>
         <div>
-         <span class="req">مدينة الإقامة الحالية</span>
+         <span class="req"><?= $word; ?> الإقامة الحالية</span>
           <class>
-           <input list="saudicities" name="town" placeholder="إجابتك" autocomplete="off" value="<?= $survey_data["town"]; ?>" required>
-           <?php if ($survey["type"] == "ksa_in") { include "./includes/html/saudicities.html"; } ?>
+           <input list="<?= $list; ?>" name="town" placeholder="إجابتك" autocomplete="off" value="<?= $survey_data["town"]; ?>" required>
+           <?php if ($survey["type"] == "ksa_in" || $survey["type"] == "ksa_out") { include "./includes/html/$list.html"; } ?>
           </class>
         </div>
 
@@ -160,17 +173,17 @@
          </div>
         <?php endif; ?>
 
-        <?php if ($survey["type"] == "ksa_in"): ?>
+        <?php if ($survey["type"] == "ksa_in" && $survey["job_type"] == "طبي"): ?>
          <div>
           <span class="req">الترخيص</span>
           <class>
            <label>
             <a>ساري</a>
-            <input type="radio" class="l" value="نعم" name="license" required>
+            <input type="radio" class="required licenseInput" value="نعم" name="license">
            </label>
            <label>
             <a>منتهي</a>
-            <input type="radio" class="l" value="لا" name="license" required>
+            <input type="radio" class="required licenseInput" value="لا" name="license">
            </label>
           </class>
          </div>
@@ -178,14 +191,14 @@
          <div id="license_true" style="display:none">
           <span class="req">الترخيص ساري حتى</span>
           <class>
-           <input type="date" id="l_true" name="license_true" min="<?= date('Y-m-d'); ?>" required>
+           <input type="date" class="licenseInput" id="l_true" name="license_true" min="<?= date('Y-m-d'); ?>">
           </class>
          </div>
 
          <div id="license_false" style="display:none">
           <span class="req">الترخيص منتهي من</span>
           <class>
-           <select id="l_false" name="license_false" required>
+           <select class="licenseSelect" id="l_false" name="license_false">
             <option value="none" disabled selected>اختر</option>
             <optgroup label="ــــــــــــــــــــ"></optgroup>
             <option>أقل من شهر</option>
@@ -334,8 +347,6 @@
           <section class="foot">
            <!--submit-->
             <button type="submit" name="submit">إرسال</button>
-           <!--reset-->
-            <strong class="reset">محو الإستبيان <i class="fas fa-times"></i></strong>
           </section>
 
        </form>
@@ -345,16 +356,6 @@
       <p><time></time> جميع الحقوق محفوظة <i class="far fa-copyright"></i></p>
       <a href="https://www.04000.tel" target="_blank"><img src="./assets/images/ehotline.webp" alt="www.04000.tel"></a>
      </footer>
-    <!--remove-->
-     <div class="remove" style="display:none">
-      <section>
-       <p>هل أنت متأكد من محو الإستبيان؟ <i class="fas fa-exclamation-triangle"></i></p>
-       <span>
-        <button type="button">لا</button>
-        <input type="reset" form="form" value="نعم">
-       </span>
-      </section>
-     </div>
    </div>
  </body>
 </html>

@@ -15,7 +15,7 @@
   $master = (empty($_POST["master"])) ? "":"\n\n🟪 سنوات الخبرة بعد الماجستير ⬅️ {master}"; //date - hidden
   $phd = (empty($_POST["phd"])) ? "":"\n\n🟪 سنوات الخبرة بعد الدكتوراة ⬅️ {phd}"; //date - hidden
   $f = (empty($_POST["f"])) ? "":"\n\n🟪 سنوات الخبرة بعد الزمالة ⬅️ {f}"; //date - hidden
-  $license = trim(strip_tags($_POST["license"])); //radio - required
+  $license = (empty($_POST["license"])) ? "":trim(strip_tags($_POST["license"])); //radio - required
   $license_true = (empty($_POST["license_true"])) ? "":"\n\n🟪 الترخيص ساري حتى ⬅️ ".str_replace("-", "/", trim(strip_tags($_POST["license_true"]))); //date - hidden - required
   $license_false = (empty($_POST["license_false"]) || $_POST["license_false"] == "none") ? "":"\n\n🟪 الترخيص منتهي من ⬅️ ".trim(strip_tags($_POST["license_false"])); //select - hidden - required
   $expert_in = trim(strip_tags($_POST["expert_in"])); //required
@@ -51,6 +51,6 @@
   $f_years = $get_years($f_raw);
 
   #parts
-  $license = "\n\n🟪 هل الترخيص ساري؟ ⬅️ ".$license.$license_true.$license_false;
+  $license = (empty($license)) ? "":"\n\n🟪 هل الترخيص ساري؟ ⬅️ ".$license.$license_true.$license_false;
   $est = "\n\n🟪 هل الإقامة سارية؟ ⬅️ ".$est.$est_true.$est_false;
   $con = "\n\n🟪 عقدك الحالي ⬅️ ".$con.$condate;

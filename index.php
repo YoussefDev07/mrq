@@ -74,6 +74,7 @@
          <button id="startSurvey" type="button">بدء استبيان جديد</button>
          <button id="updateSurvey" type="button">تحديث بيانات الاستبيان</button>
         </div>
+        <embed class="qr-code">
        </section>
      </main>
     <!--footer-->

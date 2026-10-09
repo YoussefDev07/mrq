@@ -51,7 +51,7 @@ $("#anotherNumberForWhatsapp").on("change", function(){
 let t = "نعم";
 let f = "لا";
 
-$(".l").change(function(){
+$(".licenseInput").change(function(){
   if (this.value == t) {
 	  $("#license_true").slideDown();
 	  $("#l_true").prop("required", true);

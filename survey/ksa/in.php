@@ -161,16 +161,16 @@
       </class>
      </div>
 
-     <div>
+     <div id="license" style="display:none">
       <span class="req">الترخيص</span>
       <class>
        <label>
         <a>ساري</a>
-        <input type="radio" class="l" value="نعم" name="license" required>
+        <input type="radio" class="required licenseInput" value="نعم" name="license">
        </label>
        <label>
         <a>منتهي</a>
-        <input type="radio" class="l" value="لا" name="license" required>
+        <input type="radio" class="required licenseInput" value="لا" name="license">
        </label>
       </class>
      </div>
@@ -178,14 +178,14 @@
      <div id="license_true" style="display:none">
       <span class="req">الترخيص ساري حتى</span>
       <class>
-       <input type="date" id="l_true" name="license_true" min="<?= date('Y-m-d'); ?>" required>
+       <input type="date" class="licenseInput" id="l_true" name="license_true" min="<?= date('Y-m-d'); ?>">
       </class>
      </div>
 
      <div id="license_false" style="display:none">
       <span class="req">الترخيص منتهي من</span>
       <class>
-       <select id="l_false" name="license_false" required>
+       <select class="licenseSelect" id="l_false" name="license_false">
         <option value="none" disabled selected>اختر</option>
         <optgroup label="ــــــــــــــــــــ"></optgroup>
         <option>أقل من شهر</option>

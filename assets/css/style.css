@@ -506,6 +506,15 @@ main {
   border-color: var(--text);
 }
 
+.slidebar .qr-code {
+  margin-top: 3rem;
+  width: 128px;
+  height: 128px;
+  padding: 10px;
+  background-color: var(--main);
+  border-radius: 8px;
+}
+
 /*@media: slidebar*/
 
 @media (max-width:1024px) {
@@ -539,6 +548,13 @@ main {
    border-width: 3px;
    transition: 0.3;
   }
+
+  .slidebar .qr-code {
+   margin-top: 5rem;
+   width: 256px;
+   height: 256px;
+   padding: 24px;
+}
 }
 
 /*country*/

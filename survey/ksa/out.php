@@ -70,9 +70,10 @@
      </div>
 
      <div>
-      <span class="req">مدينة الإقامة الحالية</span>
+      <span class="req">دولة الإقامة الحالية</span>
       <class>
-       <input type="text" name="town" maxlength="100" placeholder="إجابتك" autocomplete="off" required>
+       <input list="countries" name="town" maxlength="100" placeholder="إجابتك" autocomplete="off" required>
+       <?php include "../../includes/html/countries.html"; ?>
       </class>
      </div>
 
@@ -325,7 +326,7 @@
     "\n\n".
     "🔲 رقم جوال (واتس) ⬅️ {whatsapp}".
     "\n\n".
-    "🔲 مدينة الإقامة الحالية ⬅️ {town}".
+    "🔲 دولة الإقامة الحالية ⬅️ {town}".
     "\n\n".
     "🔲 الوظيفة ⬅️ ".$job_type."ة".
     "\n\n".

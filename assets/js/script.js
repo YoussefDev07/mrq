@@ -17,10 +17,17 @@ function theme() {
     $(`meta[name="theme-color"]`).attr("content", "#185a50");
     $(`link[rel="icon"]`).attr("href", "./assets/images/theme-icon.png");
     $(".wait embed").attr("src", "./assets/svg/theme-wait.svg");
+
+    setTimeout(function(){
+      $(".qr-code").attr("src", "./assets/svg/theme.04000.tel.svg");
+    }, 200);
   } else {
     $(`link[href="./assets/css/theme.css"]`).remove();
     $(`meta[name="theme-color"]`).attr("content", "#422464");
     $(`link[rel="icon"]`).attr("href", "./assets/images/icon.png");
+    setTimeout(function(){
+      $(".qr-code").attr("src", "./assets/svg/04000.tel.svg");
+    }, 200);
   }
 }
 
