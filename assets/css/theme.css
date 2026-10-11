@@ -30,6 +30,12 @@ main {
   }
 }
 
+/*slidebar*/
+
+.slidebar .scan-qr {
+  color: var(--text);
+}
+
 /*form*/
 
 form div class > input, form div class > textarea {
