@@ -2,10 +2,10 @@ AddDefaultCharset utf-8
 
 # password
 
-#AuthType Basic
-#AuthName "Staff only."
-#AuthUserFile "C:/xampp/htdocs/www/Kawader Medical/admin/.htpasswd"
-#Require valid-user
+AuthType Basic
+AuthName "Staff only."
+AuthUserFile "C:/xampp/htdocs/www/Kawader Medical/admin/.htpasswd"
+Require valid-user
 
 # index
 

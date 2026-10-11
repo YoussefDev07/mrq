@@ -9,20 +9,11 @@
   require_once "../master/connect.php";
   $url = "https://api.telegram.org/bot".$bot_token."/sendMessage?chat_id=".$chat_id."&text=".urlencode($_GET["msg"]);
 
-  if (isset($_GET["method"])) {
-    sleep(6);
-    if ($_GET["method"] == "whatsapp") {
+  $mobile = null;
+  $there_whatsapp = false;
+  if (isset($_GET["method"]) && $_GET["method"] == "whatsapp" && !empty($_SESSION["send_to"])) {
       $mobile = $_SESSION["send_to"];
-
-      print("<script>");
-      echo 'const expression = /(iPhone|iPod|iPad)/i;
-		  if (expression.test(navigator.platform)) {
-	      window.open("whatsapp://send?text='.urlencode($_GET["msg"]).'", "_self")
-		  } else {
-	      window.open("https://api.whatsapp.com/send/?phone='.$mobile.'&text='.urlencode($_GET["msg"]).'", "_self")
-		  }';
-      print("</script>");
-    }
+      $there_whatsapp = true;
   }
 ?>
 <html lang="ar" dir="rtl">
@@ -62,6 +53,11 @@
       align-items: center;
       justify-content: center;
     }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
    </style>
   <!--title-->
    <title>تم إرسال النموذج بنجاح</title>
@@ -70,19 +66,25 @@
    <noscript>لضمان عمل الصفحة بالشكل الصحيح، الرجاء تفعيل الجافا سكريبت (JavaScript)</noscript>
  </head>
  <body>
-  <?php if (empty($_GET["method"])): ?>
-   <!--success-->
-    <div class="success-card">
-     <div class="icon-container">
-      <i class="fas fa-check"></i>
-     </div>
-     <h6>تم إرسال النموذج بنجاح!</h6>
-     <p>نشكرك على تواصلك معنا. لقد تم استلام بياناتك بنجاح، وسيقوم فريقنا بمراجعتها والرد عليك في أقرب وقت ممكن.</p>
-     <a href="/">الذهاب إلى الصفحة الرئيسية</a>
+  <!--loading-card-->
+   <div id="loading-card" class="success-card">
+    <div class="icon-container">
+     <i class="fas fa-spinner" style="animation: spin 800ms linear infinite;"></i>
     </div>
-  <?php endif; ?>
+    <h6>جاري المعالجة والإرسال...</h6>
+    <p>يرجى الانتظار قليلاً حتى يتم إرسال البيانات بنجاح.</p>
+   </div>
+  <!--success-card-->
+   <div id="success-card" class="success-card" style="display:none">
+    <div class="icon-container">
+     <i class="fas fa-check"></i>
+    </div>
+    <h6>تم إرسال النموذج بنجاح!</h6>
+    <p>نشكرك على تواصلك معنا. لقد تم استلام بياناتك بنجاح، وسيقوم فريقنا بمراجعتها والرد عليك في أقرب وقت ممكن.</p>
+    <a href="/">الذهاب إلى الصفحة الرئيسية</a>
+   </div>
   <!--hiddenframe-->
-   <iframe class="hidden-frame" src="<?= $url; ?>"></iframe>
+   <iframe id="telegram-frame" class="hidden-frame" src="<?= $url; ?>"></iframe>
   <!--script-->
    <script>
     if (localStorage.getItem("theme") == "old") {
@@ -91,6 +93,26 @@
      $(".success-card h6").css("color", "var(--text)");
      $(".success-card a").css("background-color", "var(--text)");
     }
+
+    const thereWhatsapp = <?= $there_whatsapp ? "true":"false"; ?>;
+    const mobileNumber = "<?= $mobile; ?>";
+    const msgText = <?= json_encode($_GET["msg"]); ?>;
+
+    $("#telegram-frame").on("load", function() {
+      $("#loading-card").hide();
+      $("#success-card").fadeIn();
+
+      if (thereWhatsapp && mobileNumber) {
+        setTimeout(function() {
+          const expression = /(iPhone|iPod|iPad)/i;
+          if (expression.test(navigator.platform)) {
+            window.open("whatsapp://send?text=" + encodeURIComponent(msgText), "_self");
+          } else {
+            window.open("https://api.whatsapp.com/send/?phone=" + mobileNumber + "&text=" + encodeURIComponent(msgText), "_self");
+          }
+        }, 2000);
+      }
+    });
    </script>
  </body>
 </html>
