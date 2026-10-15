@@ -75,7 +75,7 @@
          <button id="startSurvey" type="button">بدء استبيان جديد</button>
          <button id="updateSurvey" type="button">تحديث بيانات الاستبيان</button>
         </div>
-        <embed class="qr-code">
+        <embed class="qr-code" src="./assets/svg/04000.tel.svg">
         <div class="scan-qr">
          <span dir="rtl">امسح الرمز لزيارة:</span>
          <a href="https://www.04000.tel" target="_blank"><pre style="color:white">0<code style="color:red">4</code>000.tel</pre></a>

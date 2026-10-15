@@ -155,11 +155,11 @@ img::selection {
 .resend {
   width: 100vw;
   height: 100vh;
-  background-color: var(--text);
+  background-color: rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   z-index: 2;
@@ -168,7 +168,7 @@ img::selection {
 .resend-card {
   width: 800px;
   height: 500px;
-  background-color: white;
+  background-color: var(--text);
   border-radius: 16px;
   box-shadow: 0px 12px 18px -4px var(--footer);
   display: flex;

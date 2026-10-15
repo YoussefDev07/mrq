@@ -150,7 +150,7 @@
   }
 
   $where_sql = (count($where) > 0) ? "WHERE " . implode(" AND ", $where):"";
-  $per_page = 26;
+  $per_page = 20;
 
   $count_stmt = $conn->prepare("SELECT COUNT(DISTINCT s.id) FROM surveys s LEFT JOIN surveys_data sd ON sd.email = s.email $where_sql");
   foreach ($params as $key => $value) {
