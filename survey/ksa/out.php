@@ -29,7 +29,7 @@
      <div>
       <span class="req">الجنسية</span>
       <class>
-       <select name="nationality" required>
+       <select name="nationality" id="nationality" required>
         <option value="none" disabled selected>اختر</option>
         <?php include "../../includes/html/nationalities.html"; ?>
        </select>
@@ -295,9 +295,9 @@
     "\n\n".
     "🟦 العمر ⬅️ {age}".
     "\n\n".
-    "🔲 رقم جوال (اتصال) ⬅️ {phone}".
+    "🔲 رقم جوال (اتصال) ⬅️ +{phone}".
     "\n\n".
-    "🔲 رقم جوال (واتس) ⬅️ {whatsapp}".
+    "🔲 رقم جوال (واتس) ⬅️ +{whatsapp}".
     "\n\n".
     "🔲 دولة الإقامة الحالية ⬅️ {town}".
     "\n\n".

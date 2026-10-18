@@ -19,6 +19,45 @@ function whatsappCompilation() {
 }
 $("#whatsappNumber, #whatsappCode").on("input change", whatsappCompilation);
 
+$("#nationality").change(function(){
+  var value = $(this).val();
+
+  if (window.location.href.includes("survey/ksa/out.php")) {
+    if (value == "مصر") return $("#phoneCode, #whatsappCode").val("+20");
+    if (value == "السودان") return $("#phoneCode, #whatsappCode").val("+249");
+    if (value == "سوريا") return $("#phoneCode, #whatsappCode").val("+963");
+    if (value == "اليمن") return $("#phoneCode, #whatsappCode").val("+967");
+    if (value == "السعودية") return $("#phoneCode, #whatsappCode").val("+966");
+    if (value == "فلسطين") return $("#phoneCode, #whatsappCode").val("+970");
+    if (value == "الأردن") return $("#phoneCode, #whatsappCode").val("+962");
+    if (value == "عمان") return $("#phoneCode, #whatsappCode").val("+968");
+    if (value == "لبنان") return $("#phoneCode, #whatsappCode").val("+961");
+    if (value == "العراق") return $("#phoneCode, #whatsappCode").val("+964");
+    if (value == "الإمارات") return $("#phoneCode, #whatsappCode").val("+971");
+    if (value == "الكويت") return $("#phoneCode, #whatsappCode").val("+965");
+    if (value == "قطر") return $("#phoneCode, #whatsappCode").val("+974");
+    if (value == "البحرين") return $("#phoneCode, #whatsappCode").val("+973");
+    if (value == "تونس") return $("#phoneCode, #whatsappCode").val("+216");
+    if (value == "المغرب") return $("#phoneCode, #whatsappCode").val("+212");
+    if (value == "الجزائر") return $("#phoneCode, #whatsappCode").val("+213");
+    if (value == "ليبيا") return $("#phoneCode, #whatsappCode").val("+218");
+    if (value == "موريتانيا") return $("#phoneCode, #whatsappCode").val("+222");
+    if (value == "الصومال") return $("#phoneCode, #whatsappCode").val("+252");
+    if (value == "الفلبين") return $("#phoneCode, #whatsappCode").val("+63");
+    if (value == "باكستان") return $("#phoneCode, #whatsappCode").val("+92");
+    if (value == "الهند") return $("#phoneCode, #whatsappCode").val("+91");
+    if (value == "أمريكا") return $("#phoneCode, #whatsappCode").val("+1");
+    if (value == "بريطانيا") return $("#phoneCode, #whatsappCode").val("+44");
+    if (value == "كندا") return $("#phoneCode, #whatsappCode").val("+1");
+    if (value == "ألمانيا") return $("#phoneCode, #whatsappCode").val("+49");
+    if (value == "فرنسا") return $("#phoneCode, #whatsappCode").val("+33");
+    if (value == "روسيا") return $("#phoneCode, #whatsappCode").val("+7");
+    if (value == "تشاد") return $("#phoneCode, #whatsappCode").val("+235");
+    if (value == "نيجيريا") return $("#phoneCode, #whatsappCode").val("+234");
+    $("#phoneCode, #whatsappCode").val(null);
+  }
+});
+
 // lock/unlock
 
 $("#phoneCode, #phoneNumber").on("input change", function(){
