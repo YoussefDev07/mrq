@@ -27,6 +27,7 @@ CREATE TABLE surveys (
   send_time time,
   destination varchar(16)
 );
+ALTER TABLE surveys ADD INDEX idx_email (email);
 
 -- Create `surveys_data` Table
 
@@ -44,3 +45,4 @@ CREATE TABLE surveys_data (
   msg varchar(4000),
   last_edit datetime
 );
+ALTER TABLE surveys_data ADD INDEX idx_email (email);
